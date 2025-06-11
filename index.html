@@ -1,5 +1,3 @@
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,6 +6,8 @@
     <title>ANM NextGen - Tech Solutions</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Splide slider CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
@@ -23,10 +23,6 @@
         .service-card:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .testimonial-card {
-            background: linear-gradient(145deg, #ffffff, #f5f5f5);
         }
         
         .nav-link {
@@ -58,17 +54,25 @@
             box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
         }
         
-        .counter-box {
-            transition: all 0.3s ease;
-        }
-        
-        .counter-box:hover {
-            transform: scale(1.05);
-        }
-        
         .footer-link:hover {
             color: #3b82f6;
             transform: translateX(3px);
+        }
+
+        /* Slider styles */
+        .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .splide__arrow {
+            background: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .splide__pagination__page.is-active {
+            background: #3b82f6 !important;
         }
     </style>
 </head>
@@ -87,7 +91,6 @@
                     <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
                     <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
                     <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">About</a>
-                    <a href="#testimonials" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Testimonials</a>
                     <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
                 </div>
                 
@@ -106,14 +109,13 @@
                     <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
                     <a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
                     <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">About</a>
-                    <a href="#testimonials" class="text-gray-700 hover:text-blue-600 transition duration-300">Testimonials</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
+    <!-- Hero Section with Image Slider -->
     <section id="home" class="hero-gradient text-white pt-28 pb-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
@@ -126,47 +128,22 @@
                     </div>
                 </div>
                 <div class="md:w-1/2">
-                    <svg class="w-full h-auto" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad1" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#4facfe;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#00f2fe;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="100" y="50" width="300" height="200" rx="20" fill="#ffffff" opacity="0.1" />
-                        <circle cx="250" cy="150" r="80" fill="url(#grad1)" opacity="0.8" />
-                        <path d="M150,250 Q250,300 350,250" stroke="#ffffff" stroke-width="5" fill="none" />
-                        <circle cx="150" cy="250" r="10" fill="#ffffff" />
-                        <circle cx="250" cy="280" r="10" fill="#ffffff" />
-                        <circle cx="350" cy="250" r="10" fill="#ffffff" />
-                        <rect x="200" y="100" width="100" height="60" rx="10" fill="#ffffff" opacity="0.2" />
-                        <rect x="220" y="120" width="60" height="5" rx="2" fill="#ffffff" />
-                        <rect x="220" y="135" width="40" height="5" rx="2" fill="#ffffff" />
-                    </svg>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Stats Section -->
-    <section class="py-10 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 text-center">
-                <div class="counter-box p-6 rounded-lg shadow-lg bg-gradient-to-r from-blue-50 to-blue-100">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">500+</div>
-                    <div class="text-gray-700">Projects Completed</div>
-                </div>
-                <div class="counter-box p-6 rounded-lg shadow-lg bg-gradient-to-r from-blue-50 to-blue-100">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">200+</div>
-                    <div class="text-gray-700">Clients Served</div>
-                </div>
-                <div class="counter-box p-6 rounded-lg shadow-lg bg-gradient-to-r from-blue-50 to-blue-100">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">1000+</div>
-                    <div class="text-gray-700">Professionals Placed</div>
-                </div>
-                <div class="counter-box p-6 rounded-lg shadow-lg bg-gradient-to-r from-blue-50 to-blue-100">
-                    <div class="text-blue-600 text-4xl font-bold mb-2">98%</div>
-                    <div class="text-gray-700">Client Satisfaction</div>
+                    <!-- Image Slider -->
+                    <div class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -279,105 +256,6 @@
                         <a href="#contact" class="inline-block text-green-600 font-medium hover:text-green-800 transition duration-300">Learn More →</a>
                     </div>
                 </div>
-                
-                <!-- Data Solutions Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
-                    <div class="h-3 bg-purple-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-database text-2xl text-purple-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Data Solutions</h3>
-                        <p class="text-gray-600 mb-4">Unlock the power of your data with our analytics and business intelligence solutions. Turn information into actionable insights.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Data Analytics
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Business Intelligence
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Data Migration & Integration
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-purple-600 font-medium hover:text-purple-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- Regulatory & Compliance Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
-                    <div class="h-3 bg-red-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-shield-alt text-2xl text-red-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Regulatory & Compliance</h3>
-                        <p class="text-gray-600 mb-4">Navigate complex regulatory landscapes with our compliance solutions. We help ensure your business meets industry standards.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Compliance Assessment
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Risk Management
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Audit Support
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-red-600 font-medium hover:text-red-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- IT Training Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
-                    <div class="h-3 bg-yellow-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-graduation-cap text-2xl text-yellow-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">IT Training</h3>
-                        <p class="text-gray-600 mb-4">Comprehensive training programs to upskill your workforce. Stay ahead with the latest technologies and methodologies.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Customized Courses
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Hands-on Workshops
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Certification Programs
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-yellow-600 font-medium hover:text-yellow-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -436,75 +314,6 @@
                         </div>
                     </div>
                     <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-lg font-medium">Get to Know Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Testimonials Section -->
-    <section id="testimonials" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">What Our Clients Say</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Hear from businesses that have transformed their operations with our services.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="testimonial-card p-6 rounded-xl shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white font-bold text-xl">
-                            TC
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-gray-800">Tech Innovations</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"ANM NextGen helped us build a world-class development team in record time. Their staffing process was thorough and efficient, finding us the perfect candidates."</p>
-                </div>
-                
-                <div class="testimonial-card p-6 rounded-xl shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white font-bold text-xl">
-                            DS
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-gray-800">Digital Solutions Inc.</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star-half-alt"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"The ServiceNow implementation team at ANM NextGen was instrumental in helping us streamline our IT service management. Their expertise was invaluable."</p>
-                </div>
-                
-                <div class="testimonial-card p-6 rounded-xl shadow-lg">
-                    <div class="flex items-center mb-4">
-                        <div class="w-12 h-12 rounded-full bg-purple-600 flex items-center justify-center text-white font-bold text-xl">
-                            FT
-                        </div>
-                        <div class="ml-4">
-                            <h4 class="text-lg font-semibold text-gray-800">Future Technologies</h4>
-                            <div class="flex text-yellow-400">
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                                <i class="fas fa-star"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <p class="text-gray-600 italic">"The customization by ANM NextGen transformed our business processes. Our team is now equipped with cutting-edge tools that have dramatically improved our efficiency and productivity."</p>
                 </div>
             </div>
         </div>
@@ -600,7 +409,6 @@
                     <ul class="space-y-3">
                         <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
                         <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300 footer-link">About Us</a></li>
-                        <li><a href="#testimonials" class="text-gray-400 hover:text-white transition duration-300 footer-link">Testimonials</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300 footer-link">Contact</a></li>
                     </ul>
                 </div>
@@ -623,7 +431,21 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Add Splide slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
+        // Initialize Splide slider
+        document.addEventListener('DOMContentLoaded', function() {
+            new Splide('.splide', {
+                type: 'loop',
+                autoplay: true,
+                interval: 3000,
+                pauseOnHover: false,
+                arrows: true,
+                pagination: true
+            }).mount();
+        });
+
         // Mobile Menu Toggle
         const menuToggle = document.getElementById('menu-toggle');
         const mobileMenu = document.getElementById('mobile-menu');
@@ -708,5 +530,5 @@
             }, 5000);
         });
     </script>
-<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94d823a72231444f',t:'MTc0OTU1MDg1OS4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</body>
 </html>
