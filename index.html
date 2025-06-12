@@ -74,6 +74,19 @@
         .splide__pagination__page.is-active {
             background: #3b82f6 !important;
         }
+
+        /* Company name size */
+        .company-name {
+            font-size: 2rem; /* Increased from 1.5rem */
+        }
+
+        /* Service image styles */
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
     </style>
 </head>
 <body class="bg-gray-50">
@@ -82,7 +95,7 @@
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <div class="text-2xl font-bold text-blue-600">
+                    <div class="company-name font-bold text-blue-600">
                         <span class="text-blue-800">ANM</span> NextGen
                     </div>
                 </div>
@@ -157,9 +170,10 @@
                 <p class="text-gray-600 max-w-2xl mx-auto">We offer comprehensive IT solutions to help businesses excel through expert staffing, software development, enterprise platforms, and regulatory compliance.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Staffing Service Card -->
                 <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="service-image">
                     <div class="h-3 bg-blue-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
@@ -193,6 +207,7 @@
                 
                 <!-- Software Development Card -->
                 <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="service-image">
                     <div class="h-3 bg-indigo-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
@@ -226,6 +241,7 @@
                 
                 <!-- ServiceNow Card -->
                 <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="service-image">
                     <div class="h-3 bg-green-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
@@ -254,6 +270,108 @@
                             </li>
                         </ul>
                         <a href="#contact" class="inline-block text-green-600 font-medium hover:text-green-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- Data Solutions Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Solutions" class="service-image">
+                    <div class="h-3 bg-purple-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-database text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Data Solutions</h3>
+                        <p class="text-gray-600 mb-4">Unlock the power of your data with our analytics and business intelligence solutions. Turn information into actionable insights.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Data Analytics
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Business Intelligence
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Data Migration & Integration
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block text-purple-600 font-medium hover:text-purple-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- Regulatory & Compliance Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Regulatory & Compliance" class="service-image">
+                    <div class="h-3 bg-red-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-shield-alt text-2xl text-red-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Regulatory & Compliance</h3>
+                        <p class="text-gray-600 mb-4">Navigate complex regulatory landscapes with our compliance solutions. We help ensure your business meets industry standards.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Compliance Assessment
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Risk Management
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Audit Support
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block text-red-600 font-medium hover:text-red-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- IT Training Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="IT Training" class="service-image">
+                    <div class="h-3 bg-yellow-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-graduation-cap text-2xl text-yellow-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">IT Training</h3>
+                        <p class="text-gray-600 mb-4">Comprehensive training programs to upskill your workforce. Stay ahead with the latest technologies and methodologies.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Customized Courses
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Hands-on Workshops
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Certification Programs
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block text-yellow-600 font-medium hover:text-yellow-800 transition duration-300">Learn More →</a>
                     </div>
                 </div>
             </div>
@@ -375,7 +493,7 @@
                                 </div>
                                 <div>
                                     <h4 class="text-lg font-medium text-gray-800 mb-1">Email Us</h4>
-                                    <p class="text-gray-600">admin@anmnextgen.com</p>
+                                    <p class="text-gray-600">adminsupport@anmng.com</p>
                                 </div>
                             </div>
                         </div>
@@ -401,6 +519,8 @@
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Software Development</a></li>
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">ServiceNow Solutions</a></li>
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Data Solutions</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Regulatory & Compliance</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">IT Training</a></li>
                     </ul>
                 </div>
                 
