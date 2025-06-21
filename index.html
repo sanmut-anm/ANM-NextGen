@@ -75,11 +75,6 @@
             background: #3b82f6 !important;
         }
 
-        /* Company name size */
-        .company-name {
-            font-size: 2rem; /* Increased from 1.5rem */
-        }
-
         /* Service image styles */
         .service-image {
             width: 100%;
@@ -87,16 +82,72 @@
             object-fit: cover;
             border-radius: 8px 8px 0 0;
         }
+
+        /* Logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-logo {
+            height: 65px; /* Increased logo size */
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .company-name {
+            font-size: 1.8rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Elegant design improvements */
+        .elegant-shadow {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .section-title {
+            position: relative;
+            display: inline-block;
+            margin-bottom: 2.5rem;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
+        }
+        
+        .contact-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+        
+        .gradient-divider {
+            height: 4px;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
+            width: 100%;
+        }
     </style>
 </head>
-<body class="bg-gray-50">
-    <!-- Navigation -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
+<body class="bg-gray-60">
+    <!-- Navigation with Logo -->
+    <nav class="bg-white shadow-md fixed w-full z-60">
         <div class="container mx-auto px-4 py-3">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <div class="company-name font-bold text-blue-600">
-                        <span class="text-blue-800">ANM</span> NextGen
+                    <div class="logo-container">
+                        <!-- Company Logo - Replace src with your actual logo path -->
+                        <img src="https://github.com/sanmut-anm/ANM-NextGen/blob/main/anm.png" alt="ANM NextGen Logo" class="company-logo">
+                        <div class="company-name">ANM NextGen</div>
                     </div>
                 </div>
                 
@@ -129,15 +180,15 @@
     </nav>
 
     <!-- Hero Section with Image Slider -->
-    <section id="home" class="hero-gradient text-white pt-28 pb-20">
+    <section id="home" class="hero-gradient text-white pt-32 pb-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-4">Transforming Tech Talent & Projects</h1>
-                    <p class="text-lg mb-8 text-gray-200">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforming Tech Talent & Projects</h1>
+                    <p class="text-xl mb-8 text-gray-200">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#services" class="btn-primary px-8 py-3 rounded-lg font-medium text-center">Our Services</a>
-                        <a href="#contact" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-medium text-center hover:bg-white hover:text-blue-800 transition duration-300">Contact Us</a>
+                        <a href="#services" class="btn-primary px-8 py-3 rounded-lg font-medium text-center shadow-lg">Our Services</a>
+                        <a href="#contact" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-medium text-center hover:bg-white hover:text-blue-800 transition duration-300 shadow-lg">Contact Us</a>
                     </div>
                 </div>
                 <div class="md:w-1/2">
@@ -166,13 +217,13 @@
     <section id="services" class="py-16 bg-gray-50">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Our Services</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">We offer comprehensive IT solutions to help businesses excel through expert staffing, software development, enterprise platforms, and regulatory compliance.</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">We offer comprehensive IT solutions to help businesses excel through expert staffing, software development, and enterprise platforms.</p>
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
                 <!-- Staffing Service Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
                     <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="service-image">
                     <div class="h-3 bg-blue-600"></div>
                     <div class="p-6">
@@ -206,7 +257,7 @@
                 </div>
                 
                 <!-- Software Development Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
                     <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="service-image">
                     <div class="h-3 bg-indigo-600"></div>
                     <div class="p-6">
@@ -240,7 +291,7 @@
                 </div>
                 
                 <!-- ServiceNow Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
                     <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="service-image">
                     <div class="h-3 bg-green-600"></div>
                     <div class="p-6">
@@ -254,7 +305,7 @@
                                 <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
-                                ITSM Implementation
+                                ITSM & ITOM Implementation
                             </li>
                             <li class="flex items-center text-gray-600">
                                 <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
@@ -274,7 +325,7 @@
                 </div>
                 
                 <!-- Data Solutions Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Solutions" class="service-image">
                     <div class="h-3 bg-purple-600"></div>
                     <div class="p-6">
@@ -306,74 +357,6 @@
                         <a href="#contact" class="inline-block text-purple-600 font-medium hover:text-purple-800 transition duration-300">Learn More →</a>
                     </div>
                 </div>
-                
-                <!-- Regulatory & Compliance Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Regulatory & Compliance" class="service-image">
-                    <div class="h-3 bg-red-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-red-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-shield-alt text-2xl text-red-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Regulatory & Compliance</h3>
-                        <p class="text-gray-600 mb-4">Navigate complex regulatory landscapes with our compliance solutions. We help ensure your business meets industry standards.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Compliance Assessment
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Risk Management
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Audit Support
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-red-600 font-medium hover:text-red-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- IT Training Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
-                    <img src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1471&q=80" alt="IT Training" class="service-image">
-                    <div class="h-3 bg-yellow-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-yellow-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-graduation-cap text-2xl text-yellow-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">IT Training</h3>
-                        <p class="text-gray-600 mb-4">Comprehensive training programs to upskill your workforce. Stay ahead with the latest technologies and methodologies.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Customized Courses
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Hands-on Workshops
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Certification Programs
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-yellow-600 font-medium hover:text-yellow-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
             </div>
         </div>
     </section>
@@ -381,30 +364,27 @@
     <!-- About Section -->
     <section id="about" class="py-16 bg-white">
         <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">About ANM NextGen</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">We bridge the gap between technology and talent to drive your business forward.</p>
+            </div>
+            
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <svg class="w-full h-auto" viewBox="0 0 500 400" xmlns="http://www.w3.org/2000/svg">
-                        <defs>
-                            <linearGradient id="grad2" x1="0%" y1="0%" x2="100%" y2="0%">
-                                <stop offset="0%" style="stop-color:#4776E6;stop-opacity:1" />
-                                <stop offset="100%" style="stop-color:#8E54E9;stop-opacity:1" />
-                            </linearGradient>
-                        </defs>
-                        <rect x="100" y="80" width="300" height="200" rx="20" fill="url(#grad2)" opacity="0.1" />
-                        <circle cx="180" cy="150" r="60" fill="#4776E6" opacity="0.2" />
-                        <circle cx="320" cy="200" r="80" fill="#8E54E9" opacity="0.2" />
-                        <path d="M120,250 C180,180 280,300 380,220" stroke="#4776E6" stroke-width="4" fill="none" />
-                        <circle cx="120" cy="250" r="8" fill="#4776E6" />
-                        <circle cx="380" cy="220" r="8" fill="#8E54E9" />
-                        <rect x="200" y="120" width="100" height="70" rx="10" fill="#ffffff" stroke="#4776E6" stroke-width="2" />
-                        <rect x="220" y="140" width="60" height="6" rx="3" fill="#4776E6" />
-                        <rect x="220" y="155" width="40" height="6" rx="3" fill="#4776E6" />
-                    </svg>
+                    <div class="bg-gray-100 rounded-2xl p-8 elegant-shadow">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Team Collaboration" 
+                             class="w-full h-auto rounded-lg">
+                    </div>
                 </div>
+                
                 <div class="md:w-1/2 md:pl-10">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-6">About ANM NextGen</h2>
-                    <p class="text-gray-600 mb-6">ANM NextGen was founded with a vision to bridge the gap between technology and talent. We understand the challenges businesses face in the rapidly evolving tech landscape and provide comprehensive solutions to help them thrive.</p>
-                    <p class="text-gray-600 mb-6">Our team of experts brings decades of combined experience in staffing, software development, enterprise platforms, and regulatory compliance. We're passionate about empowering organizations and individuals to reach their full potential through innovative approaches and cutting-edge methodologies.</p>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">To empower organizations with innovative technology solutions and top-tier talent that drive measurable business results and sustainable growth.</p>
+                    
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 mb-6">To be the premier technology partner for businesses seeking to transform their operations through cutting-edge IT solutions and exceptional talent.</p>
+                    
                     <div class="grid grid-cols-2 gap-4 mb-6">
                         <div class="flex items-center">
                             <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
@@ -441,8 +421,8 @@
     <section id="contact" class="py-16 bg-white">
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4">Get In Touch</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto">Ready to transform your business? Contact us today to discuss how ANM NextGen can help you achieve your goals.</p>
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Ready to transform your business? Contact us today to discuss how ANM NextGen can help you achieve your goals.</p>
             </div>
             
             <div class="flex flex-col md:flex-row">
@@ -467,14 +447,14 @@
                             <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Message"></textarea>
                         </div>
                         <div>
-                            <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium">Send Message</button>
+                            <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium shadow-lg">Send Message</button>
                         </div>
                         <div id="form-message" class="hidden text-center py-3 rounded-lg"></div>
                     </form>
                 </div>
                 
                 <div class="md:w-1/2 md:pl-8">
-                    <div class="bg-gray-50 p-8 rounded-xl shadow-lg h-full">
+                    <div class="contact-card p-8 h-full">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
                         <div class="space-y-6">
                             <div class="flex items-start">
@@ -497,6 +477,15 @@
                                 </div>
                             </div>
                         </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="text-lg font-medium text-gray-800 mb-4">Connect With Us</h4>
+                            <div class="flex">
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -508,27 +497,34 @@
         <div class="container mx-auto px-4">
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div>
-                    <h3 class="text-xl font-bold mb-6">ANM NextGen</h3>
+                    <div class="logo-container mb-4">
+                        <img src="https://github.com/sanmut-anm/ANM-NextGen/blob/main/anm-logo.png" alt="ANM NextGen Logo" class="company-logo">
+                        <div class="company-name">ANM NextGen</div>
+                    </div>
                     <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
+                    <div class="flex">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 mr-4">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-6">Services</h3>
+                    <h3 class="text-xl font-bold mb-6 text-white">Services</h3>
                     <ul class="space-y-3">
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Staffing Services</a></li>
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Software Development</a></li>
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">ServiceNow Solutions</a></li>
                         <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Data Solutions</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Regulatory & Compliance</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">IT Training</a></li>
                     </ul>
                 </div>
                 
                 <div>
-                    <h3 class="text-xl font-bold mb-6">Quick Links</h3>
+                    <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
                     <ul class="space-y-3">
                         <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
                         <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300 footer-link">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Services</a></li>
                         <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300 footer-link">Contact</a></li>
                     </ul>
                 </div>
@@ -536,7 +532,7 @@
             
             <div class="border-t border-gray-800 pt-8">
                 <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2023 ANM NextGen. All rights reserved.</p>
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 ANM NextGen. All rights reserved.</p>
                     <div class="flex space-x-6">
                         <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
                         <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
