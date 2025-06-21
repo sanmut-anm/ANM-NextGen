@@ -14,6 +14,7 @@
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
+            background-color: #f9fafb;
         }
         
         .hero-gradient {
@@ -83,20 +84,21 @@
             border-radius: 8px 8px 0 0;
         }
 
-        /* Logo styles */
+        /* Logo styles - FIXED AND ENHANCED */
         .logo-container {
             display: flex;
             align-items: center;
         }
         
         .company-logo {
-            height: 65px; /* Increased logo size */
+            height: 75px; /* Increased logo size */
+            width: auto; /* Maintain aspect ratio */
             margin-right: 15px;
             transition: transform 0.3s ease;
         }
         
         .company-name {
-            font-size: 1.8rem;
+            font-size: 2rem; /* Increased font size */
             font-weight: 700;
             background: linear-gradient(to right, #0A2463, #3b82f6);
             -webkit-background-clip: text;
@@ -136,17 +138,34 @@
             background: linear-gradient(to right, #0A2463, #3b82f6);
             width: 100%;
         }
+        
+        /* Navigation adjustments for larger logo */
+        nav {
+            padding: 15px 0;
+        }
+        
+        /* Hero section padding adjustment */
+        .hero-section {
+            padding-top: 120px;
+        }
+        
+        /* Logo border for visibility */
+        .logo-border {
+            border: 2px solid #3b82f6;
+            border-radius: 8px;
+            padding: 5px;
+        }
     </style>
 </head>
 <body class="bg-gray-60">
     <!-- Navigation with Logo -->
-    <nav class="bg-white shadow-md fixed w-full z-60">
-        <div class="container mx-auto px-4 py-3">
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4">
             <div class="flex justify-between items-center">
                 <div class="flex items-center">
                     <div class="logo-container">
-                        <!-- Company Logo - Replace src with your actual logo path -->
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/anm-logo1.png?v=1" alt="ANM NextGen Logo" class="company-logo">
+                        <!-- Company Logo - FIXED PATH -->
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/anm.png" alt="ANM NextGen Logo" class="company-logo logo-border">
                         <div class="company-name">ANM NextGen</div>
                     </div>
                 </div>
@@ -180,7 +199,7 @@
     </nav>
 
     <!-- Hero Section with Image Slider -->
-    <section id="home" class="hero-gradient text-white pt-32 pb-20">
+    <section id="home" class="hero-gradient text-white hero-section pb-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
@@ -337,7 +356,7 @@
                         <ul class="mb-6 space-y-2">
                             <li class="flex items-center text-gray-600">
                                 <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    <path fill-rule="evenodd" d="M10 18a8 8 极 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                                 Data Analytics
                             </li>
@@ -352,7 +371,7 @@
                                     <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                                 Data Migration & Integration
-                            </li>
+                            </极>
                         </ul>
                         <a href="#contact" class="inline-block text-purple-600 font-medium hover:text-purple-800 transition duration-300">Learn More →</a>
                     </div>
@@ -382,7 +401,7 @@
                     <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
                     <p class="text-gray-600 mb-6">To empower organizations with innovative technology solutions and top-tier talent that drive measurable business results and sustainable growth.</p>
                     
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
+                    <h3 class="text-2xl font-semib极 text-gray-800 mb-4">Our Vision</h3>
                     <p class="text-gray-600 mb-6">To be the premier technology partner for businesses seeking to transform their operations through cutting-edge IT solutions and exceptional talent.</p>
                     
                     <div class="grid grid-cols-2 gap-4 mb-6">
@@ -498,7 +517,8 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div>
                     <div class="logo-container mb-4">
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/anm-logo1.png?v=1" alt="ANM NextGen Logo" class="company-logo">
+                        <!-- Fixed footer logo -->
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/anm.png" alt="ANM NextGen Logo" class="company-logo logo-border">
                         <div class="company-name">ANM NextGen</div>
                     </div>
                     <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
