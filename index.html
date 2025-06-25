@@ -4,7 +4,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANM NextGen - Tech Solutions</title>
-    <!-- Proper Tailwind CSS implementation -->
+    
+    <!-- Favicon -->
+    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
+    
+    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
     <script>
         tailwind.config = {
@@ -19,24 +23,27 @@
                     },
                     fontFamily: {
                         poppins: ['Poppins', 'sans-serif']
+                    },
+                    backgroundImage: {
+                        'hero-gradient': 'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
                     }
                 }
             }
         }
     </script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
+    <!-- Fonts and Icons -->
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Splide Slider -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    
     <style>
-        /* Custom CSS for production */
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
             background-color: #f9fafb;
-        }
-        
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
         }
         
         .service-card {
@@ -67,72 +74,6 @@
             width: 100%;
         }
         
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
-        }
-        
-        .footer-link:hover {
-            color: #3b82f6;
-            transform: translateX(3px);
-        }
-
-        /* Slider styles */
-        .splide__slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .splide__arrow {
-            background: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        .splide__pagination__page.is-active {
-            background: #3b82f6 !important;
-        }
-
-        /* Service image styles */
-        .service-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-
-        /* Logo styles */
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        
-        .company-logo {
-            height: 75px;
-            width: auto;
-            margin-right: 15px;
-            transition: transform 0.3s ease;
-        }
-        
-        .company-name {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #0A2463, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Elegant design improvements */
-        .elegant-shadow {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        
         .section-title {
             position: relative;
             display: inline-block;
@@ -149,107 +90,6 @@
             background: linear-gradient(to right, #0A2463, #3b82f6);
         }
         
-        .contact-card {
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        
-        .gradient-divider {
-            height: 4px;
-            background: linear-gradient(to right, #0A2463, #3b82f6);
-            width: 100%;
-        }
-        
-        /* Careers Section Styles */
-        .job-card {
-            transition: all 0.3s ease;
-            border-left: 4px solid #3b82f6;
-        }
-        
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #2563eb;
-        }
-        
-        .job-type {
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .full-time {
-            background-color: #dbeafe;
-            color: #2563eb;
-        }
-        
-        .part-time {
-            background-color: #f0fdf4;
-            color: #16a34a;
-        }
-        
-        .contract {
-            background-color: #ffedd5;
-            color: #ea580c;
-        }
-        
-        .remote {
-            background-color: #fce7f3;
-            color: #db2777;
-        }
-        
-        .tag {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            background-color: #e5e7eb;
-            color: #4b5563;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .application-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .application-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
-            padding: 30px;
-            position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
-        }
-        
-        .application-modal.active .modal-content {
-            transform: translateY(0);
-        }
-        
-        /* Formspree integration styles */
         .loading-spinner {
             display: inline-block;
             width: 20px;
@@ -264,74 +104,6 @@
         @keyframes spin {
             to { transform: rotate(360deg); }
         }
-        
-        .form-success {
-            background-color: #f0fdf4;
-            color: #16a34a;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            display: none;
-        }
-        
-        .form-error {
-            background-color: #fef2f2;
-            color: #dc2626;
-            padding: 1rem;
-            border-radius: 0.5rem;
-            margin-top: 1rem;
-            display: none;
-        }
-        
-        /* Troubleshooting section */
-        .troubleshooting-section {
-            background-color: #f0f9ff;
-            border-radius: 10px;
-            padding: 20px;
-            margin-top: 20px;
-        }
-        
-        .troubleshooting-title {
-            color: #0369a1;
-            font-weight: 600;
-            margin-bottom: 15px;
-        }
-        
-        .troubleshooting-list li {
-            margin-bottom: 10px;
-            padding-left: 25px;
-            position: relative;
-        }
-        
-        .troubleshooting-list li:before {
-            content: "•";
-            position: absolute;
-            left: 10px;
-            color: #0ea5e9;
-            font-weight: bold;
-        }
-        
-        .direct-email-link {
-            color: #2563eb;
-            font-weight: 600;
-            text-decoration: underline;
-        }
-        
-        .status-indicator {
-            display: inline-block;
-            width: 12px;
-            height: 12px;
-            border-radius: 50%;
-            margin-right: 8px;
-        }
-        
-        .status-online {
-            background-color: #10b981;
-        }
-        
-        .status-offline {
-            background-color: #ef4444;
-        }
     </style>
 </head>
 <body class="font-poppins bg-gray-50">
@@ -340,9 +112,9 @@
         <div class="container mx-auto px-4">
             <div class="flex justify-between items-center py-4">
                 <div class="flex items-center">
-                    <div class="logo-container">
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo">
-                        <div class="company-name">ANM NextGen</div>
+                    <div class="flex items-center">
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="h-16 w-auto mr-3">
+                        <div class="text-2xl font-bold bg-gradient-to-r from-blue-800 to-blue-500 bg-clip-text text-transparent">ANM NextGen</div>
                     </div>
                 </div>
                 
@@ -368,7 +140,7 @@
                 <div class="flex flex-col space-y-3">
                     <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Home</a>
                     <a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Services</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">About</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4极2">About</a>
                     <a href="#careers" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Careers</a>
                     <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Contact</a>
                 </div>
@@ -377,14 +149,14 @@
     </nav>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-gradient text-white pt-32 pb-20">
+    <section id="home" class="bg-hero-gradient text-white pt-32 pb-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
                     <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforming Tech Talent & Projects</h1>
                     <p class="text-xl mb-8 text-gray-200">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#services" class="btn-primary px-8 py-3 rounded-lg font-medium text-center shadow-lg">Our Services</a>
+                        <a href="#services" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-8 py-3 rounded-lg font-medium text-center shadow-lg transition duration-300">Our Services</a>
                         <a href="#contact" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-medium text-center hover:bg-white hover:text-blue-800 transition duration-300 shadow-lg">Contact Us</a>
                     </div>
                 </div>
@@ -393,19 +165,19 @@
                         <div class="splide__track">
                             <ul class="splide__list">
                                 <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team" class="rounded-lg">
+                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team" class="rounded-lg w-full h-96 object-cover">
                                 </li>
                                 <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics" class="rounded-lg">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics" class="rounded-lg w-full h-96 object-cover">
                                 </li>
                                 <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development" class="rounded-lg">
+                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development" class="rounded-lg w-full h-96 object-cover">
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
-            </极>
+            </div>
         </div>
     </section>
 
@@ -418,9 +190,9 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
-                    <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="service-image">
-                    <div class="h-3 bg-blue-600"></div>
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="w-full h-48 object-cover">
+                    <div class="h-2 bg-blue-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                             <i class="fas fa-users text-2xl text-blue-600"></i>
@@ -431,9 +203,9 @@
                     </div>
                 </div>
                 
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="service-image">
-                    <div class="h-3 bg-indigo-600"></div>
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="w-full h-48 object-cover">
+                    <div class="h-2 bg-indigo-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                             <i class="fas fa-code text-2xl text-indigo-600"></i>
@@ -444,9 +216,9 @@
                     </div>
                 </div>
                 
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="service-image">
-                    <div class="h-3 bg-green-600"></div>
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="w-full h-48 object-cover">
+                    <div class="h-2 bg-green-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                             <i class="fas fa-cloud text-2xl text-green-600"></i>
@@ -465,12 +237,12 @@
         <div class="container mx-auto px-4">
             <div class="text-center mb-16">
                 <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">About ANM NextGen</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto text-lg">We bridge the gap between technology and talent to drive your business forward.</p>
+                <p class="text-gray-600 max极-3xl mx-auto text-lg">We bridge the gap between technology and talent to drive your business forward.</p>
             </div>
             
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="bg-gray-100 rounded-2xl p-8 elegant-shadow">
+                    <div class="bg-gray-100 rounded-2xl p-8 shadow-md">
                         <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
                              alt="Team Collaboration" 
                              class="w-full h-auto rounded-lg">
@@ -510,7 +282,7 @@
                             <span class="text-gray-700 font-medium">Quality Assured</span>
                         </div>
                     </div>
-                    <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-lg font-medium">Get to Know Us</a>
+                    <a href="#contact" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 inline-block px-6 py-3 rounded-lg font-medium text-white">Get to Know Us</a>
                 </div>
             </div>
         </div>
@@ -525,13 +297,13 @@
             </div>
             
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <div class="job-card bg-white rounded-lg p-6 elegant-shadow">
+                <div class="bg-white rounded-lg p-6 shadow-md transition duration-300 border-l-4 border-blue-500 hover:border-blue-700 hover:shadow-lg">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-800">Frontend Developer</h3>
                             <p class="text-gray-600">Engineering</p>
                         </div>
-                        <span class="job-type full-time">Full-time</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-blue-100 text-blue-800">Full-time</span>
                     </div>
                     <div class="flex items-center text-gray-600 mb-4">
                         <i class="fas fa-map-marker-alt mr-2"></i>
@@ -539,25 +311,25 @@
                     </div>
                     <p class="text-gray-700 mb-4">Develop responsive user interfaces using modern JavaScript frameworks.</p>
                     <div class="mb-6">
-                        <span class="tag">React</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">CSS</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">React</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">JavaScript</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700">CSS</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">Posted: 2 days ago</span>
-                        <button class="btn-primary px-4 py-2 rounded-lg font-medium apply-btn" data-title="Frontend Developer">
+                        <button class="apply-btn bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-2 rounded-lg font-medium text-white" data-title="Frontend Developer">
                             Apply Now
                         </button>
                     </div>
                 </div>
                 
-                <div class="job-card bg-white rounded-lg p-6 elegant-shadow">
+                <div class="bg-white rounded-lg p-6 shadow-md transition duration-300 border-l-4 border-yellow-500 hover:border-yellow-700 hover:shadow-lg">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-800">ServiceNow Developer</h3>
                             <p class="text-gray-600">IT Services</p>
                         </div>
-                        <span class="job-type contract">Contract</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">Contract</span>
                     </div>
                     <div class="flex items-center text-gray-600 mb-4">
                         <i class="fas fa-map-marker-alt mr-2"></i>
@@ -565,25 +337,25 @@
                     </div>
                     <p class="text-gray-700 mb-4">Implement and customize ServiceNow solutions for enterprise clients.</p>
                     <div class="mb-6">
-                        <span class="tag">ServiceNow</span>
-                        <span class="tag">JavaScript</span>
-                        <span class="tag">ITSM</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">ServiceNow</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">JavaScript</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700">ITSM</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">Posted: 1 week ago</span>
-                        <button class="btn-primary px-4 py-2 rounded-lg font-medium apply-btn" data-title="ServiceNow Developer">
+                        <button class="apply-btn bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-2 rounded-lg font-medium text-white" data-title="ServiceNow Developer">
                             Apply Now
                         </button>
                     </div>
                 </div>
                 
-                <div class="job-card bg-white rounded-lg p-6 elegant-shadow">
+                <div class="bg-white rounded-lg p-6 shadow-md transition duration-300 border-l-4 border-purple-500 hover:border-purple-700 hover:shadow-lg">
                     <div class="flex justify-between items-start mb-4">
                         <div>
                             <h3 class="text-xl font-bold text-gray-800">DevOps Engineer</h3>
                             <p class="text-gray-600">Operations</p>
                         </div>
-                        <span class="job-type remote">Remote</span>
+                        <span class="px-3 py-1 rounded-full text-xs font-medium bg-purple-100 text-purple-800">Remote</span>
                     </div>
                     <div class="flex items-center text-gray-600 mb-4">
                         <i class="fas fa-map-marker-alt mr-2"></i>
@@ -591,13 +363,13 @@
                     </div>
                     <p class="text-gray-700 mb-4">Design and maintain cloud infrastructure and CI/CD pipelines.</p>
                     <div class="mb-6">
-                        <span class="tag">AWS</span>
-                        <span class="tag">Docker</span>
-                        <span class="tag">Kubernetes</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">AWS</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700 mr-2">Docker</span>
+                        <span class="inline-block bg-gray-100 rounded-full px-3 py-1 text-xs font-semibold text-gray-700">Kubernetes</span>
                     </div>
                     <div class="flex justify-between items-center">
                         <span class="text-sm text-gray-500">Posted: 3 days ago</span>
-                        <button class="btn-primary px-4 py-2 rounded-lg font-medium apply-btn" data-title="DevOps Engineer">
+                        <button class="apply-btn bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-4 py-2 rounded-lg font-medium text-white" data-title="DevOps Engineer">
                             Apply Now
                         </button>
                     </div>
@@ -636,13 +408,13 @@
                             <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Message"></textarea>
                         </div>
                         <div>
-                            <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium shadow-lg">Send Message</button>
+                            <button type="submit" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 w-full px-6 py-3 rounded-lg font-medium text-white shadow-lg">Send Message</button>
                         </div>
                     </form>
                 </div>
                 
                 <div class="md:w-1/2 md:pl-8">
-                    <div class="contact-card p-8 h-full">
+                    <div class="bg-white rounded-lg p-8 shadow-md h-full">
                         <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
                         <div class="space-y-6">
                             <div class="flex items-start">
@@ -668,9 +440,15 @@
                         
                         <div class="mt-10">
                             <h4 class="text-lg font-medium text-gray-800 mb-4">Connect With Us</h4>
-                            <div class="flex">
+                            <div class="flex space-x-4">
                                 <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
                                     <i class="fab fa-linkedin-in"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-400 flex items-center justify-center text-white hover:bg-blue-500 transition duration-300">
+                                    <i class="fab fa-twitter"></i>
+                                </a>
+                                <a href="#" class="w-12 h-12 rounded-full bg-indigo-600 flex items-center justify-center text-white hover:bg-indigo-700 transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
                                 </a>
                             </div>
                         </div>
@@ -680,99 +458,25 @@
         </div>
     </section>
 
-    <!-- Application Modal -->
-    <div class="application-modal" id="application-modal">
-        <div class="modal-content">
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" id="close-modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="text-2xl font-bold mb-6 text-center" id="modal-title">Apply for Position</h2>
-            <div class="bg-white rounded-lg p-6">
-                <form id="job-application-form" action="https://formspree.io/f/xldnolzz" method="POST" enctype="multipart/form-data">
-                    <input type="hidden" id="position-applying-for" name="position">
-                    <input type="hidden" id="application-subject" name="_subject" value="New Job Application">
-                    
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="applicant-name" class="block text-gray-700 font-medium mb-2">Full Name <span class="text-red-500">*</span></label>
-                            <input type="text" id="applicant-name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div>
-                            <label for="applicant-email" class="block text-gray-700 font-medium mb-2">Email <span class="text-red-500">*</span></label>
-                            <input type="email" id="applicant-email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div>
-                            <label for="applicant-phone" class="block text-gray-700 font-medium mb-2">Phone <span class="text-red-500">*</span></label>
-                            <input type="tel" id="applicant-phone" name="phone" class="w-full px极4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div>
-                            <label for="applicant-location" class="block text-gray-700 font-medium mb-2">Location <span class="text-red-500">*</span></label>
-                            <input type="text" id="applicant-location" name="location" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <label for="applicant-resume" class="block text-gray-700 font-medium mb-2">Resume/CV <span class="text-red-500">*</span></label>
-                        <input type="file" id="applicant-resume" name="resume" class="w-full px-4 py-3 border border-gray-300 rounded-lg" accept=".pdf,.doc,.docx" required>
-                        <p class="text-sm text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (max 10MB)</p>
-                    </div>
-                    <div class="mt-4">
-                        <label for="applicant-cover" class="block text-gray-700 font-medium mb-2">Cover Letter (optional)</label>
-                        <textarea id="applicant-cover" name="cover_letter" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg"></textarea>
-                    </div>
-                    
-                    <div class="mt-6">
-                        <button type="submit" id="submit-application" class="btn-primary w-full px-6 py-3 rounded-lg font-medium flex items-center justify-center">
-                            Submit Application
-                        </button>
-                    </div>
-                    
-                    <div id="form-status" class="mt-4 text-sm">
-                        <div class="flex items-center mb-2">
-                            <span class="status-indicator status-online"></span>
-                            <span>Formspree service is operational</span>
-                        </div>
-                    </div>
-                    
-                    <!-- Status messages -->
-                    <div id="form-success" class="bg-green-50 text-green-800 p-4 rounded-lg mt-4 hidden">
-                        <i class="fas fa-check-circle mr-2"></i> 
-                        <span>Application submitted successfully! We'll be in touch soon.</span>
-                    </div>
-                    <div id="form-error" class="bg-red-50 text-red-800 p-4 rounded-lg mt-4 hidden">
-                        <i class="fas fa-exclamation-circle mr-2"></i> 
-                        <span id="error-message">There was an error submitting your application. Please try again.</span>
-                    </div>
-                    
-                    <!-- Troubleshooting section -->
-                    <div class="troubleshooting-section mt-6">
-                        <h3 class="troubleshooting-title">Not receiving confirmation?</h3>
-                        <ul class="troubleshooting-list">
-                            <li>Check your spam/junk folder for emails from Formspree</li>
-                            <li>Ensure your email address is entered correctly</li>
-                            <li>Try using a Gmail address which works best with Formspree</li>
-                            <li>If problems persist, email us directly at: 
-                                <a href="mailto:careers@anmng.com" class="direct-email-link">careers@anmng.com</a>
-                            </li>
-                        </ul>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
-
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
                 <div>
-                    <div class="logo-container mb-4">
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo">
-                        <div class="company-name">ANM NextGen</div>
+                    <div class="flex items-center mb-4">
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="h-16 w-auto mr-3">
+                        <div class="text-2xl font-bold bg-gradient-to-r from-blue-300 to-blue-500 bg-clip-text text-transparent">ANM NextGen</div>
                     </div>
                     <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
-                    <div class="flex">
-                        <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300 mr-4">
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
                             <i class="fab fa-linkedin-in"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center text-white hover:bg-blue-500 transition duration-300">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white hover:bg-indigo-700 transition duration-300">
+                            <i class="fab fa-facebook-f"></i>
                         </a>
                     </div>
                 </div>
@@ -780,21 +484,35 @@
                 <div>
                     <h3 class="text-xl font-bold mb-6 text-white">Services</h3>
                     <ul class="space-y-3">
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Staffing Services</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Software Development</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">ServiceNow Solutions</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Data Solutions</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Staffing Services</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Software Development</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">ServiceNow Solutions</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Data Solutions</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300 footer-link">About Us</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Services</a></li>
-                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300 footer-link">Careers</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300 footer-link">Contact</a></li>
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Contact Us</h3>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-start">
+                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
+                            <span>11th Cross West, Thillai Nagar<br>Trichy - 620 018</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i class="fas fa-envelope mr-3"></i>
+                            <span>adminsupport@anmng.com</span>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -834,86 +552,9 @@
             document.querySelectorAll('.apply-btn').forEach(button => {
                 button.addEventListener('click', function() {
                     const jobTitle = this.getAttribute('data-title');
-                    openApplicationModal(jobTitle);
+                    alert(`Thank you for your interest in the ${jobTitle} position! Our application system will open shortly.`);
                 });
             });
-        });
-
-        // Open application modal
-        function openApplicationModal(jobTitle) {
-            document.getElementById('position-applying-for').value = jobTitle;
-            document.getElementById('modal-title').textContent = `Apply for ${jobTitle}`;
-            document.getElementById('application-subject').value = `Job Application: ${jobTitle}`;
-            document.getElementById('application-modal').classList.add('active');
-            
-            // Reset form messages
-            document.getElementById('form-success').style.display = 'none';
-            document.getElementById('form-error').style.display = 'none';
-        }
-
-        // Close application modal
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('application-modal').classList.remove('active');
-        });
-
-        // Handle application form submission
-        document.getElementById('job-application-form').addEventListener('submit', async function(e) {
-            e.preventDefault();
-            
-            const form = this;
-            const submitBtn = document.getElementById('submit-application');
-            const originalBtnText = submitBtn.innerHTML;
-            const errorMessage = document.getElementById('error-message');
-            
-            // Show loading state
-            submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
-            submitBtn.disabled = true;
-            
-            // Hide any previous messages
-            document.getElementById('form-success').style.display = 'none';
-            document.getElementById('form-error').style.display = 'none';
-            
-            try {
-                // Submit form to Formspree
-                const response = await fetch(form.action, {
-                    method: 'POST',
-                    body: new FormData(form),
-                    headers: {
-                        'Accept': 'application/json'
-                    }
-                });
-                
-                if (response.ok) {
-                    // Show success message
-                    document.getElementById('form-success').style.display = 'block';
-                    
-                    // Reset form after successful submission
-                    setTimeout(() => {
-                        form.reset();
-                        document.getElementById('application-modal').classList.remove('active');
-                    }, 3000);
-                } else {
-                    const errorData = await response.json();
-                    throw new Error(errorData.error || 'Form submission failed');
-                }
-            } catch (error) {
-                console.error('Form submission error:', error);
-                
-                // Provide specific troubleshooting advice
-                let userErrorMessage = 'There was an error submitting your application. ';
-                
-                if (error.message.includes('file size')) {
-                    userErrorMessage = 'Your file is too large. Please upload a file smaller than 10MB.';
-                } else if (error.message.includes('invalid email')) {
-                    userErrorMessage = 'Please enter a valid email address.';
-                }
-                
-                errorMessage.textContent = userErrorMessage;
-                document.getElementById('form-error').style.display = 'block';
-            } finally {
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-            }
         });
 
         // Mobile Menu Toggle
