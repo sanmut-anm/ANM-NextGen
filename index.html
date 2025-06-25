@@ -226,6 +226,40 @@
         .application-modal.active .modal-content {
             transform: translateY(0);
         }
+        
+        /* Formspree integration styles */
+        .loading-spinner {
+            display: inline-block;
+            width: 20px;
+            height: 20px;
+            border: 3px solid rgba(255,255,255,.3);
+            border-radius: 50%;
+            border-top-color: white;
+            animation: spin 1s ease-in-out infinite;
+            margin-right: 8px;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        .form-success {
+            background-color: #f0fdf4;
+            color: #16a34a;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
+        
+        .form-error {
+            background-color: #fef2f2;
+            color: #dc2626;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            margin-top: 1rem;
+            display: none;
+        }
     </style>
 </head>
 <body class="bg-gray-60">
@@ -295,14 +329,14 @@
                                     <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics">
                                 </li>
                                 <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development">
+                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8f极ufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development">
                                 </li>
                             </ul>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
+        </极>
     </section>
 
     <!-- Services Section -->
@@ -373,7 +407,7 @@
                             </li>
                             <li class="flex items-center text-gray-600">
                                 <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                    <path fill-rule="evenodd" d="M10 18a8 8 极 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
                                 </svg>
                                 Mobile Solutions
                             </li>
@@ -573,38 +607,55 @@
             </button>
             <h2 class="text-2xl font-bold mb-6 text-center" id="modal-title">Apply for Position</h2>
             <div class="bg-white rounded-lg p-6">
-                <form id="job-application-form">
-                    <input type="hidden" id="position-applying-for">
+                <!-- Updated form with Formspree integration -->
+                <form id="job-application-form" action="https://formspree.io/f/xldnolzz" method="POST" enctype="multipart/form-data">
+                    <input type="hidden" id="position-applying-for" name="position">
+                    <input type="hidden" id="application-subject" name="_subject" value="New Job Application">
+                    
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
                         <div>
                             <label for="applicant-name" class="block text-gray-700 font-medium mb-2">Full Name</label>
-                            <input type="text" id="applicant-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                            <input type="text" id="applicant-name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
                         </div>
                         <div>
                             <label for="applicant-email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="applicant-email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                            <input type="email" id="applicant-email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
                         </div>
                         <div>
                             <label for="applicant-phone" class="block text-gray-700 font-medium mb-2">Phone</label>
-                            <input type="tel" id="applicant-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                            <input type="tel" id="applicant-phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
                         </div>
                         <div>
                             <label for="applicant-location" class="block text-gray-700 font-medium mb-2">Location</label>
-                            <input type="text" id="applicant-location" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                            <input type="text" id="applicant-location" name="location" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
                         </div>
                     </div>
                     <div class="mt-4">
                         <label for="applicant-resume" class="block text-gray-700 font-medium mb-2">Resume/CV</label>
-                        <input type="file" id="applicant-resume" class="w-full px-4 py-3 border border-gray-300 rounded-lg" accept=".pdf,.doc,.docx" required>
+                        <input type="file" id="applicant-resume" name="resume" class="w-full px-4 py-3 border border-gray-300 rounded-lg" accept=".pdf,.doc,.docx" required>
+                        <p class="text-sm text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (max 10MB)</p>
                     </div>
                     <div class="mt-4">
                         <label for="applicant-cover" class="block text-gray-700 font-medium mb-2">Cover Letter (optional)</label>
-                        <textarea id="applicant-cover" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg"></textarea>
+                        <textarea id="applicant-cover" name="cover_letter" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg"></textarea>
                     </div>
                     <div class="mt-6">
-                        <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium">
+                        <button type="submit" id="submit-application" class="btn-primary w-full px-6 py-3 rounded-lg font-medium flex items-center justify-center">
                             Submit Application
                         </button>
+                    </div>
+                    
+                    <!-- Formspree honeypot -->
+                    <input type="text" name="_gotcha" style="display:none">
+                    
+                    <!-- Status messages -->
+                    <div id="form-success" class="form-success">
+                        <i class="fas fa-check-circle mr-2"></i> 
+                        <span>Application submitted successfully! We'll be in touch soon.</span>
+                    </div>
+                    <div id="form-error" class="form-error">
+                        <i class="fas fa-exclamation-circle mr-2"></i> 
+                        <span>There was an error submitting your application. Please try again.</span>
                     </div>
                 </form>
             </div>
@@ -622,8 +673,8 @@
                     </div>
                     <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
                     <div class="flex">
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 mr-4">
-                            <i class="fab fa-linkedin-in text-xl"></i>
+                        <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300 mr-4">
+                            <i class="fab fa-linkedin-in"></i>
                         </a>
                     </div>
                 </div>
@@ -748,7 +799,12 @@
         function openApplicationModal(jobId, jobTitle) {
             document.getElementById('position-applying-for').value = jobTitle;
             document.getElementById('modal-title').textContent = `Apply for ${jobTitle}`;
+            document.getElementById('application-subject').value = `Job Application: ${jobTitle}`;
             document.getElementById('application-modal').classList.add('active');
+            
+            // Reset form messages
+            document.getElementById('form-success').style.display = 'none';
+            document.getElementById('form-error').style.display = 'none';
         }
 
         // Close application modal
@@ -760,13 +816,45 @@
         document.getElementById('job-application-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            // In a real application, this would send the data to your server
-            const position = document.getElementById('position-applying-for').value;
-            alert(`Thank you! Your application for ${position} has been submitted successfully.`);
+            const form = this;
+            const submitBtn = document.getElementById('submit-application');
+            const originalBtnText = submitBtn.innerHTML;
             
-            // Reset and close
-            this.reset();
-            document.getElementById('application-modal').classList.remove('active');
+            // Show loading state
+            submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
+            submitBtn.disabled = true;
+            
+            // Submit form to Formspree
+            fetch(form.action, {
+                method: 'POST',
+                body: new FormData(form),
+                headers: {
+                    'Accept': 'application/json'
+                }
+            })
+            .then(response => {
+                if (response.ok) {
+                    // Show success message
+                    document.getElementById('form-success').style.display = 'block';
+                    
+                    // Reset form after successful submission
+                    setTimeout(() => {
+                        form.reset();
+                        document.getElementById('application-modal').classList.remove('active');
+                    }, 3000);
+                } else {
+                    document.getElementById('form-error').style.display = 'block';
+                    console.error('Form submission error:', response.statusText);
+                }
+            })
+            .catch(error => {
+                document.getElementById('form-error').style.display = 'block';
+                console.error('Network error:', error);
+            })
+            .finally(() => {
+                submitBtn.innerHTML = originalBtnText;
+                submitBtn.disabled = false;
+            });
         });
 
         // Mobile Menu Toggle
