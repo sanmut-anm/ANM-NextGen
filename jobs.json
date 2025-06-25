@@ -1,0 +1,24 @@
+[
+    {
+        "id": 1,
+        "title": "Senior Software Developer",
+        "type": "Full-time",
+        "location": "Trichy, India",
+        "department": "Engineering",
+        "description": "We're seeking an experienced Senior Software Developer to design and implement cutting-edge solutions for our enterprise clients.",
+        "requirements": "5+ years of experience, JavaScript, React, Node.js, SQL",
+        "tags": ["JavaScript", "React", "Node.js", "SQL", "REST APIs"],
+        "posted": "2025-05-15"
+    },
+    {
+        "id": 2,
+        "title": "ServiceNow Consultant",
+        "type": "Contract",
+        "location": "Remote",
+        "department": "ServiceNow",
+        "description": "Join our ServiceNow practice to implement and customize ServiceNow solutions for clients across various industries.",
+        "requirements": "ServiceNow certification, 3+ years experience, ITIL knowledge",
+        "tags": ["ServiceNow", "ITSM", "ITOM", "JavaScript"],
+        "posted": "2025-06-10"
+    }
+]
