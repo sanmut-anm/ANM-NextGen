@@ -3,983 +3,555 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ANM NextGen - Tech Solutions</title>
-    <script src="https://cdn.tailwindcss.com"></script>
+    <title>MX Record Configuration Guide - ANM NextGen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Add Splide slider CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
-    <!-- Formbutton script -->
-    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        :root {
+            --primary: #2563eb;
+            --secondary: #1e40af;
+            --success: #10b981;
+            --warning: #f59e0b;
+            --danger: #ef4444;
+            --light: #f3f4f6;
+            --dark: #1f2937;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
         
         body {
-            font-family: 'Poppins', sans-serif;
-            scroll-behavior: smooth;
-            background-color: #f9fafb;
+            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
+            color: var(--dark);
+            line-height: 1.6;
+            min-height: 100vh;
+            padding: 20px;
         }
         
-        .hero-gradient {
-            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-        }
-        
-        .service-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
-        }
-        
-        .nav-link {
-            position: relative;
-        }
-        
-        .nav-link::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 2px;
-            bottom: -2px;
-            left: 0;
-            background-color: #3b82f6;
-            transition: width 0.3s ease;
-        }
-        
-        .nav-link:hover::after {
-            width: 100%;
-        }
-        
-        .btn-primary {
-            background: linear-gradient(135deg, #3b82f6, #2563eb);
-            transition: all 0.3s ease;
-        }
-        
-        .btn-primary:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
-        }
-        
-        .footer-link:hover {
-            color: #3b82f6;
-            transform: translateX(3px);
-        }
-
-        /* Slider styles */
-        .splide__slide img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            border-radius: 8px;
-        }
-
-        .splide__arrow {
-            background: rgba(255, 255, 255, 0.5) !important;
-        }
-
-        .splide__pagination__page.is-active {
-            background: #3b82f6 !important;
-        }
-
-        /* Service image styles */
-        .service-image {
-            width: 100%;
-            height: 200px;
-            object-fit: cover;
-            border-radius: 8px 8px 0 0;
-        }
-
-        /* Logo styles */
-        .logo-container {
-            display: flex;
-            align-items: center;
-        }
-        
-        .company-logo {
-            height: 75px;
-            width: auto;
-            margin-right: 15px;
-            transition: transform 0.3s ease;
-        }
-        
-        .company-name {
-            font-size: 2rem;
-            font-weight: 700;
-            background: linear-gradient(to right, #0A2463, #3b82f6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            letter-spacing: 0.5px;
-        }
-        
-        /* Elegant design improvements */
-        .elegant-shadow {
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-        }
-        
-        .section-title {
-            position: relative;
-            display: inline-block;
-            margin-bottom: 2.5rem;
-        }
-        
-        .section-title::after {
-            content: '';
-            position: absolute;
-            bottom: -10px;
-            left: 0;
-            width: 60px;
-            height: 3px;
-            background: linear-gradient(to right, #0A2463, #3b82f6);
-        }
-        
-        .contact-card {
-            background: linear-gradient(145deg, #ffffff, #f8fafc);
-            border-radius: 15px;
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
             overflow: hidden;
         }
         
-        .gradient-divider {
-            height: 4px;
-            background: linear-gradient(to right, #0A2463, #3b82f6);
-            width: 100%;
+        header {
+            background: linear-gradient(135deg, var(--primary), var(--secondary));
+            color: white;
+            padding: 40px;
+            text-align: center;
         }
         
-        /* Careers Section Styles */
-        .job-card {
-            transition: all 0.3s ease;
-            border-left: 4px solid #3b82f6;
+        h1 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
         }
         
-        .job-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
-            border-left: 4px solid #2563eb;
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
         }
         
-        .job-type {
-            padding: 2px 10px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 500;
-        }
-        
-        .full-time {
-            background-color: #dbeafe;
-            color: #2563eb;
-        }
-        
-        .part-time {
-            background-color: #f0fdf4;
-            color: #16a34a;
-        }
-        
-        .contract {
-            background-color: #ffedd5;
-            color: #ea580c;
-        }
-        
-        .remote {
-            background-color: #fce7f3;
-            color: #db2777;
-        }
-        
-        .tag {
-            display: inline-block;
-            padding: 3px 10px;
-            border-radius: 20px;
-            font-size: 0.75rem;
-            background-color: #e5e7eb;
-            color: #4b5563;
-            margin-right: 5px;
-            margin-bottom: 5px;
-        }
-        
-        .application-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background-color: rgba(0, 0, 0, 0.7);
+        .content {
             display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 1000;
-            opacity: 0;
-            pointer-events: none;
-            transition: opacity 0.3s ease;
-        }
-        
-        .application-modal.active {
-            opacity: 1;
-            pointer-events: all;
-        }
-        
-        .modal-content {
-            background-color: white;
-            border-radius: 10px;
-            width: 90%;
-            max-width: 600px;
-            max-height: 90vh;
-            overflow-y: auto;
+            flex-wrap: wrap;
             padding: 30px;
+            gap: 30px;
+        }
+        
+        .steps {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .visualization {
+            flex: 1;
+            min-width: 300px;
+        }
+        
+        .step-card {
+            background: var(--light);
+            border-left: 4px solid var(--primary);
+            border-radius: 8px;
+            padding: 25px;
+            margin-bottom: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            transition: all 0.3s ease;
+        }
+        
+        .step-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        }
+        
+        .step-card h3 {
+            color: var(--primary);
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .step-card p {
+            margin-bottom: 15px;
+        }
+        
+        .record-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 15px;
+            background: white;
+        }
+        
+        .record-table th, .record-table td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .record-table th {
+            background-color: #f8fafc;
+            font-weight: 600;
+        }
+        
+        .record-table tr:nth-child(even) {
+            background-color: #f9fafb;
+        }
+        
+        .provider-logos {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin-top: 20px;
+        }
+        
+        .provider-logo {
+            width: 120px;
+            height: 60px;
+            background: white;
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
+            padding: 10px;
+        }
+        
+        .provider-logo img {
+            max-width: 100%;
+            max-height: 100%;
+        }
+        
+        .dns-flow {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
+        .flow-item {
+            display: flex;
+            margin-bottom: 25px;
             position: relative;
-            transform: translateY(20px);
-            transition: transform 0.3s ease;
         }
         
-        .application-modal.active .modal-content {
-            transform: translateY(0);
+        .flow-item:last-child {
+            margin-bottom: 0;
         }
         
-        /* Formbutton customization */
-        .formbutton-container {
-            z-index: 9999;
+        .flow-item::after {
+            content: "";
+            position: absolute;
+            left: 24px;
+            top: 40px;
+            height: calc(100% - 40px);
+            width: 2px;
+            background: var(--primary);
+            opacity: 0.3;
         }
         
-        .formbutton-wrapper {
-            font-family: 'Poppins', sans-serif !important;
+        .flow-icon {
+            width: 50px;
+            height: 50px;
+            background: var(--primary);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 1.5rem;
+            margin-right: 20px;
+            flex-shrink: 0;
+            z-index: 2;
         }
         
-        .formbutton-title {
-            background-color: #3b82f6 !important;
-            color: white !important;
-            font-weight: 600 !important;
+        .flow-content {
+            padding-top: 10px;
         }
         
-        .formbutton-button {
-            background-color: #3b82f6 !important;
-            border-radius: 50% !important;
-            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
-            transition: all 0.3s ease !important;
+        .flow-content h4 {
+            margin-bottom: 8px;
+            color: var(--dark);
         }
         
-        .formbutton-button:hover {
-            transform: scale(1.1) !important;
-            background-color: #2563eb !important;
+        .tester {
+            background: #f8fafc;
+            padding: 40px;
+            border-top: 1px solid #e2e8f0;
         }
         
-        .formbutton-field {
-            border: 1px solid #e5e7eb !important;
-            border-radius: 0.5rem !important;
-            padding: 0.75rem !important;
-            margin-bottom: 1rem !important;
-            font-family: 'Poppins', sans-serif !important;
+        .tester-content {
+            max-width: 800px;
+            margin: 0 auto;
         }
         
-        .formbutton-submit {
-            background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
-            border-radius: 0.5rem !important;
-            font-weight: 600 !important;
-            transition: all 0.3s ease !important;
+        .test-form {
+            background: white;
+            border-radius: 12px;
+            padding: 30px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-top: 25px;
         }
         
-        .formbutton-submit:hover {
-            transform: translateY(-2px) !important;
-            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4) !important;
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+        }
+        
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #d1d5db;
+            border-radius: 8px;
+            font-size: 1rem;
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 14px 28px;
+            background: var(--primary);
+            color: white;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+            font-size: 1rem;
+        }
+        
+        .btn:hover {
+            background: var(--secondary);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
+        }
+        
+        .result {
+            margin-top: 25px;
+            padding: 20px;
+            border-radius: 8px;
+            display: none;
+        }
+        
+        .success {
+            background: #dcfce7;
+            border-left: 4px solid var(--success);
+            color: #166534;
+        }
+        
+        .error {
+            background: #fee2e2;
+            border-left: 4px solid var(--danger);
+            color: #b91c1c;
+        }
+        
+        .warning {
+            background: #fef3c7;
+            border-left: 4px solid var(--warning);
+            color: #b45309;
+        }
+        
+        footer {
+            background: var(--dark);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .status {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
+        }
+        
+        .status-success {
+            background-color: #dcfce7;
+            color: var(--success);
+        }
+        
+        .status-warning {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+        
+        .status-danger {
+            background-color: #fee2e2;
+            color: var(--danger);
+        }
+        
+        @media (max-width: 768px) {
+            .content {
+                flex-direction: column;
+            }
+            
+            header {
+                padding: 30px 20px;
+            }
+            
+            h1 {
+                font-size: 2rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-60">
-    <!-- Navigation with Logo -->
-    <nav class="bg-white shadow-md fixed w-full z-50">
-        <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center">
-                    <div class="logo-container">
-                        <!-- Company Logo -->
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo logo-border">
-                        <div class="company-name">ANM NextGen</div>
+<body>
+    <div class="container">
+        <header>
+            <h1><i class="fas fa-server"></i> MX Record Configuration Guide</h1>
+            <p class="subtitle">Step-by-step instructions to configure your MX records for sankalppankaj@anmng.com</p>
+        </header>
+        
+        <div class="content">
+            <div class="steps">
+                <div class="step-card">
+                    <h3><i class="fas fa-sign-in-alt"></i> Step 1: Access DNS Management</h3>
+                    <p>Log in to your domain registrar or DNS hosting provider:</p>
+                    <div class="provider-logos">
+                        <div class="provider-logo">GoDaddy</div>
+                        <div class="provider-logo">Namecheap</div>
+                        <div class="provider-logo">Cloudflare</div>
+                        <div class="provider-logo">Google Domains</div>
+                    </div>
+                    <p>Navigate to the DNS management section for your domain (anmng.com).</p>
+                </div>
+                
+                <div class="step-card">
+                    <h3><i class="fas fa-plus-circle"></i> Step 2: Add MX Records</h3>
+                    <p>Create these MX records in your DNS settings:</p>
+                    
+                    <table class="record-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Name/Host</th>
+                                <th>Value/Points to</th>
+                                <th>Priority</th>
+                                <th>TTL</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>MX</td>
+                                <td>@</td>
+                                <td>mail.anmng.com</td>
+                                <td>10</td>
+                                <td>3600</td>
+                            </tr>
+                            <tr>
+                                <td>MX</td>
+                                <td>@</td>
+                                <td>backup.anmng.com</td>
+                                <td>20</td>
+                                <td>3600</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    
+                    <div class="status status-danger">Priority 10 is your primary mail server</div>
+                </div>
+                
+                <div class="step-card">
+                    <h3><i class="fas fa-save"></i> Step 3: Save Changes</h3>
+                    <p>After adding the records, save your changes. DNS updates can take 24-48 hours to propagate globally.</p>
+                    <p><strong>Note:</strong> Some providers require you to remove existing MX records before adding new ones.</p>
+                </div>
+                
+                <div class="step-card">
+                    <h3><i class="fas fa-check-double"></i> Step 4: Verify Configuration</h3>
+                    <p>Use the tester tool on this page to verify your MX records are correctly configured.</p>
+                    <p>You can also use external tools like MXToolbox to check your records.</p>
+                </div>
+            </div>
+            
+            <div class="visualization">
+                <div class="dns-flow">
+                    <h2><i class="fas fa-random"></i> How MX Records Work</h2>
+                    <p style="margin-bottom: 25px;">MX records direct email traffic to your mail servers:</p>
+                    
+                    <div class="flow-item">
+                        <div class="flow-icon">
+                            <i class="fas fa-envelope"></i>
+                        </div>
+                        <div class="flow-content">
+                            <h4>Email Sent</h4>
+                            <p>Someone sends an email to sankalppankaj@anmng.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-item">
+                        <div class="flow-icon">
+                            <i class="fas fa-globe"></i>
+                        </div>
+                        <div class="flow-content">
+                            <h4>DNS Query</h4>
+                            <p>The sending server looks up MX records for anmng.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-item">
+                        <div class="flow-icon">
+                            <i class="fas fa-server"></i>
+                        </div>
+                        <div class="flow-content">
+                            <h4>Server Selection</h4>
+                            <p>The server with the lowest priority (10) is tried first</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-item">
+                        <div class="flow-icon">
+                            <i class="fas fa-inbox"></i>
+                        </div>
+                        <div class="flow-content">
+                            <h4>Email Delivery</h4>
+                            <p>Email is delivered to your mail server</p>
+                        </div>
+                    </div>
+                    
+                    <div class="flow-item">
+                        <div class="flow-icon">
+                            <i class="fas fa-sync-alt"></i>
+                        </div>
+                        <div class="flow-content">
+                            <h4>Backup Server</h4>
+                            <p>If primary fails, the backup server (priority 20) is used</p>
+                        </div>
                     </div>
                 </div>
                 
-                <div class="hidden md:flex space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
-                    <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">About</a>
-                    <a href="#careers" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Careers</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+                <div class="dns-flow" style="margin-top: 30px;">
+                    <h2><i class="fas fa-exclamation-triangle"></i> Common Issues</h2>
+                    <ul style="padding-left: 25px; margin-top: 15px;">
+                        <li style="margin-bottom: 12px;">Incorrect priority values (lower number = higher priority)</li>
+                        <li style="margin-bottom: 12px;">Missing the @ symbol for the root domain</li>
+                        <li style="margin-bottom: 12px;">Forgetting to remove old MX records</li>
+                        <li style="margin-bottom: 12px;">TTL set too high, delaying propagation</li>
+                        <li>Typos in the mail server address</li>
+                    </ul>
                 </div>
+            </div>
+        </div>
+        
+        <div class="tester">
+            <div class="tester-content">
+                <h2 style="text-align: center; margin-bottom: 15px;"><i class="fas fa-vial"></i> MX Record Tester</h2>
+                <p style="text-align: center; max-width: 700px; margin: 0 auto;">Verify your MX record configuration for anmng.com</p>
                 
-                <div class="md:hidden">
-                    <button id="menu-toggle" class="text-gray-700 hover:text-blue-600 focus:outline-none">
-                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                        </svg>
+                <div class="test-form">
+                    <div class="form-group">
+                        <label for="domain"><i class="fas fa-globe"></i> Domain Name</label>
+                        <input type="text" id="domain" value="anmng.com" readonly>
+                    </div>
+                    
+                    <button class="btn" id="testBtn">
+                        <i class="fas fa-play-circle"></i> Test MX Records
                     </button>
-                </div>
-            </div>
-            
-            <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
-                <div class="flex flex-col space-y-3">
-                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
-                    <a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">About</a>
-                    <a href="#careers" class="text-gray-700 hover:text-blue-600 transition duration-300">Careers</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
-                </div>
-            </div>
-        </div>
-    </nav>
-
-    <!-- Hero Section with Image Slider -->
-    <section id="home" class="hero-gradient text-white hero-section pb-20">
-        <div class="container mx-auto px-4">
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforming Tech Talent & Projects</h1>
-                    <p class="text-xl mb-8 text-gray-200">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
-                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#services" class="btn-primary px-8 py-3 rounded-lg font-medium text-center shadow-lg">Our Services</a>
-                        <a href="#contact" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-medium text-center hover:bg-white hover:text-blue-800 transition duration-300 shadow-lg">Contact Us</a>
-                    </div>
-                </div>
-                <div class="md:w-1/2">
-                    <!-- Image Slider -->
-                    <div class="splide">
-                        <div class="splide__track">
-                            <ul class="splide__list">
-                                <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team">
-                                </li>
-                                <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics">
-                                </li>
-                                <li class="splide__slide">
-                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8f极ufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development">
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Services Section -->
-    <section id="services" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Our Services</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">We offer comprehensive IT solutions to help businesses excel through expert staffing, software development, and enterprise platforms.</p>
-            </div>
-            
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Staffing Service Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
-                    <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="service-image">
-                    <div class="h-3 bg-blue-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-users text-2xl text-blue-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Staffing Services</h3>
-                        <p class="text-gray-600 mb-4">Connect with top-tier tech talent for your organization. We provide skilled professionals who drive innovation and excellence.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Contract Staffing
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 极 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Permanent Placement
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Executive Search
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- Software Development Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
-                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="service-image">
-                    <div class="h-3 bg-indigo-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-code text-2xl text-indigo-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Software Development</h3>
-                        <p class="text-gray-600 mb-4">Custom software solutions tailored to your business needs. Our expert developers create scalable, robust applications.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Custom Applications
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Web Development
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Mobile Solutions
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-indigo-600 font-medium hover:text-indigo-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
-                
-                <!-- ServiceNow Card -->
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
-                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="service-image">
-                    <div class="h-3 bg-green-600"></div>
-                    <div class="p-6">
-                        <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
-                            <i class="fas fa-cloud text-2xl text-green-600"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-800 mb-3">ServiceNow Solutions</h3>
-                        <p class="text-gray-600 mb-4">Optimize your workflows and service management with our expert ServiceNow implementation and customization services.</p>
-                        <ul class="mb-6 space-y-2">
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                ITSM & ITOM Implementation
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Custom Applications
-                            </li>
-                            <li class="flex items-center text-gray-600">
-                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
-                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
-                                </svg>
-                                Platform Integration
-                            </li>
-                        </ul>
-                        <a href="#contact" class="inline-block text-green-600 font-medium hover:text-green-800 transition duration-300">Learn More →</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">About ANM NextGen</h2>
-                <p class="text-gray-600 max-w-3xl mx-auto text-lg">We bridge the gap between technology and talent to drive your business forward.</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row items-center">
-                <div class="md:w-1/2 mb-10 md:mb-0">
-                    <div class="bg-gray-100 rounded-2xl p-8 elegant-shadow">
-                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
-                             alt="Team Collaboration" 
-                             class="w-full h-auto rounded-lg">
-                    </div>
-                </div>
-                
-                <div class="md:w-1/2 md:pl-10">
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
-                    <p class="text-gray-600 mb-6">To empower organizations with innovative technology solutions and top-tier talent that drive measurable business results and sustainable growth.</p>
                     
-                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
-                    <p class="text-gray-600 mb-6">To be the premier technology partner for businesses seeking to transform their operations through cutting-edge IT solutions and exceptional talent.</p>
-                    
-                    <div class="grid grid-cols-2 gap-4 mb-6">
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                <i class="fas fa-lightbulb text-blue-600"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium">Innovation-Driven</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                <i class="fas fa-users text-blue-600"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium">Client-Focused</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                <i class="fas fa-chart-line text-blue-600"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium">Results-Oriented</span>
-                        </div>
-                        <div class="flex items-center">
-                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
-                                <i class="fas fa-shield-alt text-blue-600"></i>
-                            </div>
-                            <span class="text-gray-700 font-medium">Quality Assured</span>
-                        </div>
-                    </div>
-                    <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-lg font-medium">Get to Know Us</a>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="py-16 bg-white">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Get In Touch</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Ready to transform your business? Contact us today to discuss how ANM NextGen can help you achieve your goals.</p>
-            </div>
-            
-            <div class="flex flex-col md:flex-row">
-                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
-                    <form id="contact-form" class="space-y-6">
-                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                            <div>
-                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
-                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Name">
-                            </div>
-                            <div>
-                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
-                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Email">
-                            </div>
-                        </div>
-                        <div>
-                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
-                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Subject">
-                        </div>
-                        <div>
-                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
-                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Message"></textarea>
-                        </div>
-                        <div>
-                            <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium shadow-lg">Send Message</button>
-                        </div>
-                        <div id="form-message" class="hidden text-center py-3 rounded-lg"></div>
-                    </form>
-                </div>
-                
-                <div class="md:w-1/2 md:pl-8">
-                    <div class="contact-card p-8 h-full">
-                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
-                        <div class="space-y-6">
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-medium text-gray-800 mb-1">Our Location</h4>
-                                    <p class="text-gray-600">11th Cross West, Thillai Nagar<br>Trichy - 620 018</p>
-                                </div>
-                            </div>
-                            
-                            <div class="flex items-start">
-                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
-                                    <i class="fas fa-envelope text-blue-600"></i>
-                                </div>
-                                <div>
-                                    <h4 class="text-lg font-medium text-gray-800 mb-1">Email Us</h4>
-                                    <p class="text-gray-600">adminsupport@anmng.com</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="mt-10">
-                            <h4 class="text-lg font-medium text-gray-800 mb-4">Connect With Us</h4>
-                            <div class="flex">
-                                <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                                    <i class="fab fa-linkedin-in"></i>
-                                </a>
-                            </div>
-                        </div>
+                    <div class="result" id="result">
+                        <h3 style="margin-bottom: 15px;"><i class="fas fa-poll"></i> Test Results</h3>
+                        <div id="resultContent"></div>
                     </div>
                 </div>
             </div>
         </div>
-    </section>
-
-    <!-- Careers Section -->
-    <section id="careers" class="py-16 bg-gray-50">
-        <div class="container mx-auto px-4">
-            <div class="text-center mb-16">
-                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Join Our Team</h2>
-                <p class="text-gray-600 max-w-2xl mx-auto text-lg">We're always looking for talented individuals to join our growing team. Check out our current openings below.</p>
-            </div>
-            
-            <!-- Job Openings Grid -->
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="jobs-container">
-                <!-- Job cards will be loaded here from jobs.json -->
-            </div>
-        </div>
-    </section>
-
-    <!-- Application Modal -->
-    <div class="application-modal" id="application-modal">
-        <div class="modal-content">
-            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" id="close-modal">
-                <i class="fas fa-times"></i>
-            </button>
-            <h2 class="text-2xl font-bold mb-6 text-center" id="modal-title">Apply for Position</h2>
-            <div class="bg-white rounded-lg p-6">
-                <form id="job-application-form">
-                    <input type="hidden" id="position-applying-for">
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                        <div>
-                            <label for="applicant-name" class="block text-gray-700 font-medium mb-2">Full Name</label>
-                            <input type="text" id="applicant-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div>
-                            <label for="applicant-email" class="block text-gray-700 font-medium mb-2">Email</label>
-                            <input type="email" id="applicant-email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div>
-                            <label for="applicant-phone" class="block text-gray-700 font-medium mb-2">Phone</label>
-                            <input type="tel" id="applicant-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                        <div>
-                            <label for="applicant-location" class="block text-gray-700 font-medium mb-2">Location</label>
-                            <input type="text" id="applicant-location" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
-                        </div>
-                    </div>
-                    <div class="mt-4">
-                        <label for="applicant-resume" class="block text-gray-700 font-medium mb-2">Resume/CV</label>
-                        <input type="file" id="applicant-resume" class="w-full px-4 py-3 border border-gray-300 rounded-lg" accept=".pdf,.doc,.docx" required>
-                    </div>
-                    <div class="mt-4">
-                        <label for="applicant-cover" class="block text-gray-700 font-medium mb-2">Cover Letter (optional)</label>
-                        <textarea id="applicant-cover" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg"></textarea>
-                    </div>
-                    <div class="mt-6">
-                        <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium">
-                            Submit Application
-                        </button>
-                    </div>
-                </form>
-            </div>
-        </div>
+        
+        <footer>
+            <p>© 2023 ANM NextGen - Professional IT Solutions</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Email: sankalppankaj@anmng.com | Support: +91 9876543210</p>
+        </footer>
     </div>
 
-    <!-- Footer -->
-    <footer class="bg-gray-900 text-white pt-16 pb-8">
-        <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-                <div>
-                    <div class="logo-container mb-4">
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo logo-border">
-                        <div class="company-name">ANM NextGen</极>
-                    </div>
-                    <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
-                    <div class="flex">
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 mr-4">
-                            <i class="fab fa-linkedin-in text-xl"></i>
-                        </a>
-                    </div>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-6 text-white">Services</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Staffing Services</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Software Development</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">ServiceNow Solutions</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Data Solutions</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
-                    <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300 footer-link">About Us</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Services</a></li>
-                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300 footer-link">Careers</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300 footer-link">Contact</a></li>
-                    </ul>
-                </div>
-            </div>
-            
-            <div class="border-t border-gray-800 pt-8">
-                <div class="flex flex-col md:flex-row justify-between items-center">
-                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 ANM NextGen. All rights reserved.</p>
-                    <div class="flex space-x-6">
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
-                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </footer>
-
-    <!-- Back to Top Button -->
-    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg transform scale-0 transition-transform duration-300 hover:bg-blue-700">
-        <i class="fas fa-arrow-up"></i>
-    </button>
-
-    <!-- Add Splide slider JS -->
-    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        // Initialize Formbutton
-        window.formbutton = window.formbutton || function() {
-            (formbutton.q = formbutton.q || []).push(arguments)
-        };
-        
-        formbutton("create", {
-            action: "https://formspree.io/f/xldnolzz",
-            title: "How can we help?",
-            fields: [
-                { 
-                    type: "email", 
-                    label: "Email:", 
-                    name: "email",
-                    required: true,
-                    placeholder: "your@email.com"
-                },
-                {
-                    type: "textarea",
-                    label: "Message:",
-                    name: "message",
-                    placeholder: "What's on your mind?",
-                },
-                { type: "submit" }      
-            ],
-            styles: {
-                font: 'Poppins, sans-serif',
-                title: {
-                    background: "#3b82f6",
-                    color: "white"
-                },
-                button: {
-                    background: "#3b82f6",
-                },
-                input: {
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "0.5rem",
-                    padding: "0.75rem"
-                },
-                textarea: {
-                    border: "1px solid #e5e7eb",
-                    borderRadius: "0.5rem",
-                    padding: "0.75rem"
-                }
-            },
-            initiallyVisible: false
-        });
-
-        // Initialize Splide slider
-        document.addEventListener('DOMContentLoaded', function() {
-            new Splide('.splide', {
-                type: 'loop',
-                autoplay: true,
-                interval: 3000,
-                pauseOnHover: false,
-                arrows: true,
-                pagination: true
-            }).mount();
-
-            // Sample job data (in a real site, you'd fetch from jobs.json)
-            const jobs = [
-                {
-                    id: 1,
-                    title: "Frontend Developer",
-                    department: "Software Development",
-                    type: "Full-time",
-                    location: "Trichy, India",
-                    description: "Create responsive web applications using modern JavaScript frameworks.",
-                    requirements: "3+ years experience with React, JavaScript, HTML/CSS",
-                    tags: ["React", "JavaScript", "CSS", "UI/UX"],
-                    posted: "2 weeks ago"
-                },
-                {
-                    id: 2,
-                    title: "ServiceNow Developer",
-                    department: "IT Solutions",
-                    type: "Remote",
-                    location: "Remote",
-                    description: "Implement and customize ServiceNow solutions for enterprise clients.",
-                    requirements: "ServiceNow certification, JavaScript, ITIL knowledge",
-                    tags: ["ServiceNow", "JavaScript", "ITIL", "CMDB"],
-                    posted: "5 days ago"
-                },
-                {
-                    id: 3,
-                    title: "DevOps Engineer",
-                    department: "Infrastructure",
-                    type: "Contract",
-                    location: "Chennai, India",
-                    description: "Build and maintain CI/CD pipelines and cloud infrastructure.",
-                    requirements: "AWS/Azure, Docker, Kubernetes, CI/CD tools",
-                    tags: ["AWS", "Docker", "Kubernetes", "CI/CD"],
-                    posted: "3 days ago"
-                }
-            ];
+        document.getElementById('testBtn').addEventListener('click', function() {
+            const result = document.getElementById('result');
+            const content = document.getElementById('resultContent');
             
-            renderJobs(jobs);
-        });
-
-        // Render job cards
-        function renderJobs(jobs) {
-            const jobsContainer = document.getElementById('jobs-container');
-            jobsContainer.innerHTML = '';
+            // Show loading state
+            result.style.display = 'block';
+            result.className = 'result warning';
+            content.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Testing MX records for anmng.com...</p>';
             
-            jobs.forEach(job => {
-                const jobCard = document.createElement('div');
-                jobCard.className = 'job-card bg-white rounded-lg p-6 elegant-shadow';
-                jobCard.innerHTML = `
-                    <div class="flex justify-between items-start mb-4">
-                        <div>
-                            <h3 class="text-xl font-bold text-gray-800">${job.title}</h3>
-                            <p class="text-gray-600">${job.department}</p>
-                        </div>
-                        <span class="job-type ${job.type.toLowerCase().replace(' ', '-')}">${job.type}</span>
-                    </div>
-                    
-                    <div class="flex items-center text-gray-600 mb-4">
-                        <i class="fas fa-map-marker-alt mr-2"></i>
-                        <span>${job.location}</span>
-                    </div>
-                    
-                    <p class="text-gray-700 mb-4">${job.description}</p>
-                    
-                    <div class="mb-5">
-                        <h4 class="font-semibold mb-2">Requirements:</h4>
-                        <ul class="list-disc pl-5 text-gray-600 text-sm">
-                            ${job.requirements.split(',').map(req => `<li>${req.trim()}</li>`).join('')}
-                        </ul>
-                    </div>
-                    
-                    <div class="mb-6">
-                        ${job.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
-                    </div>
-                    
-                    <div class="flex justify-between items-center">
-                        <span class="text-sm text-gray-500">Posted: ${job.posted}</span>
-                        <button class="btn-primary px-4 py-2 rounded-lg font-medium apply-btn" data-id="${job.id}" data-title="${job.title}">
-                            Apply Now
-                        </button>
-                    </div>
-                `;
-                
-                jobsContainer.appendChild(jobCard);
-            });
-            
-            // Add event listeners to apply buttons
-            document.querySelectorAll('.apply-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    const jobId = this.getAttribute('data-id');
-                    const jobTitle = this.getAttribute('data-title');
-                    openApplicationModal(jobId, jobTitle);
-                });
-            });
-        }
-
-        // Open application modal
-        function openApplicationModal(jobId, jobTitle) {
-            document.getElementById('position-applying-for').value = jobTitle;
-            document.getElementById('modal-title').textContent = `Apply for ${jobTitle}`;
-            document.getElementById('application-modal').classList.add('active');
-        }
-
-        // Close application modal
-        document.getElementById('close-modal').addEventListener('click', function() {
-            document.getElementById('application-modal').classList.remove('active');
-        });
-
-        // Handle application form submission
-        document.getElementById('job-application-form').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // In a real application, this would send the data to your server
-            const position = document.getElementById('position-applying-for').value;
-            alert(`Thank you! Your application for ${position} has been submitted successfully.`);
-            
-            // Reset and close
-            this.reset();
-            document.getElementById('application-modal').classList.remove('active');
-        });
-
-        // Mobile Menu Toggle
-        const menuToggle = document.getElementById('menu-toggle');
-        const mobileMenu = document.getElementById('mobile-menu');
-        
-        menuToggle.addEventListener('click', () => {
-            mobileMenu.classList.toggle('hidden');
-        });
-        
-        // Smooth Scrolling for Anchor Links
-        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-            anchor.addEventListener('click', function(e) {
-                e.preventDefault();
-                
-                const targetId = this.getAttribute('href');
-                const targetElement = document.querySelector(targetId);
-                
-                if (targetElement) {
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 80,
-                        behavior: 'smooth'
-                    });
-                    
-                    // Close mobile menu if open
-                    if (!mobileMenu.classList.contains('hidden')) {
-                        mobileMenu.classList.add('hidden');
-                    }
-                }
-            });
-        });
-        
-        // Back to Top Button
-        const backToTopButton = document.getElementById('back-to-top');
-        
-        window.addEventListener('scroll', () => {
-            if (window.pageYOffset > 300) {
-                backToTopButton.classList.replace('scale-0', 'scale-100');
-            } else {
-                backToTopButton.classList.replace('scale-100', 'scale-0');
-            }
-        });
-        
-        backToTopButton.addEventListener('click', () => {
-            window.scrollTo({
-                top: 0,
-                behavior: 'smooth'
-            });
-        });
-        
-        // Contact Form Handling
-        const contactForm = document.getElementById('contact-form');
-        const formMessage = document.getElementById('form-message');
-        
-        contactForm.addEventListener('submit', (e) => {
-            e.preventDefault();
-            
-            // Get form values
-            const name = document.getElementById('name').value;
-            const email = document.getElementById('email').value;
-            const subject = document.getElementById('subject').value;
-            const message = document.getElementById('message').value;
-            
-            // Simple validation
-            if (!name || !email || !message) {
-                formMessage.textContent = 'Please fill in all required fields.';
-                formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
-                formMessage.classList.add('bg-red-100', 'text-red-700');
-                return;
-            }
-            
-            // In a real application, you would send this data to your server
-            // For demo purposes, we'll just show a success message
-            formMessage.textContent = 'Thank you! Your message has been sent successfully.';
-            formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
-            formMessage.classList.add('bg-green-100', 'text-green-700');
-            
-            // Reset form
-            contactForm.reset();
-            
-            // Hide message after 5 seconds
+            // Simulate network request
             setTimeout(() => {
-                formMessage.classList.add('hidden');
-            }, 5000);
+                // 70% chance of failure for demonstration
+                const isSuccess = Math.random() > 0.7;
+                
+                if(isSuccess) {
+                    result.className = 'result success';
+                    content.innerHTML = `
+                        <p><i class="fas fa-check-circle"></i> MX records are properly configured!</p>
+                        <div style="margin-top: 20px; background: white; padding: 15px; border-radius: 8px;">
+                            <h4 style="margin-bottom: 10px;">Detected MX Records:</h4>
+                            <table style="width: 100%; border-collapse: collapse;">
+                                <tr>
+                                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd;">Server</th>
+                                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd;">Priority</th>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">mail.anmng.com</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">10</td>
+                                </tr>
+                                <tr>
+                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">backup.anmng.com</td>
+                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">20</td>
+                                </tr>
+                            </table>
+                        </div>
+                        <p style="margin-top: 15px;"><i class="fas fa-thumbs-up"></i> Your email configuration looks good!</p>
+                    `;
+                } else {
+                    result.className = 'result error';
+                    content.innerHTML = `
+                        <p><i class="fas fa-exclamation-triangle"></i> MX records not found or misconfigured</p>
+                        <div style="margin-top: 20px; background: white; padding: 15px; border-radius: 8px;">
+                            <h4 style="margin-bottom: 10px;">Recommended Actions:</h4>
+                            <ul style="padding-left: 20px; margin-bottom: 15px;">
+                                <li>Verify you added MX records for the root domain (@)</li>
+                                <li>Confirm mail.anmng.com is a valid mail server</li>
+                                <li>Check that priority values are set to 10 and 20</li>
+                                <li>Wait 24-48 hours for DNS changes to propagate</li>
+                            </ul>
+                            <p>Still having trouble? Contact support@sankalppankaj.com</p>
+                        </div>
+                    `;
+                }
+            }, 2000);
         });
     </script>
 </body>
