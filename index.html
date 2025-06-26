@@ -385,6 +385,22 @@
                 padding: 20px;
             }
         }
+        
+        .verification-prompt {
+            background: #fffbeb;
+            border-left: 4px solid #f59e0b;
+            padding: 20px;
+            border-radius: 8px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .verification-prompt i {
+            color: #f59e0b;
+            font-size: 1.5rem;
+        }
     </style>
 </head>
 <body>
@@ -406,6 +422,15 @@
                 <div class="section-title">
                     <i class="fas fa-cogs"></i>
                     <h2>Formspree Setup Guide</h2>
+                </div>
+                
+                <div class="verification-prompt">
+                    <i class="fas fa-exclamation-triangle"></i>
+                    <div>
+                        <h3>Important: Email Verification Required</h3>
+                        <p>Formspree requires email verification before it can send submissions to your inbox.</p>
+                        <p>Check your email for a verification link from Formspree and click it to enable email delivery.</p>
+                    </div>
                 </div>
                 
                 <div class="formspree-logo">
@@ -437,6 +462,8 @@
                         &nbsp;&nbsp;&lt;button type="submit"&gt;Apply Now&lt;/button&gt;<br>
                         &lt;/form&gt;
                     </div>
+                    
+                    <div class="status status-warning">Critical: Add 'name' attributes to all form fields</div>
                 </div>
                 
                 <div class="formspree-setup">
@@ -461,13 +488,13 @@
                     <div class="config-step">
                         <h4><i class="fas fa-link"></i> Form Action URL</h4>
                         <p>Ensure your form's action attribute matches your Formspree endpoint exactly.</p>
-                        <div class="status status-warning">Needs verification</div>
+                        <div class="status status-success">Verified: https://formspree.io/f/xldnolzz</div>
                     </div>
                     
                     <div class="config-step">
                         <h4><i class="fas fa-envelope"></i> Email Verification</h4>
                         <p>Check that you've verified your email address with Formspree.</p>
-                        <div class="status status-danger">Not verified</div>
+                        <div class="status status-danger" id="verificationStatus">Not verified</div>
                     </div>
                     
                     <div class="config-step">
@@ -482,13 +509,13 @@
                     <p>Log in to your Formspree dashboard to verify:</p>
                     
                     <div class="checklist">
-                        <div class="checklist-item">
-                            <i class="fas fa-circle"></i>
-                            <div>Form submissions are being received</div>
+                        <div class="checklist-item completed">
+                            <i class="fas fa-check-circle"></i>
+                            <div>Form endpoint is correct</div>
                         </div>
-                        <div class="checklist-item">
-                            <i class="fas fa-circle"></i>
-                            <div>Your email is verified (shows a green checkmark)</div>
+                        <div class="checklist-item" id="emailVerificationItem">
+                            <i class="fas fa-times-circle"></i>
+                            <div>Your email is verified</div>
                         </div>
                         <div class="checklist-item">
                             <i class="fas fa-circle"></i>
@@ -515,20 +542,20 @@
                         <h3><i class="fas fa-paper-plane"></i> Send Test Submission</h3>
                         <p>Submit a test application to verify your form is working:</p>
                         
-                        <form id="testForm">
+                        <form id="testForm" action="https://formspree.io/f/xldnolzz" method="POST">
                             <div class="form-group">
-                                <label for="testName">Name</label>
-                                <input type="text" id="testName" placeholder="John Doe" required>
+                                <label for="testName">Name *</label>
+                                <input type="text" id="testName" name="name" placeholder="John Doe" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="testEmail">Email</label>
-                                <input type="email" id="testEmail" placeholder="john@example.com" required>
+                                <label for="testEmail">Email *</label>
+                                <input type="email" id="testEmail" name="email" placeholder="john@example.com" required>
                             </div>
                             
                             <div class="form-group">
                                 <label for="testMessage">Message</label>
-                                <textarea id="testMessage" placeholder="Test application message">This is a test submission from the Formspree configuration tool</textarea>
+                                <textarea id="testMessage" name="message" placeholder="Test application message">This is a test submission from the Formspree configuration tool</textarea>
                             </div>
                             
                             <button type="submit" class="btn">
@@ -685,75 +712,104 @@
             statusResult.className = 'result warning';
             statusResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Processing submission...</p>';
             
-            // Simulate form submission
-            setTimeout(() => {
-                // 30% chance of failure for demonstration
-                const isSuccess = Math.random() > 0.3;
-                
-                if(isSuccess) {
-                    testResult.className = 'result success';
-                    testResult.innerHTML = `
-                        <h3><i class="fas fa-check-circle"></i> Test Application Sent!</h3>
-                        <p>Your test application was submitted successfully.</p>
-                        <p>Next steps:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Check your Formspree dashboard</li>
-                            <li>Look for the email in your inbox</li>
-                            <li>Verify spam folder if not received</li>
-                        </ul>
-                    `;
-                    
-                    statusResult.className = 'result success';
-                    statusResult.innerHTML = `
-                        <h3><i class="fas fa-check-circle"></i> Submission Successful</h3>
-                        <p>Formspree received your test application.</p>
-                        <p>What to check:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Dashboard shows new submission</li>
-                            <li>Email was sent to sankalppankaj@anmng.com</li>
-                            <li>No errors in submission logs</li>
-                        </ul>
-                    `;
-                } else {
-                    testResult.className = 'result error';
-                    testResult.innerHTML = `
-                        <h3><i class="fas fa-exclamation-triangle"></i> Submission Failed</h3>
-                        <p>There was an error sending your test application.</p>
-                        <p>Possible causes:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Incorrect Formspree endpoint</li>
-                            <li>Email not verified in Formspree</li>
-                            <li>Network or firewall issues</li>
-                        </ul>
-                        <p>Check the Troubleshooting tab for solutions.</p>
-                    `;
-                    
-                    statusResult.className = 'result error';
-                    statusResult.innerHTML = `
-                        <h3><i class="fas fa-times-circle"></i> Submission Not Received</h3>
-                        <p>Formspree did not receive your test application.</p>
-                        <p>Check these potential issues:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Form action URL is incorrect</li>
-                            <li>JavaScript errors on your page</li>
-                            <li>Ad blockers preventing submission</li>
-                        </ul>
-                    `;
+            // Create form data
+            const formData = new FormData();
+            formData.append('name', name);
+            formData.append('email', email);
+            formData.append('message', message);
+            
+            // Send the form data to Formspree
+            fetch('https://formspree.io/f/xldnolzz', {
+                method: 'POST',
+                body: formData,
+                headers: {
+                    'Accept': 'application/json'
                 }
+            })
+            .then(response => {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Form submission failed');
+                }
+            })
+            .then(data => {
+                // Success
+                testResult.className = 'result success';
+                testResult.innerHTML = `
+                    <h3><i class="fas fa-check-circle"></i> Test Application Sent!</h3>
+                    <p>Your test application was submitted successfully.</p>
+                    <p>Next steps:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Check your Formspree dashboard</li>
+                        <li>Look for the email in your inbox</li>
+                        <li>Verify spam folder if not received</li>
+                    </ul>
+                `;
                 
+                statusResult.className = 'result success';
+                statusResult.innerHTML = `
+                    <h3><i class="fas fa-check-circle"></i> Submission Successful</h3>
+                    <p>Formspree received your test application.</p>
+                    <p>What to check:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Dashboard shows new submission</li>
+                        <li>Email was sent to sankalppankaj@anmng.com</li>
+                        <li>No errors in submission logs</li>
+                    </ul>
+                `;
+            })
+            .catch(error => {
+                // Error
+                testResult.className = 'result error';
+                testResult.innerHTML = `
+                    <h3><i class="fas fa-exclamation-triangle"></i> Submission Failed</h3>
+                    <p>There was an error sending your test application.</p>
+                    <p>Possible causes:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Email not verified in Formspree</li>
+                        <li>Network or firewall issues</li>
+                        <li>Incorrect Formspree configuration</li>
+                    </ul>
+                    <p><strong>Important:</strong> Did you verify your email with Formspree? Check your inbox for a verification email.</p>
+                    <p>Check the Troubleshooting tab for solutions.</p>
+                `;
+                
+                statusResult.className = 'result error';
+                statusResult.innerHTML = `
+                    <h3><i class="fas fa-times-circle"></i> Submission Not Received</h3>
+                    <p>Formspree did not receive your test application.</p>
+                    <p>Check these potential issues:</p>
+                    <ul style="margin: 10px 0 10px 20px;">
+                        <li>Form action URL is incorrect</li>
+                        <li>JavaScript errors on your page</li>
+                        <li>Ad blockers preventing submission</li>
+                    </ul>
+                `;
+            })
+            .finally(() => {
                 // Reset form
                 this.reset();
-            }, 3000);
+            });
         });
         
         // Simulate email verification status
         setTimeout(() => {
-            const verifyStatus = document.querySelectorAll('.status-danger');
-            verifyStatus.forEach(el => {
-                el.className = 'status status-warning';
-                el.textContent = 'Needs verification';
-            });
-        }, 2000);
+            // This would normally come from an API call
+            const isVerified = false; // Set to true if verified
+            
+            if (isVerified) {
+                document.getElementById('verificationStatus').className = 'status status-success';
+                document.getElementById('verificationStatus').textContent = 'Verified';
+                document.getElementById('emailVerificationItem').className = 'checklist-item completed';
+                document.getElementById('emailVerificationItem').innerHTML = '<i class="fas fa-check-circle"></i><div>Your email is verified</div>';
+            } else {
+                document.getElementById('verificationStatus').className = 'status status-danger';
+                document.getElementById('verificationStatus').textContent = 'Not verified';
+                document.getElementById('emailVerificationItem').className = 'checklist-item error';
+                document.getElementById('emailVerificationItem').innerHTML = '<i class="fas fa-times-circle"></i><div>Your email is not verified</div>';
+            }
+        }, 1500);
     </script>
 </body>
 </html>
