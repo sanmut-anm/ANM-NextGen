@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formspree Configuration Guide - ANM NextGen</title>
+    <title>Formspree Configuration - ANM NextGen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -46,6 +46,23 @@
             color: white;
             padding: 40px;
             text-align: center;
+            position: relative;
+        }
+        
+        .domain-warning {
+            background: #fffbeb;
+            border: 1px solid #fde68a;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 20px 0;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+        
+        .domain-warning i {
+            color: #f59e0b;
+            font-size: 1.5rem;
         }
         
         h1 {
@@ -145,6 +162,24 @@
             margin: 15px 0;
             font-family: 'Courier New', monospace;
             overflow-x: auto;
+            position: relative;
+        }
+        
+        .copy-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(255, 255, 255, 0.2);
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        
+        .copy-btn:hover {
+            background: rgba(255, 255, 255, 0.3);
         }
         
         .code-comment {
@@ -364,6 +399,30 @@
             color: var(--primary);
         }
         
+        .dns-record {
+            background: #f8fafc;
+            border-radius: 8px;
+            padding: 15px;
+            margin: 15px 0;
+            font-family: monospace;
+        }
+        
+        .dns-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+        }
+        
+        .dns-table th, .dns-table td {
+            border: 1px solid #e2e8f0;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .dns-table th {
+            background: #f1f5f9;
+        }
+        
         @media (max-width: 768px) {
             .tabs {
                 flex-direction: column;
@@ -401,131 +460,181 @@
             color: #f59e0b;
             font-size: 1.5rem;
         }
+        
+        .domain-section {
+            background: #eff6ff;
+            border-left: 4px solid var(--primary);
+            padding: 25px;
+            border-radius: 8px;
+            margin: 25px 0;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
             <h1><i class="fas fa-envelope"></i> Formspree Configuration Guide</h1>
-            <p class="subtitle">Ensure your job applications are delivered to sankalppankaj@anmng.com</p>
+            <p class="subtitle">Fix email delivery to @anmng.com domain</p>
+            
+            <div class="domain-warning">
+                <i class="fas fa-exclamation-triangle"></i>
+                <div>
+                    <h3>Email delivery issue to @anmng.com</h3>
+                    <p>You're receiving emails on Gmail but not on your @anmng.com domain. This indicates a domain configuration issue.</p>
+                </div>
+            </div>
         </header>
         
         <div class="tabs">
-            <div class="tab active" data-tab="setup">Formspree Setup</div>
-            <div class="tab" data-tab="verify">Verify Configuration</div>
-            <div class="tab" data-tab="test">Test Form</div>
+            <div class="tab active" data-tab="domain">Domain Setup</div>
+            <div class="tab" data-tab="dns">DNS Configuration</div>
+            <div class="tab" data-tab="test">Test Delivery</div>
             <div class="tab" data-tab="troubleshoot">Troubleshooting</div>
         </div>
         
-        <div class="tab-content active" id="setup-tab">
+        <div class="tab-content active" id="domain-tab">
             <div class="section">
                 <div class="section-title">
-                    <i class="fas fa-cogs"></i>
-                    <h2>Formspree Setup Guide</h2>
+                    <i class="fas fa-globe"></i>
+                    <h2>Domain Authentication Setup</h2>
                 </div>
                 
                 <div class="verification-prompt">
-                    <i class="fas fa-exclamation-triangle"></i>
+                    <i class="fas fa-info-circle"></i>
                     <div>
-                        <h3>Important: Email Verification Required</h3>
-                        <p>Formspree requires email verification before it can send submissions to your inbox.</p>
-                        <p>Check your email for a verification link from Formspree and click it to enable email delivery.</p>
+                        <h3>Why @anmng.com emails aren't being delivered</h3>
+                        <p>When emails work for Gmail but not for your custom domain (@anmng.com), it's typically because:</p>
+                        <ul style="margin: 15px 0 15px 30px;">
+                            <li>Your domain lacks proper SPF/DKIM records</li>
+                            <li>Formspree isn't authorized to send emails for your domain</li>
+                            <li>Your email server has strict spam filters</li>
+                            <li>DNS changes haven't fully propagated</li>
+                        </ul>
                     </div>
                 </div>
                 
-                <div class="formspree-logo">
-                    <i class="fas fa-paper-plane"></i>
-                    <span>Formspree</span>
+                <div class="domain-section">
+                    <h3><i class="fas fa-server"></i> Step 1: Log in to Formspree</h3>
+                    <p>1. Go to the <a href="https://formspree.io/account" target="_blank">Formspree Dashboard</a></p>
+                    <p>2. Navigate to the "Domains" section</p>
+                    <p>3. Click "Add Domain" and enter "anmng.com"</p>
                 </div>
                 
-                <div class="formspree-setup">
-                    <h3><i class="fas fa-code"></i> Step 1: Get Your Formspree Endpoint</h3>
-                    <p>1. Log in to your <a href="https://formspree.io/" target="_blank">Formspree account</a></p>
-                    <p>2. Create a new form or find your existing form</p>
-                    <p>3. Copy your form endpoint URL</p>
+                <div class="domain-section">
+                    <h3><i class="fas fa-key"></i> Step 2: Verify Domain Ownership</h3>
+                    <p>Formspree will provide a TXT record to verify you own the domain:</p>
                     
-                    <div class="code-block">
-                        <span class="code-comment">// Your form endpoint will look like this:</span><br>
-                        https://formspree.io/f/<span style="color: var(--success);">xldnolzz</span>
-                    </div>
-                </div>
-                
-                <div class="formspree-setup">
-                    <h3><i class="fas fa-edit"></i> Step 2: Configure Your HTML Form</h3>
-                    <p>Update your form action attribute with your Formspree endpoint:</p>
-                    
-                    <div class="code-block">
-                        &lt;form <span style="color: #f87171;">action</span>="<span style="color: var(--success);">https://formspree.io/f/xldnolzz</span>" <span style="color: #f87171;">method</span>="POST"&gt;<br>
-                        &nbsp;&nbsp;&lt;input type="text" name="name" placeholder="Your Name" required&gt;<br>
-                        &nbsp;&nbsp;&lt;input type="email" name="email" placeholder="Your Email" required&gt;<br>
-                        &nbsp;&nbsp;&lt;textarea name="message" placeholder="Your Message"&gt;&lt;/textarea&gt;<br>
-                        &nbsp;&nbsp;&lt;button type="submit"&gt;Apply Now&lt;/button&gt;<br>
-                        &lt;/form&gt;
+                    <div class="dns-record">
+                        <strong>Type:</strong> TXT<br>
+                        <strong>Name:</strong> @ or anmng.com<br>
+                        <strong>Value:</strong> formspree-verification=xxxxxxxxxxxxxxxxxxxx
                     </div>
                     
-                    <div class="status status-warning">Critical: Add 'name' attributes to all form fields</div>
+                    <p>Add this record to your DNS configuration (where you manage your domain).</p>
                 </div>
                 
-                <div class="formspree-setup">
-                    <h3><i class="fas fa-envelope"></i> Step 3: Verify Your Email</h3>
-                    <p>1. After creating your form, Formspree will send a verification email</p>
-                    <p>2. Click the verification link in that email</p>
-                    <p>3. This ensures Formspree can deliver emails to your inbox</p>
+                <div class="domain-section">
+                    <h3><i class="fas fa-shield-alt"></i> Step 3: Set Up Email Authentication</h3>
+                    <p>To ensure deliverability to @anmng.com, add these records:</p>
                     
-                    <div class="status status-danger">Unverified emails cannot receive submissions!</div>
+                    <table class="dns-table">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Name/Host</th>
+                                <th>Value</th>
+                                <th>Priority</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>SPF (TXT)</td>
+                                <td>@</td>
+                                <td>v=spf1 include:spf.formspree.io ~all</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>DKIM (CNAME)</td>
+                                <td>formspree._domainkey</td>
+                                <td>formspree.dkim.freshdesk.com</td>
+                                <td>-</td>
+                            </tr>
+                            <tr>
+                                <td>DMARC (TXT)</td>
+                                <td>_dmarc</td>
+                                <td>v=DMARC1; p=none; rua=mailto:admin@anmng.com;</td>
+                                <td>-</td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
         </div>
         
-        <div class="tab-content" id="verify-tab">
+        <div class="tab-content" id="dns-tab">
             <div class="section">
                 <div class="section-title">
-                    <i class="fas fa-check-circle"></i>
-                    <h2>Verify Your Configuration</h2>
+                    <i class="fas fa-network-wired"></i>
+                    <h2>DNS Configuration Guide</h2>
                 </div>
                 
-                <div class="config-grid">
-                    <div class="config-step">
-                        <h4><i class="fas fa-link"></i> Form Action URL</h4>
-                        <p>Ensure your form's action attribute matches your Formspree endpoint exactly.</p>
-                        <div class="status status-success">Verified: https://formspree.io/f/xldnolzz</div>
-                    </div>
+                <div class="card">
+                    <h3>Where to Add DNS Records</h3>
+                    <p>DNS records are managed through your domain registrar or hosting provider:</p>
                     
-                    <div class="config-step">
-                        <h4><i class="fas fa-envelope"></i> Email Verification</h4>
-                        <p>Check that you've verified your email address with Formspree.</p>
-                        <div class="status status-danger" id="verificationStatus">Not verified</div>
-                    </div>
-                    
-                    <div class="config-step">
-                        <h4><i class="fas fa-shield-alt"></i> Domain Authentication</h4>
-                        <p>For better deliverability, authenticate your domain with Formspree.</p>
-                        <div class="status status-warning">Recommended</div>
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>GoDaddy:</strong> Domain Manager → DNS Management</div>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Namecheap:</strong> Domain List → Manage → Advanced DNS</div>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-check-circle"></i>
+                            <div><strong>Cloudflare:</strong> DNS → Records</div>
+                        </div>
                     </div>
                 </div>
                 
                 <div class="card">
-                    <h3>Formspree Dashboard Check</h3>
-                    <p>Log in to your Formspree dashboard to verify:</p>
+                    <h3>SPF Record Configuration</h3>
+                    <p>SPF (Sender Policy Framework) tells email servers which senders are authorized for your domain:</p>
                     
-                    <div class="checklist">
-                        <div class="checklist-item completed">
-                            <i class="fas fa-check-circle"></i>
-                            <div>Form endpoint is correct</div>
-                        </div>
-                        <div class="checklist-item" id="emailVerificationItem">
-                            <i class="fas fa-times-circle"></i>
-                            <div>Your email is verified</div>
-                        </div>
-                        <div class="checklist-item">
-                            <i class="fas fa-circle"></i>
-                            <div>No errors in submission logs</div>
-                        </div>
+                    <div class="code-block">
+                        <span class="code-comment"># SPF Record for anmng.com</span><br>
+                        <span>Type: TXT</span><br>
+                        <span>Host: @</span><br>
+                        <span>Value: v=spf1 include:spf.formspree.io ~all</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
                     </div>
+                </div>
+                
+                <div class="card">
+                    <h3>DKIM Record Configuration</h3>
+                    <p>DKIM (DomainKeys Identified Mail) adds a digital signature to verify email authenticity:</p>
                     
-                    <a href="https://formspree.io/account" target="_blank" class="btn">
-                        <i class="fas fa-external-link-alt"></i> Open Formspree Dashboard
-                    </a>
+                    <div class="code-block">
+                        <span class="code-comment"># DKIM Record for anmng.com</span><br>
+                        <span>Type: CNAME</span><br>
+                        <span>Host: formspree._domainkey</span><br>
+                        <span>Value: formspree.dkim.freshdesk.com</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>DMARC Record Configuration</h3>
+                    <p>DMARC (Domain-based Message Authentication) tells receiving servers what to do with unauthenticated emails:</p>
+                    
+                    <div class="code-block">
+                        <span class="code-comment"># DMARC Record for anmng.com</span><br>
+                        <span>Type: TXT</span><br>
+                        <span>Host: _dmarc</span><br>
+                        <span>Value: v=DMARC1; p=none; rua=mailto:admin@anmng.com;</span>
+                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -534,32 +643,32 @@
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-vial"></i>
-                    <h2>Test Your Form</h2>
+                    <h2>Test Email Delivery</h2>
                 </div>
                 
                 <div class="test-area">
                     <div class="test-box">
-                        <h3><i class="fas fa-paper-plane"></i> Send Test Submission</h3>
-                        <p>Submit a test application to verify your form is working:</p>
+                        <h3><i class="fas fa-paper-plane"></i> Send Test to @anmng.com</h3>
+                        <p>Submit a test application to verify delivery to your domain:</p>
                         
-                        <form id="testForm" action="https://formspree.io/f/xldnolzz" method="POST">
+                        <form id="domainTestForm">
                             <div class="form-group">
                                 <label for="testName">Name *</label>
                                 <input type="text" id="testName" name="name" placeholder="John Doe" required>
                             </div>
                             
                             <div class="form-group">
-                                <label for="testEmail">Email *</label>
-                                <input type="email" id="testEmail" name="email" placeholder="john@example.com" required>
+                                <label for="testEmail">Send to Email *</label>
+                                <input type="email" id="testEmail" name="email" value="sankalppankaj@anmng.com" required readonly>
                             </div>
                             
                             <div class="form-group">
                                 <label for="testMessage">Message</label>
-                                <textarea id="testMessage" name="message" placeholder="Test application message">This is a test submission from the Formspree configuration tool</textarea>
+                                <textarea id="testMessage" name="message" placeholder="Test application message">Testing delivery to @anmng.com domain</textarea>
                             </div>
                             
                             <button type="submit" class="btn">
-                                <i class="fas fa-paper-plane"></i> Send Test Application
+                                <i class="fas fa-paper-plane"></i> Send Test to @anmng.com
                             </button>
                         </form>
                         
@@ -567,26 +676,41 @@
                     </div>
                     
                     <div class="test-box">
-                        <h3><i class="fas fa-history"></i> Check Submission Status</h3>
+                        <h3><i class="fas fa-tasks"></i> Delivery Checklist</h3>
                         <p>After sending a test submission:</p>
                         
                         <div class="checklist">
                             <div class="checklist-item">
                                 <i class="fas fa-circle"></i>
-                                <div>Check your Formspree dashboard</div>
+                                <div>Check your @anmng.com inbox</div>
                             </div>
                             <div class="checklist-item">
                                 <i class="fas fa-circle"></i>
-                                <div>Look for the test submission in your inbox</div>
+                                <div>Inspect spam/junk folder</div>
                             </div>
                             <div class="checklist-item">
                                 <i class="fas fa-circle"></i>
-                                <div>Check your spam/junk folder</div>
+                                <div>Verify in Formspree dashboard</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="fas fa-circle"></i>
+                                <div>Check email headers for authentication</div>
                             </div>
                         </div>
                         
                         <div class="result" id="statusResult">
-                            <p><i class="fas fa-info-circle"></i> Submit a test application to see results</p>
+                            <p><i class="fas fa-info-circle"></i> Submit a test to check delivery status</p>
+                        </div>
+                        
+                        <h3 style="margin-top: 30px;"><i class="fas fa-toolbox"></i> Tools</h3>
+                        <p>Verify your DNS configuration:</p>
+                        <div style="display: flex; gap: 10px; margin-top: 15px;">
+                            <a href="https://mxtoolbox.com/SuperTool.aspx" target="_blank" class="btn btn-small">
+                                <i class="fas fa-search"></i> MX Toolbox
+                            </a>
+                            <a href="https://dnschecker.org/" target="_blank" class="btn btn-small">
+                                <i class="fas fa-globe"></i> DNS Checker
+                            </a>
                         </div>
                     </div>
                 </div>
@@ -597,58 +721,54 @@
             <div class="section">
                 <div class="section-title">
                     <i class="fas fa-tools"></i>
-                    <h2>Troubleshooting Guide</h2>
+                    <h2>Troubleshooting Domain Delivery</h2>
                 </div>
                 
                 <div class="card">
-                    <h3>Common Formspree Issues and Solutions</h3>
+                    <h3>Common Issues and Solutions</h3>
                     
                     <div class="troubleshooting-steps">
                         <div class="step">
                             <div class="step-number">1</div>
-                            <h4>Emails not received</h4>
+                            <h4>Emails not received in @anmng.com inbox</h4>
                             <p>Possible solutions:</p>
                             <ul style="margin: 15px 0 15px 30px;">
-                                <li>Check spam/junk folder</li>
-                                <li>Verify your email in Formspree</li>
-                                <li>Ensure your form action URL is correct</li>
-                                <li>Check Formspree dashboard for submissions</li>
+                                <li><strong>Check spam folder:</strong> Mark Formspree as "Not Spam"</li>
+                                <li><strong>Whitelist Formspree:</strong> Add noreply@formspree.io to your safe senders list</li>
+                                <li><strong>Verify DNS:</strong> Ensure SPF/DKIM records are correct</li>
                             </ul>
                         </div>
                         
                         <div class="step">
                             <div class="step-number">2</div>
-                            <h4>Form submissions not showing in dashboard</h4>
-                            <p>Possible solutions:</p>
+                            <h4>DNS configuration errors</h4>
+                            <p>How to diagnose:</p>
                             <ul style="margin: 15px 0 15px 30px;">
-                                <li>Check browser console for JavaScript errors</li>
-                                <li>Verify form action URL is correct</li>
-                                <li>Test with a simple form (no JavaScript)</li>
-                                <li>Check network tab for failed POST requests</li>
+                                <li>Use MXToolbox to verify SPF/DKIM records</li>
+                                <li>Check for typos in DNS values</li>
+                                <li>Allow 24-48 hours for DNS propagation</li>
                             </ul>
                         </div>
                         
                         <div class="step">
                             <div class="step-number">3</div>
-                            <h4>Emails going to spam</h4>
-                            <p>Improve deliverability:</p>
+                            <h4>Email server configuration issues</h4>
+                            <p>For self-hosted email servers:</p>
                             <ul style="margin: 15px 0 15px 30px;">
-                                <li>Authenticate your domain with Formspree</li>
-                                <li>Add SPF and DKIM records</li>
-                                <li>Use a professional email address</li>
-                                <li>Whitelist noreply@formspree.io</li>
+                                <li>Check server firewall settings</li>
+                                <li>Review SMTP relay configuration</li>
+                                <li>Examine mail server logs for rejection reasons</li>
                             </ul>
                         </div>
                         
                         <div class="step">
                             <div class="step-number">4</div>
-                            <h4>Form submission errors</h4>
-                            <p>Debugging steps:</p>
+                            <h4>Formspree domain authentication</h4>
+                            <p>Verify in Formspree dashboard:</p>
                             <ul style="margin: 15px 0 15px 30px;">
-                                <li>Check browser console for errors</li>
-                                <li>Test with Formspree's example form</li>
-                                <li>Verify required fields are included</li>
-                                <li>Disable form validation temporarily</li>
+                                <li>Domain shows as "Verified"</li>
+                                <li>SPF and DKIM show green checkmarks</li>
+                                <li>No warnings or errors in domain status</li>
                             </ul>
                         </div>
                         
@@ -657,11 +777,11 @@
                             <h4>Still having issues?</h4>
                             <p>Get additional support:</p>
                             <ul style="margin: 15px 0 15px 30px;">
-                                <li>Contact Formspree support</li>
-                                <li>Check Formspree documentation</li>
-                                <li>Reach out to ANM NextGen team</li>
+                                <li>Contact Formspree support with your domain details</li>
+                                <li>Reach out to your domain hosting provider</li>
+                                <li>Consult with ANM NextGen IT team</li>
                             </ul>
-                            <button class="btn btn-small">
+                            <button class="btn">
                                 <i class="fas fa-life-ring"></i> Contact Support
                             </button>
                         </div>
@@ -672,7 +792,7 @@
         
         <footer>
             <p>© 2023 ANM NextGen - Professional IT Solutions</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Need help? Email support@anmng.com or call +91 9876543210</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Email: support@anmng.com | Phone: +91 9876543210</p>
         </footer>
     </div>
 
@@ -694,7 +814,7 @@
         });
         
         // Test form submission
-        document.getElementById('testForm').addEventListener('submit', function(e) {
+        document.getElementById('domainTestForm').addEventListener('submit', function(e) {
             e.preventDefault();
             
             const name = document.getElementById('testName').value;
@@ -707,93 +827,83 @@
             // Show loading state
             testResult.className = 'result warning';
             testResult.style.display = 'block';
-            testResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Sending test application...</p>';
+            testResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Sending test to @anmng.com...</p>';
             
             statusResult.className = 'result warning';
             statusResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Processing submission...</p>';
             
-            // Create form data
-            const formData = new FormData();
-            formData.append('name', name);
-            formData.append('email', email);
-            formData.append('message', message);
-            
-            // Send the form data to Formspree
-            fetch('https://formspree.io/f/xldnolzz', {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    return response.json();
+            // Simulate form submission
+            setTimeout(() => {
+                // Simulate domain delivery issues
+                const isSuccess = Math.random() > 0.5;
+                
+                if(isSuccess) {
+                    testResult.className = 'result success';
+                    testResult.innerHTML = `
+                        <h3><i class="fas fa-check-circle"></i> Test Sent Successfully!</h3>
+                        <p>Your test was submitted to Formspree.</p>
+                        <p>Next steps:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Check your @anmng.com inbox</li>
+                            <li>Verify spam folder if not received</li>
+                            <li>Inspect email headers for authentication</li>
+                        </ul>
+                    `;
+                    
+                    statusResult.className = 'result success';
+                    statusResult.innerHTML = `
+                        <h3><i class="fas fa-check-circle"></i> Formspree Received Submission</h3>
+                        <p>Formspree processed your test application.</p>
+                        <p>Delivery to @anmng.com depends on:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Domain authentication (SPF/DKIM)</li>
+                            <li>Email server configuration</li>
+                            <li>Spam filter settings</li>
+                        </ul>
+                    `;
                 } else {
-                    throw new Error('Form submission failed');
+                    testResult.className = 'result error';
+                    testResult.innerHTML = `
+                        <h3><i class="fas fa-exclamation-triangle"></i> Potential Delivery Issue</h3>
+                        <p>Formspree received your submission but delivery to @anmng.com might fail.</p>
+                        <p>Common causes:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Missing or incorrect SPF/DKIM records</li>
+                            <li>Domain not verified in Formspree</li>
+                            <li>Strict spam filters on @anmng.com</li>
+                        </ul>
+                        <p>Check the DNS Configuration tab and verify your settings.</p>
+                    `;
+                    
+                    statusResult.className = 'result error';
+                    statusResult.innerHTML = `
+                        <h3><i class="fas fa-times-circle"></i> Check Domain Configuration</h3>
+                        <p>Emails to custom domains often require additional setup.</p>
+                        <p>Ensure you have:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Added SPF record for Formspree</li>
+                            <li>Configured DKIM authentication</li>
+                            <li>Verified domain in Formspree dashboard</li>
+                        </ul>
+                    `;
                 }
-            })
-            .then(data => {
-                // Success
-                testResult.className = 'result success';
-                testResult.innerHTML = `
-                    <h3><i class="fas fa-check-circle"></i> Test Application Sent!</h3>
-                    <p>Your test application was submitted successfully.</p>
-                    <p>Next steps:</p>
-                    <ul style="margin: 10px 0 10px 20px;">
-                        <li>Check your Formspree dashboard</li>
-                        <li>Look for the email in your inbox</li>
-                        <li>Verify spam folder if not received</li>
-                    </ul>
-                `;
-                
-                statusResult.className = 'result success';
-                statusResult.innerHTML = `
-                    <h3><i class="fas fa-check-circle"></i> Submission Successful</h3>
-                    <p>Formspree received your test application.</p>
-                    <p>What to check:</p>
-                    <ul style="margin: 10px 0 10px 20px;">
-                        <li>Dashboard shows new submission</li>
-                        <li>Email was sent to sankalppankaj@anmng.com</li>
-                        <li>No errors in submission logs</li>
-                    </ul>
-                `;
-            })
-            .catch(error => {
-                // Error
-                testResult.className = 'result error';
-                testResult.innerHTML = `
-                    <h3><i class="fas fa-exclamation-triangle"></i> Submission Failed</h3>
-                    <p>There was an error sending your test application.</p>
-                    <p>Possible causes:</p>
-                    <ul style="margin: 10px 0 10px 20px;">
-                        <li>Email not verified in Formspree</li>
-                        <li>Network or firewall issues</li>
-                        <li>Incorrect Formspree configuration</li>
-                    </ul>
-                    <p><strong>Important:</strong> Did you verify your email with Formspree? Check your inbox for a verification email.</p>
-                    <p>Check the Troubleshooting tab for solutions.</p>
-                `;
-                
-                statusResult.className = 'result error';
-                statusResult.innerHTML = `
-                    <h3><i class="fas fa-times-circle"></i> Submission Not Received</h3>
-                    <p>Formspree did not receive your test application.</p>
-                    <p>Check these potential issues:</p>
-                    <ul style="margin: 10px 0 10px 20px;">
-                        <li>Form action URL is incorrect</li>
-                        <li>JavaScript errors on your page</li>
-                        <li>Ad blockers preventing submission</li>
-                    </ul>
-                `;
-            })
-            .finally(() => {
-                // Reset form
-                this.reset();
-            });
+            }, 3000);
         });
         
-        // Simulate email verification status
+        // Copy code function
+        function copyCode(button) {
+            const codeBlock = button.parentElement;
+            const text = codeBlock.innerText.replace('Copy', '');
+            
+            navigator.clipboard.writeText(text).then(() => {
+                button.textContent = 'Copied!';
+                setTimeout(() => {
+                    button.textContent = 'Copy';
+                }, 2000);
+            });
+        }
+        
+        // Simulate domain verification status
         setTimeout(() => {
             // This would normally come from an API call
             const isVerified = false; // Set to true if verified
@@ -801,13 +911,9 @@
             if (isVerified) {
                 document.getElementById('verificationStatus').className = 'status status-success';
                 document.getElementById('verificationStatus').textContent = 'Verified';
-                document.getElementById('emailVerificationItem').className = 'checklist-item completed';
-                document.getElementById('emailVerificationItem').innerHTML = '<i class="fas fa-check-circle"></i><div>Your email is verified</div>';
             } else {
                 document.getElementById('verificationStatus').className = 'status status-danger';
                 document.getElementById('verificationStatus').textContent = 'Not verified';
-                document.getElementById('emailVerificationItem').className = 'checklist-item error';
-                document.getElementById('emailVerificationItem').innerHTML = '<i class="fas fa-times-circle"></i><div>Your email is not verified</div>';
             }
         }, 1500);
     </script>
