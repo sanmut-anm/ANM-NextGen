@@ -4,47 +4,23 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>ANM NextGen - Tech Solutions</title>
-    
-    <!-- Favicon -->
-    <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🚀</text></svg>">
-    
-    <!-- Tailwind CSS -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        primary: '#3b82f6',
-                        'primary-dark': '#2563eb',
-                        secondary: '#0f2027',
-                        tertiary: '#203a43',
-                        quaternary: '#2c5364'
-                    },
-                    fontFamily: {
-                        poppins: ['Poppins', 'sans-serif']
-                    },
-                    backgroundImage: {
-                        'hero-gradient': 'linear-gradient(135deg, #0f2027, #203a43, #2c5364)',
-                    }
-                }
-            }
-        }
-    </script>
-    
-    <!-- Fonts and Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <!-- Add Splide slider CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
+    <!-- Formbutton script -->
+    <script src="https://formspree.io/js/formbutton-v1.min.js" defer></script>
     <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+        
         body {
             font-family: 'Poppins', sans-serif;
             scroll-behavior: smooth;
             background-color: #f9fafb;
         }
         
-        .service-card {
-            transition: all 0.3s ease;
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
         }
         
         .service-card:hover {
@@ -71,6 +47,72 @@
             width: 100%;
         }
         
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        .footer-link:hover {
+            color: #3b82f6;
+            transform: translateX(3px);
+        }
+
+        /* Slider styles */
+        .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .splide__arrow {
+            background: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .splide__pagination__page.is-active {
+            background: #3b82f6 !important;
+        }
+
+        /* Service image styles */
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Logo styles */
+        .logo-container {
+            display: flex;
+            align-items: center;
+        }
+        
+        .company-logo {
+            height: 75px;
+            width: auto;
+            margin-right: 15px;
+            transition: transform 0.3s ease;
+        }
+        
+        .company-name {
+            font-size: 2rem;
+            font-weight: 700;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
+        }
+        
+        /* Elegant design improvements */
+        .elegant-shadow {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+        }
+        
         .section-title {
             position: relative;
             display: inline-block;
@@ -87,37 +129,170 @@
             background: linear-gradient(to right, #0A2463, #3b82f6);
         }
         
-        .loading-spinner {
-            display: inline-block;
-            width: 20px;
-            height: 20px;
-            border: 3px solid rgba(255,255,255,.3);
-            border-radius: 50%;
-            border-top-color: white;
-            animation: spin 1s ease-in-out infinite;
-            margin-right: 8px;
+        .contact-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 15px;
+            overflow: hidden;
         }
         
-        @keyframes spin {
-            to { transform: rotate(360deg); }
+        .gradient-divider {
+            height: 4px;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
+            width: 100%;
+        }
+        
+        /* Careers Section Styles */
+        .job-card {
+            transition: all 0.3s ease;
+            border-left: 4px solid #3b82f6;
+        }
+        
+        .job-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            border-left: 4px solid #2563eb;
+        }
+        
+        .job-type {
+            padding: 2px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .full-time {
+            background-color: #dbeafe;
+            color: #2563eb;
+        }
+        
+        .part-time {
+            background-color: #f0fdf4;
+            color: #16a34a;
+        }
+        
+        .contract {
+            background-color: #ffedd5;
+            color: #ea580c;
+        }
+        
+        .remote {
+            background-color: #fce7f3;
+            color: #db2777;
+        }
+        
+        .tag {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            background-color: #e5e7eb;
+            color: #4b5563;
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
+        
+        .application-modal {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.7);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+        
+        .application-modal.active {
+            opacity: 1;
+            pointer-events: all;
+        }
+        
+        .modal-content {
+            background-color: white;
+            border-radius: 10px;
+            width: 90%;
+            max-width: 600px;
+            max-height: 90vh;
+            overflow-y: auto;
+            padding: 30px;
+            position: relative;
+            transform: translateY(20px);
+            transition: transform 0.3s ease;
+        }
+        
+        .application-modal.active .modal-content {
+            transform: translateY(0);
+        }
+        
+        /* Formbutton customization */
+        .formbutton-container {
+            z-index: 9999;
+        }
+        
+        .formbutton-wrapper {
+            font-family: 'Poppins', sans-serif !important;
+        }
+        
+        .formbutton-title {
+            background-color: #3b82f6 !important;
+            color: white !important;
+            font-weight: 600 !important;
+        }
+        
+        .formbutton-button {
+            background-color: #3b82f6 !important;
+            border-radius: 50% !important;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.4) !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .formbutton-button:hover {
+            transform: scale(1.1) !important;
+            background-color: #2563eb !important;
+        }
+        
+        .formbutton-field {
+            border: 1px solid #e5e7eb !important;
+            border-radius: 0.5rem !important;
+            padding: 0.75rem !important;
+            margin-bottom: 1rem !important;
+            font-family: 'Poppins', sans-serif !important;
+        }
+        
+        .formbutton-submit {
+            background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+            border-radius: 0.5rem !important;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        
+        .formbutton-submit:hover {
+            transform: translateY(-2px) !important;
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4) !important;
         }
     </style>
 </head>
-<body class="font-poppins bg-gray-50">
-    <!-- Navigation -->
+<body class="bg-gray-60">
+    <!-- Navigation with Logo -->
     <nav class="bg-white shadow-md fixed w-full z-50">
         <div class="container mx-auto px-4">
-            <div class="flex justify-between items-center py-4">
+            <div class="flex justify-between items-center">
                 <div class="flex items-center">
-                    <div class="flex items-center">
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="h-16 w-auto mr-3">
-                        <div class="text-2xl font-bold bg-gradient-to-r from-blue-800 to-blue-500 bg-clip-text text-transparent">ANM NextGen</div>
+                    <div class="logo-container">
+                        <!-- Company Logo -->
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo logo-border">
+                        <div class="company-name">ANM NextGen</div>
                     </div>
                 </div>
                 
                 <div class="hidden md:flex space-x-8">
                     <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
-                    <a href="#services" class="nav极-link text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
                     <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">About</a>
                     <a href="#careers" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Careers</a>
                     <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
@@ -126,61 +301,53 @@
                 <div class="md:hidden">
                     <button id="menu-toggle" class="text-gray-700 hover:text-blue-600 focus:outline-none">
                         <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18极16"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
                         </svg>
                     </button>
                 </div>
             </div>
             
             <!-- Mobile Menu -->
-            <div id="mobile-menu" class="md:hidden hidden py-4">
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
                 <div class="flex flex-col space-y-3">
-                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Home</a>
-                    <a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Services</a>
-                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">About</a>
-                    <a href="#careers" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Careers</a>
-                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300 px-4 py-2">Contact</a>
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">About</a>
+                    <a href="#careers" class="text-gray-700 hover:text-blue-600 transition duration-300">Careers</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
                 </div>
             </div>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="home" class="bg-gradient-to-r from-blue-900 via-blue-700 to-blue-900 text-white pt-32 pb-20">
+    <!-- Hero Section with Image Slider -->
+    <section id="home" class="hero-gradient text-white hero-section pb-20">
         <div class="container mx-auto px-4">
             <div class="flex flex-col md:flex-row items-center">
                 <div class="md:w-1/2 mb-10 md:mb-0">
                     <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforming Tech Talent & Projects</h1>
-                    <p class="text-xl mb-8 text-blue-100">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
+                    <p class="text-xl mb-8 text-gray-200">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
                     <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-                        <a href="#services" class="bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 px-8 py-3 rounded-lg font-medium text-center shadow-lg transition duration-300">Our Services</a>
+                        <a href="#services" class="btn-primary px-8 py-3 rounded-lg font-medium text-center shadow-lg">Our Services</a>
                         <a href="#contact" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-medium text-center hover:bg-white hover:text-blue-800 transition duration-300 shadow-lg">Contact Us</a>
                     </div>
                 </div>
-                <div class="md:w-1/2 flex justify-center">
-                    <div class="bg-white/20 backdrop-blur-sm rounded-xl p-8 border border-white/30">
-                        <div class="text-center mb-6">
-                            <i class="fas fa-rocket text-5xl text-yellow-300 mb-4"></i>
-                            <h2 class="text-2xl font-bold">Innovative Tech Solutions</h2>
+                <div class="md:w-1/2">
+                    <!-- Image Slider -->
+                    <div class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8f极ufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development">
+                                </li>
+                            </ul>
                         </div>
-                        <ul class="space-y-3">
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                                <span>Staffing Services</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                                <span>Software Development</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                                <span>ServiceNow Solutions</span>
-                            </li>
-                            <li class="flex items-center">
-                                <i class="fas fa-check-circle text-green-400 mr-3"></i>
-                                <span>Enterprise Platforms</span>
-                            </li>
-                        </ul>
                     </div>
                 </div>
             </div>
@@ -195,25 +362,34 @@
                 <p class="text-gray-600 max-w-2xl mx-auto text-lg">We offer comprehensive IT solutions to help businesses excel through expert staffing, software development, and enterprise platforms.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Staffing Service Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="service-image">
+                    <div class="h-3 bg-blue-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
                             <i class="fas fa-users text-2xl text-blue-600"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Staffing Services</h3>
                         <p class="text-gray-600 mb-4">Connect with top-tier tech talent for your organization. We provide skilled professionals who drive innovation and excellence.</p>
-                        <ul class="space-y-2 mb-4">
+                        <ul class="mb-6 space-y-2">
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Contract Staffing
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 极 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Permanent Placement
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Executive Search
                             </li>
                         </ul>
@@ -221,24 +397,33 @@
                     </div>
                 </div>
                 
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                <!-- Software Development Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="service-image">
+                    <div class="h-3 bg-indigo-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
                             <i class="fas fa-code text-2xl text-indigo-600"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">Software Development</h3>
                         <p class="text-gray-600 mb-4">Custom software solutions tailored to your business needs. Our expert developers create scalable, robust applications.</p>
-                        <ul class="space-y-2 mb-4">
+                        <ul class="mb-6 space-y-2">
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Custom Applications
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Web Development
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></极>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Mobile Solutions
                             </li>
                         </ul>
@@ -246,24 +431,33 @@
                     </div>
                 </div>
                 
-                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300">
+                <!-- ServiceNow Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="service-image">
+                    <div class="h-3 bg-green-600"></div>
                     <div class="p-6">
                         <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
                             <i class="fas fa-cloud text-2xl text-green-600"></i>
                         </div>
                         <h3 class="text-xl font-semibold text-gray-800 mb-3">ServiceNow Solutions</h3>
                         <p class="text-gray-600 mb-4">Optimize your workflows and service management with our expert ServiceNow implementation and customization services.</p>
-                        <ul class="space-y-2 mb-4">
+                        <ul class="mb-6 space-y-2">
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 ITSM & ITOM Implementation
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Custom Applications
                             </li>
                             <li class="flex items-center text-gray-600">
-                                <i class="fas fa-check text-green-500 mr-2"></i>
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
                                 Platform Integration
                             </li>
                         </ul>
@@ -274,95 +468,211 @@
         </div>
     </section>
 
-    <!-- Formspree Example Section -->
-    <section id="formspree-demo" class="py-16 bg-blue-50">
-        <div class="container mx-auto px-4 max-w-3xl">
-            <div class="bg-white rounded-xl shadow-lg p-8">
-                <div class="text-center mb-8">
-                    <h2 class="text-3xl font-bold text-gray-800 mb-2">Job Application Form</h2>
-                    <p class="text-gray-600">Using Formspree endpoint: https://formspree.io/f/xldnolzz</p>
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">About ANM NextGen</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">We bridge the gap between technology and talent to drive your business forward.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-gray-100 rounded-2xl p-8 elegant-shadow">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Team Collaboration" 
+                             class="w-full h-auto rounded-lg">
+                    </div>
                 </div>
                 
-                <!-- Formspree Form -->
-                <form id="job-application-form" action="https://formspree.io/f/xldnolzz" method="POST" enctype="multipart/form-data" class="space-y-6">
-                    <div>
-                        <label for="applicant-name" class="block text-gray-700 font-medium mb-2">Full Name <span class="text-red-500">*</span></label>
-                        <input type="text" id="applicant-name" name="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                    </div>
+                <div class="md:w-1/2 md:pl-10">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">To empower organizations with innovative technology solutions and top-tier talent that drive measurable business results and sustainable growth.</p>
                     
-                    <div>
-                        <label for="applicant-email" class="block text-gray-700 font-medium mb-2">Email <span class="text-red-500">*</span></label>
-                        <input type="email" id="applicant-email" name="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                    </div>
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 mb-6">To be the premier technology partner for businesses seeking to transform their operations through cutting-edge IT solutions and exceptional talent.</p>
                     
-                    <div>
-                        <label for="applicant-phone" class="block text-gray-700 font-medium mb-2">Phone <span class="text-red-500">*</span></label>
-                        <input type="tel" id="applicant-phone" name="phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                    </div>
-                    
-                    <div>
-                        <label for="position" class="block text-gray-700 font-medium mb-2">Position Applying For <span class="text-red-500">*</span></label>
-                        <select id="position" name="position" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" required>
-                            <option value="">Select a position</option>
-                            <option value="Frontend Developer">Frontend Developer</option>
-                            <option value="ServiceNow Developer">ServiceNow Developer</option>
-                            <option value="DevOps Engineer">DevOps Engineer</option>
-                            <option value="Data Analyst">Data Analyst</option>
-                        </select>
-                    </div>
-                    
-                    <div>
-                        <label for="resume" class="block text-gray-700 font-medium mb-2">Resume/CV <span class="text-red-500">*</span></label>
-                        <input type="file" id="resume" name="resume" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent" accept=".pdf,.doc,.docx" required>
-                        <p class="text-sm text-gray-500 mt-1">Accepted formats: PDF, DOC, DOCX (max 10MB)</p>
-                    </div>
-                    
-                    <div>
-                        <label for="cover-letter" class="block text-gray-700 font-medium mb-2">Cover Letter (optional)</label>
-                        <textarea id="cover-letter" name="cover-letter" rows="4" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent"></textarea>
-                    </div>
-                    
-                    <div>
-                        <button type="submit" class="w-full bg-gradient-to-r from-blue-500 to-blue-700 hover:from-blue-600 hover:to-blue-800 text-white font-medium py-3 px-4 rounded-lg shadow-md transition duration-300 flex items-center justify-center">
-                            <i class="fas fa-paper-plane mr-2"></i> Submit Application
-                        </button>
-                    </div>
-                    
-                    <div id="form-status" class="text-center py-4 hidden">
-                        <div class="inline-flex items-center bg-green-100 text-green-700 py-2 px-4 rounded-lg">
-                            <i class="fas fa-check-circle mr-2"></i>
-                            <span id="status-message">Application submitted successfully!</span>
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-lightbulb text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Innovation-Driven</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Client-Focused</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-chart-line text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Results-Oriented</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Quality Assured</span>
                         </div>
                     </div>
-                </form>
-                
-                <div class="mt-8 p-4 bg-blue-50 rounded-lg">
-                    <h3 class="font-bold text-blue-800 mb-2">Form Details:</h3>
-                    <p class="text-sm text-blue-700">This form uses the Formspree endpoint with file upload capability. All form submissions with attached files will be sent to the specified email address configured in Formspree.</p>
+                    <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-lg font-medium">Get to Know Us</a>
                 </div>
             </div>
         </div>
     </section>
 
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Ready to transform your business? Contact us today to discuss how ANM NextGen can help you achieve your goals.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Subject">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Message"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium shadow-lg">Send Message</button>
+                        </div>
+                        <div id="form-message" class="hidden text-center py-3 rounded-lg"></div>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-8">
+                    <div class="contact-card p-8 h-full">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-800 mb-1">Our Location</h4>
+                                    <p class="text-gray-600">11th Cross West, Thillai Nagar<br>Trichy - 620 018</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-800 mb-1">Email Us</h4>
+                                    <p class="text-gray-600">adminsupport@anmng.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="text-lg font-medium text-gray-800 mb-4">Connect With Us</h4>
+                            <div class="flex">
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Careers Section -->
+    <section id="careers" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Join Our Team</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">We're always looking for talented individuals to join our growing team. Check out our current openings below.</p>
+            </div>
+            
+            <!-- Job Openings Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" id="jobs-container">
+                <!-- Job cards will be loaded here from jobs.json -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Application Modal -->
+    <div class="application-modal" id="application-modal">
+        <div class="modal-content">
+            <button class="absolute top-4 right-4 text-gray-500 hover:text-gray-700" id="close-modal">
+                <i class="fas fa-times"></i>
+            </button>
+            <h2 class="text-2xl font-bold mb-6 text-center" id="modal-title">Apply for Position</h2>
+            <div class="bg-white rounded-lg p-6">
+                <form id="job-application-form">
+                    <input type="hidden" id="position-applying-for">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="applicant-name" class="block text-gray-700 font-medium mb-2">Full Name</label>
+                            <input type="text" id="applicant-name" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label for="applicant-email" class="block text-gray-700 font-medium mb-2">Email</label>
+                            <input type="email" id="applicant-email" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label for="applicant-phone" class="block text-gray-700 font-medium mb-2">Phone</label>
+                            <input type="tel" id="applicant-phone" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                        </div>
+                        <div>
+                            <label for="applicant-location" class="block text-gray-700 font-medium mb-2">Location</label>
+                            <input type="text" id="applicant-location" class="w-full px-4 py-3 border border-gray-300 rounded-lg" required>
+                        </div>
+                    </div>
+                    <div class="mt-4">
+                        <label for="applicant-resume" class="block text-gray-700 font-medium mb-2">Resume/CV</label>
+                        <input type="file" id="applicant-resume" class="w-full px-4 py-3 border border-gray-300 rounded-lg" accept=".pdf,.doc,.docx" required>
+                    </div>
+                    <div class="mt-4">
+                        <label for="applicant-cover" class="block text-gray-700 font-medium mb-2">Cover Letter (optional)</label>
+                        <textarea id="applicant-cover" rows="3" class="w-full px-4 py-3 border border-gray-300 rounded-lg"></textarea>
+                    </div>
+                    <div class="mt-6">
+                        <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium">
+                            Submit Application
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
     <!-- Footer -->
     <footer class="bg-gray-900 text-white pt-16 pb-8">
         <div class="container mx-auto px-4">
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8 mb-12">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
                 <div>
-                    <div class="flex items-center mb-4">
-                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="h-16 w-auto mr-3">
-                        <div class="text-2xl font-bold bg-gradient-to-r from-blue-300 to-blue-500 bg-clip-text text-transparent">ANM NextGen</div>
+                    <div class="logo-container mb-4">
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo logo-border">
+                        <div class="company-name">ANM NextGen</极>
                     </div>
                     <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
-                    <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
-                            <i class="fab fa-linkedin-in"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-blue-400 flex items-center justify-center text-white hover:bg-blue-500 transition duration-300">
-                            <i class="fab fa-twitter"></i>
-                        </a>
-                        <a href="#" class="w-10 h-10 rounded-full bg-indigo-600 flex items-center justify-center text-white hover:bg-indigo-700 transition duration-300">
-                            <i class="fab fa-facebook-f"></i>
+                    <div class="flex">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 mr-4">
+                            <i class="fab fa-linkedin-in text-xl"></i>
                         </a>
                     </div>
                 </div>
@@ -370,39 +680,21 @@
                 <div>
                     <h3 class="text-xl font-bold mb-6 text-white">Services</h3>
                     <ul class="space-y-3">
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Staffing Services</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Software Development</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">ServiceNow Solutions</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Data Solutions</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Staffing Services</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Software Development</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">ServiceNow Solutions</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Data Solutions</a></li>
                     </ul>
                 </div>
                 
                 <div>
                     <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
                     <ul class="space-y-3">
-                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300">Home</a></li>
-                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300">About Us</a></li>
-                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300">Services</a></li>
-                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300">Careers</a></li>
-                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300">Contact</a></li>
-                    </ul>
-                </div>
-                
-                <div>
-                    <h3 class="text-xl font-bold mb-6 text-white">Contact Us</h3>
-                    <ul class="space-y-3 text-gray-400">
-                        <li class="flex items-start">
-                            <i class="fas fa-map-marker-alt mt-1 mr-3"></i>
-                            <span>11th Cross West, Thillai Nagar<br>Trichy - 620 018</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-envelope mr-3"></i>
-                            <span>adminsupport@anmng.com</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i class="fas fa-phone mr-3"></i>
-                            <span>+91 123 456 7890</span>
-                        </li>
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300 footer-link">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Services</a></li>
+                        <li><a href="#careers" class="text-gray-400 hover:text-white transition duration-300 footer-link">Careers</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300 footer-link">Contact</a></li>
                     </ul>
                 </div>
             </div>
@@ -424,63 +716,186 @@
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Add Splide slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        // Handle form submission
+        // Initialize Formbutton
+        window.formbutton = window.formbutton || function() {
+            (formbutton.q = formbutton.q || []).push(arguments)
+        };
+        
+        formbutton("create", {
+            action: "https://formspree.io/f/xldnolzz",
+            title: "How can we help?",
+            fields: [
+                { 
+                    type: "email", 
+                    label: "Email:", 
+                    name: "email",
+                    required: true,
+                    placeholder: "your@email.com"
+                },
+                {
+                    type: "textarea",
+                    label: "Message:",
+                    name: "message",
+                    placeholder: "What's on your mind?",
+                },
+                { type: "submit" }      
+            ],
+            styles: {
+                font: 'Poppins, sans-serif',
+                title: {
+                    background: "#3b82f6",
+                    color: "white"
+                },
+                button: {
+                    background: "#3b82f6",
+                },
+                input: {
+                    border: "1px solid #e5e7eb",
+                    borderRadius: "0.5rem",
+                    padding: "0.75rem"
+                },
+                textarea: {
+                    border: "1px solid #e5e7eb",
+                    borderRadius: "0.5rem",
+                    padding: "0.75rem"
+                }
+            },
+            initiallyVisible: false
+        });
+
+        // Initialize Splide slider
+        document.addEventListener('DOMContentLoaded', function() {
+            new Splide('.splide', {
+                type: 'loop',
+                autoplay: true,
+                interval: 3000,
+                pauseOnHover: false,
+                arrows: true,
+                pagination: true
+            }).mount();
+
+            // Sample job data (in a real site, you'd fetch from jobs.json)
+            const jobs = [
+                {
+                    id: 1,
+                    title: "Frontend Developer",
+                    department: "Software Development",
+                    type: "Full-time",
+                    location: "Trichy, India",
+                    description: "Create responsive web applications using modern JavaScript frameworks.",
+                    requirements: "3+ years experience with React, JavaScript, HTML/CSS",
+                    tags: ["React", "JavaScript", "CSS", "UI/UX"],
+                    posted: "2 weeks ago"
+                },
+                {
+                    id: 2,
+                    title: "ServiceNow Developer",
+                    department: "IT Solutions",
+                    type: "Remote",
+                    location: "Remote",
+                    description: "Implement and customize ServiceNow solutions for enterprise clients.",
+                    requirements: "ServiceNow certification, JavaScript, ITIL knowledge",
+                    tags: ["ServiceNow", "JavaScript", "ITIL", "CMDB"],
+                    posted: "5 days ago"
+                },
+                {
+                    id: 3,
+                    title: "DevOps Engineer",
+                    department: "Infrastructure",
+                    type: "Contract",
+                    location: "Chennai, India",
+                    description: "Build and maintain CI/CD pipelines and cloud infrastructure.",
+                    requirements: "AWS/Azure, Docker, Kubernetes, CI/CD tools",
+                    tags: ["AWS", "Docker", "Kubernetes", "CI/CD"],
+                    posted: "3 days ago"
+                }
+            ];
+            
+            renderJobs(jobs);
+        });
+
+        // Render job cards
+        function renderJobs(jobs) {
+            const jobsContainer = document.getElementById('jobs-container');
+            jobsContainer.innerHTML = '';
+            
+            jobs.forEach(job => {
+                const jobCard = document.createElement('div');
+                jobCard.className = 'job-card bg-white rounded-lg p-6 elegant-shadow';
+                jobCard.innerHTML = `
+                    <div class="flex justify-between items-start mb-4">
+                        <div>
+                            <h3 class="text-xl font-bold text-gray-800">${job.title}</h3>
+                            <p class="text-gray-600">${job.department}</p>
+                        </div>
+                        <span class="job-type ${job.type.toLowerCase().replace(' ', '-')}">${job.type}</span>
+                    </div>
+                    
+                    <div class="flex items-center text-gray-600 mb-4">
+                        <i class="fas fa-map-marker-alt mr-2"></i>
+                        <span>${job.location}</span>
+                    </div>
+                    
+                    <p class="text-gray-700 mb-4">${job.description}</p>
+                    
+                    <div class="mb-5">
+                        <h4 class="font-semibold mb-2">Requirements:</h4>
+                        <ul class="list-disc pl-5 text-gray-600 text-sm">
+                            ${job.requirements.split(',').map(req => `<li>${req.trim()}</li>`).join('')}
+                        </ul>
+                    </div>
+                    
+                    <div class="mb-6">
+                        ${job.tags.map(tag => `<span class="tag">${tag}</span>`).join('')}
+                    </div>
+                    
+                    <div class="flex justify-between items-center">
+                        <span class="text-sm text-gray-500">Posted: ${job.posted}</span>
+                        <button class="btn-primary px-4 py-2 rounded-lg font-medium apply-btn" data-id="${job.id}" data-title="${job.title}">
+                            Apply Now
+                        </button>
+                    </div>
+                `;
+                
+                jobsContainer.appendChild(jobCard);
+            });
+            
+            // Add event listeners to apply buttons
+            document.querySelectorAll('.apply-btn').forEach(button => {
+                button.addEventListener('click', function() {
+                    const jobId = this.getAttribute('data-id');
+                    const jobTitle = this.getAttribute('data-title');
+                    openApplicationModal(jobId, jobTitle);
+                });
+            });
+        }
+
+        // Open application modal
+        function openApplicationModal(jobId, jobTitle) {
+            document.getElementById('position-applying-for').value = jobTitle;
+            document.getElementById('modal-title').textContent = `Apply for ${jobTitle}`;
+            document.getElementById('application-modal').classList.add('active');
+        }
+
+        // Close application modal
+        document.getElementById('close-modal').addEventListener('click', function() {
+            document.getElementById('application-modal').classList.remove('active');
+        });
+
+        // Handle application form submission
         document.getElementById('job-application-form').addEventListener('submit', function(e) {
             e.preventDefault();
             
-            const form = this;
-            const submitBtn = form.querySelector('button[type="submit"]');
-            const originalBtnText = submitBtn.innerHTML;
-            const statusElement = document.getElementById('form-status');
-            const statusMessage = document.getElementById('status-message');
+            // In a real application, this would send the data to your server
+            const position = document.getElementById('position-applying-for').value;
+            alert(`Thank you! Your application for ${position} has been submitted successfully.`);
             
-            // Show loading state
-            submitBtn.innerHTML = '<span class="loading-spinner"></span> Submitting...';
-            submitBtn.disabled = true;
-            
-            // Hide previous status
-            statusElement.classList.add('hidden');
-            
-            // Create FormData object
-            const formData = new FormData(form);
-            
-            // Send form data to Formspree
-            fetch(form.action, {
-                method: 'POST',
-                body: formData,
-                headers: {
-                    'Accept': 'application/json'
-                }
-            })
-            .then(response => {
-                if (response.ok) {
-                    // Show success message
-                    statusMessage.textContent = "Application submitted successfully!";
-                    statusElement.classList.remove('hidden');
-                    statusElement.classList.remove('bg-red-100', 'text-red-700');
-                    statusElement.classList.add('bg-green-100', 'text-green-700');
-                    
-                    // Reset form after successful submission
-                    setTimeout(() => {
-                        form.reset();
-                    }, 3000);
-                } else {
-                    throw new Error('Form submission failed');
-                }
-            })
-            .catch(error => {
-                // Show error message
-                statusMessage.textContent = "Error submitting application. Please try again.";
-                statusElement.classList.remove('hidden');
-                statusElement.classList.remove('bg-green-100', 'text-green-700');
-                statusElement.classList.add('bg-red-100', 'text-red-700');
-                console.error('Form submission error:', error);
-            })
-            .finally(() => {
-                submitBtn.innerHTML = originalBtnText;
-                submitBtn.disabled = false;
-            });
+            // Reset and close
+            this.reset();
+            document.getElementById('application-modal').classList.remove('active');
         });
 
         // Mobile Menu Toggle
@@ -494,8 +909,6 @@
         // Smooth Scrolling for Anchor Links
         document.querySelectorAll('a[href^="#"]').forEach(anchor => {
             anchor.addEventListener('click', function(e) {
-                if(this.getAttribute('href') === '#') return;
-                
                 e.preventDefault();
                 
                 const targetId = this.getAttribute('href');
@@ -531,6 +944,42 @@
                 top: 0,
                 behavior: 'smooth'
             });
+        });
+        
+        // Contact Form Handling
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+        
+        contactForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
+            
+            // Simple validation
+            if (!name || !email || !message) {
+                formMessage.textContent = 'Please fill in all required fields.';
+                formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+                formMessage.classList.add('bg-red-100', 'text-red-700');
+                return;
+            }
+            
+            // In a real application, you would send this data to your server
+            // For demo purposes, we'll just show a success message
+            formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+            formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+            formMessage.classList.add('bg-green-100', 'text-green-700');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
         });
     </script>
 </body>
