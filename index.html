@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MX Record Configuration Guide - ANM NextGen</title>
+    <title>Formspree Configuration Guide - ANM NextGen</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         :root {
@@ -14,6 +14,7 @@
             --danger: #ef4444;
             --light: #f3f4f6;
             --dark: #1f2937;
+            --gray: #6b7280;
         }
         
         * {
@@ -59,39 +60,76 @@
             margin: 0 auto;
         }
         
-        .content {
+        .tabs {
             display: flex;
+            background: #f8fafc;
+            border-bottom: 1px solid #e2e8f0;
             flex-wrap: wrap;
-            padding: 30px;
-            gap: 30px;
         }
         
-        .steps {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .visualization {
-            flex: 1;
-            min-width: 300px;
-        }
-        
-        .step-card {
-            background: var(--light);
-            border-left: 4px solid var(--primary);
-            border-radius: 8px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        .tab {
+            padding: 20px 30px;
+            cursor: pointer;
+            font-weight: 600;
             transition: all 0.3s ease;
+            border-bottom: 3px solid transparent;
         }
         
-        .step-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        .tab.active {
+            border-bottom: 3px solid var(--primary);
+            background: white;
+            color: var(--primary);
         }
         
-        .step-card h3 {
+        .tab-content {
+            padding: 40px;
+            display: none;
+        }
+        
+        .tab-content.active {
+            display: block;
+        }
+        
+        .section {
+            margin-bottom: 40px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-bottom: 20px;
+            color: var(--dark);
+        }
+        
+        .section-title i {
+            width: 40px;
+            height: 40px;
+            background: var(--light);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary);
+        }
+        
+        .card {
+            background: var(--light);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+            margin-bottom: 25px;
+        }
+        
+        .formspree-setup {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            margin-bottom: 30px;
+        }
+        
+        .formspree-setup h3 {
             color: var(--primary);
             margin-bottom: 15px;
             display: flex;
@@ -99,125 +137,80 @@
             gap: 10px;
         }
         
-        .step-card p {
-            margin-bottom: 15px;
-        }
-        
-        .record-table {
-            width: 100%;
-            border-collapse: collapse;
-            margin-top: 15px;
-            background: white;
-        }
-        
-        .record-table th, .record-table td {
-            border: 1px solid #ddd;
-            padding: 12px;
-            text-align: left;
-        }
-        
-        .record-table th {
-            background-color: #f8fafc;
-            font-weight: 600;
-        }
-        
-        .record-table tr:nth-child(even) {
-            background-color: #f9fafb;
-        }
-        
-        .provider-logos {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 15px;
-            margin-top: 20px;
-        }
-        
-        .provider-logo {
-            width: 120px;
-            height: 60px;
-            background: white;
+        .code-block {
+            background: #1e293b;
+            color: #f1f5f9;
+            padding: 15px;
             border-radius: 8px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            box-shadow: 0 3px 10px rgba(0,0,0,0.1);
-            padding: 10px;
+            margin: 15px 0;
+            font-family: 'Courier New', monospace;
+            overflow-x: auto;
         }
         
-        .provider-logo img {
-            max-width: 100%;
-            max-height: 100%;
+        .code-comment {
+            color: #94a3b8;
         }
         
-        .dns-flow {
+        .config-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+        
+        .config-step {
             background: white;
             border-radius: 12px;
             padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
         }
         
-        .flow-item {
-            display: flex;
-            margin-bottom: 25px;
-            position: relative;
-        }
-        
-        .flow-item:last-child {
-            margin-bottom: 0;
-        }
-        
-        .flow-item::after {
-            content: "";
-            position: absolute;
-            left: 24px;
-            top: 40px;
-            height: calc(100% - 40px);
-            width: 2px;
-            background: var(--primary);
-            opacity: 0.3;
-        }
-        
-        .flow-icon {
-            width: 50px;
-            height: 50px;
-            background: var(--primary);
-            border-radius: 50%;
+        .config-step h4 {
             display: flex;
             align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            margin-right: 20px;
-            flex-shrink: 0;
-            z-index: 2;
-        }
-        
-        .flow-content {
-            padding-top: 10px;
-        }
-        
-        .flow-content h4 {
-            margin-bottom: 8px;
+            gap: 10px;
+            margin-bottom: 15px;
             color: var(--dark);
         }
         
-        .tester {
-            background: #f8fafc;
-            padding: 40px;
-            border-top: 1px solid #e2e8f0;
+        .status {
+            display: inline-block;
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            margin-top: 10px;
         }
         
-        .tester-content {
-            max-width: 800px;
-            margin: 0 auto;
+        .status-success {
+            background-color: #dcfce7;
+            color: var(--success);
         }
         
-        .test-form {
+        .status-warning {
+            background-color: #fef3c7;
+            color: #d97706;
+        }
+        
+        .status-danger {
+            background-color: #fee2e2;
+            color: var(--danger);
+        }
+        
+        .test-area {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            margin-top: 30px;
+        }
+        
+        .test-box {
+            flex: 1;
+            min-width: 300px;
             background: white;
             border-radius: 12px;
-            padding: 30px;
+            padding: 25px;
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-top: 25px;
         }
         
         .form-group {
@@ -230,7 +223,7 @@
             font-weight: 600;
         }
         
-        input {
+        input, textarea {
             width: 100%;
             padding: 14px;
             border: 1px solid #d1d5db;
@@ -259,6 +252,22 @@
             box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
         }
         
+        .btn-small {
+            padding: 10px 20px;
+            font-size: 0.9rem;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            border: 2px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn-outline:hover {
+            background: var(--primary);
+            color: white;
+        }
+        
         .result {
             margin-top: 25px;
             padding: 20px;
@@ -284,6 +293,59 @@
             color: #b45309;
         }
         
+        .checklist {
+            margin: 20px 0;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            margin-bottom: 15px;
+            padding: 15px;
+            border-radius: 8px;
+            background: white;
+        }
+        
+        .checklist-item i {
+            margin-top: 3px;
+            color: var(--gray);
+        }
+        
+        .checklist-item.completed i {
+            color: var(--success);
+        }
+        
+        .checklist-item.error i {
+            color: var(--danger);
+        }
+        
+        .troubleshooting-steps {
+            margin-top: 30px;
+        }
+        
+        .step {
+            margin-bottom: 20px;
+            padding-left: 30px;
+            position: relative;
+        }
+        
+        .step-number {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 24px;
+            height: 24px;
+            background: var(--primary);
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.8rem;
+            font-weight: bold;
+        }
+        
         footer {
             background: var(--dark);
             color: white;
@@ -291,32 +353,19 @@
             text-align: center;
         }
         
-        .status {
-            display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 10px;
-        }
-        
-        .status-success {
-            background-color: #dcfce7;
-            color: var(--success);
-        }
-        
-        .status-warning {
-            background-color: #fef3c7;
-            color: #d97706;
-        }
-        
-        .status-danger {
-            background-color: #fee2e2;
-            color: var(--danger);
+        .formspree-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+            color: var(--primary);
         }
         
         @media (max-width: 768px) {
-            .content {
+            .tabs {
                 flex-direction: column;
             }
             
@@ -327,165 +376,268 @@
             h1 {
                 font-size: 2rem;
             }
+            
+            .test-area {
+                flex-direction: column;
+            }
+            
+            .tab-content {
+                padding: 20px;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1><i class="fas fa-server"></i> MX Record Configuration Guide</h1>
-            <p class="subtitle">Step-by-step instructions to configure your MX records for sankalppankaj@anmng.com</p>
+            <h1><i class="fas fa-envelope"></i> Formspree Configuration Guide</h1>
+            <p class="subtitle">Ensure your job applications are delivered to sankalppankaj@anmng.com</p>
         </header>
         
-        <div class="content">
-            <div class="steps">
-                <div class="step-card">
-                    <h3><i class="fas fa-sign-in-alt"></i> Step 1: Access DNS Management</h3>
-                    <p>Log in to your domain registrar or DNS hosting provider:</p>
-                    <div class="provider-logos">
-                        <div class="provider-logo">GoDaddy</div>
-                        <div class="provider-logo">Namecheap</div>
-                        <div class="provider-logo">Cloudflare</div>
-                        <div class="provider-logo">Google Domains</div>
-                    </div>
-                    <p>Navigate to the DNS management section for your domain (anmng.com).</p>
+        <div class="tabs">
+            <div class="tab active" data-tab="setup">Formspree Setup</div>
+            <div class="tab" data-tab="verify">Verify Configuration</div>
+            <div class="tab" data-tab="test">Test Form</div>
+            <div class="tab" data-tab="troubleshoot">Troubleshooting</div>
+        </div>
+        
+        <div class="tab-content active" id="setup-tab">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-cogs"></i>
+                    <h2>Formspree Setup Guide</h2>
                 </div>
                 
-                <div class="step-card">
-                    <h3><i class="fas fa-plus-circle"></i> Step 2: Add MX Records</h3>
-                    <p>Create these MX records in your DNS settings:</p>
-                    
-                    <table class="record-table">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Name/Host</th>
-                                <th>Value/Points to</th>
-                                <th>Priority</th>
-                                <th>TTL</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>MX</td>
-                                <td>@</td>
-                                <td>mail.anmng.com</td>
-                                <td>10</td>
-                                <td>3600</td>
-                            </tr>
-                            <tr>
-                                <td>MX</td>
-                                <td>@</td>
-                                <td>backup.anmng.com</td>
-                                <td>20</td>
-                                <td>3600</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                    
-                    <div class="status status-danger">Priority 10 is your primary mail server</div>
+                <div class="formspree-logo">
+                    <i class="fas fa-paper-plane"></i>
+                    <span>Formspree</span>
                 </div>
                 
-                <div class="step-card">
-                    <h3><i class="fas fa-save"></i> Step 3: Save Changes</h3>
-                    <p>After adding the records, save your changes. DNS updates can take 24-48 hours to propagate globally.</p>
-                    <p><strong>Note:</strong> Some providers require you to remove existing MX records before adding new ones.</p>
-                </div>
-                
-                <div class="step-card">
-                    <h3><i class="fas fa-check-double"></i> Step 4: Verify Configuration</h3>
-                    <p>Use the tester tool on this page to verify your MX records are correctly configured.</p>
-                    <p>You can also use external tools like MXToolbox to check your records.</p>
-                </div>
-            </div>
-            
-            <div class="visualization">
-                <div class="dns-flow">
-                    <h2><i class="fas fa-random"></i> How MX Records Work</h2>
-                    <p style="margin-bottom: 25px;">MX records direct email traffic to your mail servers:</p>
+                <div class="formspree-setup">
+                    <h3><i class="fas fa-code"></i> Step 1: Get Your Formspree Endpoint</h3>
+                    <p>1. Log in to your <a href="https://formspree.io/" target="_blank">Formspree account</a></p>
+                    <p>2. Create a new form or find your existing form</p>
+                    <p>3. Copy your form endpoint URL</p>
                     
-                    <div class="flow-item">
-                        <div class="flow-icon">
-                            <i class="fas fa-envelope"></i>
-                        </div>
-                        <div class="flow-content">
-                            <h4>Email Sent</h4>
-                            <p>Someone sends an email to sankalppankaj@anmng.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flow-item">
-                        <div class="flow-icon">
-                            <i class="fas fa-globe"></i>
-                        </div>
-                        <div class="flow-content">
-                            <h4>DNS Query</h4>
-                            <p>The sending server looks up MX records for anmng.com</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flow-item">
-                        <div class="flow-icon">
-                            <i class="fas fa-server"></i>
-                        </div>
-                        <div class="flow-content">
-                            <h4>Server Selection</h4>
-                            <p>The server with the lowest priority (10) is tried first</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flow-item">
-                        <div class="flow-icon">
-                            <i class="fas fa-inbox"></i>
-                        </div>
-                        <div class="flow-content">
-                            <h4>Email Delivery</h4>
-                            <p>Email is delivered to your mail server</p>
-                        </div>
-                    </div>
-                    
-                    <div class="flow-item">
-                        <div class="flow-icon">
-                            <i class="fas fa-sync-alt"></i>
-                        </div>
-                        <div class="flow-content">
-                            <h4>Backup Server</h4>
-                            <p>If primary fails, the backup server (priority 20) is used</p>
-                        </div>
+                    <div class="code-block">
+                        <span class="code-comment">// Your form endpoint will look like this:</span><br>
+                        https://formspree.io/f/<span style="color: var(--success);">xldnolzz</span>
                     </div>
                 </div>
                 
-                <div class="dns-flow" style="margin-top: 30px;">
-                    <h2><i class="fas fa-exclamation-triangle"></i> Common Issues</h2>
-                    <ul style="padding-left: 25px; margin-top: 15px;">
-                        <li style="margin-bottom: 12px;">Incorrect priority values (lower number = higher priority)</li>
-                        <li style="margin-bottom: 12px;">Missing the @ symbol for the root domain</li>
-                        <li style="margin-bottom: 12px;">Forgetting to remove old MX records</li>
-                        <li style="margin-bottom: 12px;">TTL set too high, delaying propagation</li>
-                        <li>Typos in the mail server address</li>
-                    </ul>
+                <div class="formspree-setup">
+                    <h3><i class="fas fa-edit"></i> Step 2: Configure Your HTML Form</h3>
+                    <p>Update your form action attribute with your Formspree endpoint:</p>
+                    
+                    <div class="code-block">
+                        &lt;form <span style="color: #f87171;">action</span>="<span style="color: var(--success);">https://formspree.io/f/xldnolzz</span>" <span style="color: #f87171;">method</span>="POST"&gt;<br>
+                        &nbsp;&nbsp;&lt;input type="text" name="name" placeholder="Your Name" required&gt;<br>
+                        &nbsp;&nbsp;&lt;input type="email" name="email" placeholder="Your Email" required&gt;<br>
+                        &nbsp;&nbsp;&lt;textarea name="message" placeholder="Your Message"&gt;&lt;/textarea&gt;<br>
+                        &nbsp;&nbsp;&lt;button type="submit"&gt;Apply Now&lt;/button&gt;<br>
+                        &lt;/form&gt;
+                    </div>
+                </div>
+                
+                <div class="formspree-setup">
+                    <h3><i class="fas fa-envelope"></i> Step 3: Verify Your Email</h3>
+                    <p>1. After creating your form, Formspree will send a verification email</p>
+                    <p>2. Click the verification link in that email</p>
+                    <p>3. This ensures Formspree can deliver emails to your inbox</p>
+                    
+                    <div class="status status-danger">Unverified emails cannot receive submissions!</div>
                 </div>
             </div>
         </div>
         
-        <div class="tester">
-            <div class="tester-content">
-                <h2 style="text-align: center; margin-bottom: 15px;"><i class="fas fa-vial"></i> MX Record Tester</h2>
-                <p style="text-align: center; max-width: 700px; margin: 0 auto;">Verify your MX record configuration for anmng.com</p>
+        <div class="tab-content" id="verify-tab">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-check-circle"></i>
+                    <h2>Verify Your Configuration</h2>
+                </div>
                 
-                <div class="test-form">
-                    <div class="form-group">
-                        <label for="domain"><i class="fas fa-globe"></i> Domain Name</label>
-                        <input type="text" id="domain" value="anmng.com" readonly>
+                <div class="config-grid">
+                    <div class="config-step">
+                        <h4><i class="fas fa-link"></i> Form Action URL</h4>
+                        <p>Ensure your form's action attribute matches your Formspree endpoint exactly.</p>
+                        <div class="status status-warning">Needs verification</div>
                     </div>
                     
-                    <button class="btn" id="testBtn">
-                        <i class="fas fa-play-circle"></i> Test MX Records
-                    </button>
+                    <div class="config-step">
+                        <h4><i class="fas fa-envelope"></i> Email Verification</h4>
+                        <p>Check that you've verified your email address with Formspree.</p>
+                        <div class="status status-danger">Not verified</div>
+                    </div>
                     
-                    <div class="result" id="result">
-                        <h3 style="margin-bottom: 15px;"><i class="fas fa-poll"></i> Test Results</h3>
-                        <div id="resultContent"></div>
+                    <div class="config-step">
+                        <h4><i class="fas fa-shield-alt"></i> Domain Authentication</h4>
+                        <p>For better deliverability, authenticate your domain with Formspree.</p>
+                        <div class="status status-warning">Recommended</div>
+                    </div>
+                </div>
+                
+                <div class="card">
+                    <h3>Formspree Dashboard Check</h3>
+                    <p>Log in to your Formspree dashboard to verify:</p>
+                    
+                    <div class="checklist">
+                        <div class="checklist-item">
+                            <i class="fas fa-circle"></i>
+                            <div>Form submissions are being received</div>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-circle"></i>
+                            <div>Your email is verified (shows a green checkmark)</div>
+                        </div>
+                        <div class="checklist-item">
+                            <i class="fas fa-circle"></i>
+                            <div>No errors in submission logs</div>
+                        </div>
+                    </div>
+                    
+                    <a href="https://formspree.io/account" target="_blank" class="btn">
+                        <i class="fas fa-external-link-alt"></i> Open Formspree Dashboard
+                    </a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="test-tab">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-vial"></i>
+                    <h2>Test Your Form</h2>
+                </div>
+                
+                <div class="test-area">
+                    <div class="test-box">
+                        <h3><i class="fas fa-paper-plane"></i> Send Test Submission</h3>
+                        <p>Submit a test application to verify your form is working:</p>
+                        
+                        <form id="testForm">
+                            <div class="form-group">
+                                <label for="testName">Name</label>
+                                <input type="text" id="testName" placeholder="John Doe" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="testEmail">Email</label>
+                                <input type="email" id="testEmail" placeholder="john@example.com" required>
+                            </div>
+                            
+                            <div class="form-group">
+                                <label for="testMessage">Message</label>
+                                <textarea id="testMessage" placeholder="Test application message">This is a test submission from the Formspree configuration tool</textarea>
+                            </div>
+                            
+                            <button type="submit" class="btn">
+                                <i class="fas fa-paper-plane"></i> Send Test Application
+                            </button>
+                        </form>
+                        
+                        <div class="result" id="testResult"></div>
+                    </div>
+                    
+                    <div class="test-box">
+                        <h3><i class="fas fa-history"></i> Check Submission Status</h3>
+                        <p>After sending a test submission:</p>
+                        
+                        <div class="checklist">
+                            <div class="checklist-item">
+                                <i class="fas fa-circle"></i>
+                                <div>Check your Formspree dashboard</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="fas fa-circle"></i>
+                                <div>Look for the test submission in your inbox</div>
+                            </div>
+                            <div class="checklist-item">
+                                <i class="fas fa-circle"></i>
+                                <div>Check your spam/junk folder</div>
+                            </div>
+                        </div>
+                        
+                        <div class="result" id="statusResult">
+                            <p><i class="fas fa-info-circle"></i> Submit a test application to see results</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="tab-content" id="troubleshoot-tab">
+            <div class="section">
+                <div class="section-title">
+                    <i class="fas fa-tools"></i>
+                    <h2>Troubleshooting Guide</h2>
+                </div>
+                
+                <div class="card">
+                    <h3>Common Formspree Issues and Solutions</h3>
+                    
+                    <div class="troubleshooting-steps">
+                        <div class="step">
+                            <div class="step-number">1</div>
+                            <h4>Emails not received</h4>
+                            <p>Possible solutions:</p>
+                            <ul style="margin: 15px 0 15px 30px;">
+                                <li>Check spam/junk folder</li>
+                                <li>Verify your email in Formspree</li>
+                                <li>Ensure your form action URL is correct</li>
+                                <li>Check Formspree dashboard for submissions</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">2</div>
+                            <h4>Form submissions not showing in dashboard</h4>
+                            <p>Possible solutions:</p>
+                            <ul style="margin: 15px 0 15px 30px;">
+                                <li>Check browser console for JavaScript errors</li>
+                                <li>Verify form action URL is correct</li>
+                                <li>Test with a simple form (no JavaScript)</li>
+                                <li>Check network tab for failed POST requests</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">3</div>
+                            <h4>Emails going to spam</h4>
+                            <p>Improve deliverability:</p>
+                            <ul style="margin: 15px 0 15px 30px;">
+                                <li>Authenticate your domain with Formspree</li>
+                                <li>Add SPF and DKIM records</li>
+                                <li>Use a professional email address</li>
+                                <li>Whitelist noreply@formspree.io</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">4</div>
+                            <h4>Form submission errors</h4>
+                            <p>Debugging steps:</p>
+                            <ul style="margin: 15px 0 15px 30px;">
+                                <li>Check browser console for errors</li>
+                                <li>Test with Formspree's example form</li>
+                                <li>Verify required fields are included</li>
+                                <li>Disable form validation temporarily</li>
+                            </ul>
+                        </div>
+                        
+                        <div class="step">
+                            <div class="step-number">5</div>
+                            <h4>Still having issues?</h4>
+                            <p>Get additional support:</p>
+                            <ul style="margin: 15px 0 15px 30px;">
+                                <li>Contact Formspree support</li>
+                                <li>Check Formspree documentation</li>
+                                <li>Reach out to ANM NextGen team</li>
+                            </ul>
+                            <button class="btn btn-small">
+                                <i class="fas fa-life-ring"></i> Contact Support
+                            </button>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -493,66 +645,115 @@
         
         <footer>
             <p>© 2023 ANM NextGen - Professional IT Solutions</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Email: sankalppankaj@anmng.com | Support: +91 9876543210</p>
+            <p style="margin-top: 10px; opacity: 0.8;">Need help? Email support@anmng.com or call +91 9876543210</p>
         </footer>
     </div>
 
     <script>
-        document.getElementById('testBtn').addEventListener('click', function() {
-            const result = document.getElementById('result');
-            const content = document.getElementById('resultContent');
+        // Tab functionality
+        document.querySelectorAll('.tab').forEach(tab => {
+            tab.addEventListener('click', () => {
+                // Remove active class from all tabs and content
+                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
+                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+                
+                // Add active class to clicked tab
+                tab.classList.add('active');
+                
+                // Show corresponding content
+                const tabId = tab.getAttribute('data-tab');
+                document.getElementById(`${tabId}-tab`).classList.add('active');
+            });
+        });
+        
+        // Test form submission
+        document.getElementById('testForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            const name = document.getElementById('testName').value;
+            const email = document.getElementById('testEmail').value;
+            const message = document.getElementById('testMessage').value;
+            
+            const testResult = document.getElementById('testResult');
+            const statusResult = document.getElementById('statusResult');
             
             // Show loading state
-            result.style.display = 'block';
-            result.className = 'result warning';
-            content.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Testing MX records for anmng.com...</p>';
+            testResult.className = 'result warning';
+            testResult.style.display = 'block';
+            testResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Sending test application...</p>';
             
-            // Simulate network request
+            statusResult.className = 'result warning';
+            statusResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Processing submission...</p>';
+            
+            // Simulate form submission
             setTimeout(() => {
-                // 70% chance of failure for demonstration
-                const isSuccess = Math.random() > 0.7;
+                // 30% chance of failure for demonstration
+                const isSuccess = Math.random() > 0.3;
                 
                 if(isSuccess) {
-                    result.className = 'result success';
-                    content.innerHTML = `
-                        <p><i class="fas fa-check-circle"></i> MX records are properly configured!</p>
-                        <div style="margin-top: 20px; background: white; padding: 15px; border-radius: 8px;">
-                            <h4 style="margin-bottom: 10px;">Detected MX Records:</h4>
-                            <table style="width: 100%; border-collapse: collapse;">
-                                <tr>
-                                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd;">Server</th>
-                                    <th style="text-align: left; padding: 8px; border-bottom: 1px solid #ddd;">Priority</th>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">mail.anmng.com</td>
-                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">10</td>
-                                </tr>
-                                <tr>
-                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">backup.anmng.com</td>
-                                    <td style="padding: 8px; border-bottom: 1px solid #eee;">20</td>
-                                </tr>
-                            </table>
-                        </div>
-                        <p style="margin-top: 15px;"><i class="fas fa-thumbs-up"></i> Your email configuration looks good!</p>
+                    testResult.className = 'result success';
+                    testResult.innerHTML = `
+                        <h3><i class="fas fa-check-circle"></i> Test Application Sent!</h3>
+                        <p>Your test application was submitted successfully.</p>
+                        <p>Next steps:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Check your Formspree dashboard</li>
+                            <li>Look for the email in your inbox</li>
+                            <li>Verify spam folder if not received</li>
+                        </ul>
+                    `;
+                    
+                    statusResult.className = 'result success';
+                    statusResult.innerHTML = `
+                        <h3><i class="fas fa-check-circle"></i> Submission Successful</h3>
+                        <p>Formspree received your test application.</p>
+                        <p>What to check:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Dashboard shows new submission</li>
+                            <li>Email was sent to sankalppankaj@anmng.com</li>
+                            <li>No errors in submission logs</li>
+                        </ul>
                     `;
                 } else {
-                    result.className = 'result error';
-                    content.innerHTML = `
-                        <p><i class="fas fa-exclamation-triangle"></i> MX records not found or misconfigured</p>
-                        <div style="margin-top: 20px; background: white; padding: 15px; border-radius: 8px;">
-                            <h4 style="margin-bottom: 10px;">Recommended Actions:</h4>
-                            <ul style="padding-left: 20px; margin-bottom: 15px;">
-                                <li>Verify you added MX records for the root domain (@)</li>
-                                <li>Confirm mail.anmng.com is a valid mail server</li>
-                                <li>Check that priority values are set to 10 and 20</li>
-                                <li>Wait 24-48 hours for DNS changes to propagate</li>
-                            </ul>
-                            <p>Still having trouble? Contact support@sankalppankaj.com</p>
-                        </div>
+                    testResult.className = 'result error';
+                    testResult.innerHTML = `
+                        <h3><i class="fas fa-exclamation-triangle"></i> Submission Failed</h3>
+                        <p>There was an error sending your test application.</p>
+                        <p>Possible causes:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Incorrect Formspree endpoint</li>
+                            <li>Email not verified in Formspree</li>
+                            <li>Network or firewall issues</li>
+                        </ul>
+                        <p>Check the Troubleshooting tab for solutions.</p>
+                    `;
+                    
+                    statusResult.className = 'result error';
+                    statusResult.innerHTML = `
+                        <h3><i class="fas fa-times-circle"></i> Submission Not Received</h3>
+                        <p>Formspree did not receive your test application.</p>
+                        <p>Check these potential issues:</p>
+                        <ul style="margin: 10px 0 10px 20px;">
+                            <li>Form action URL is incorrect</li>
+                            <li>JavaScript errors on your page</li>
+                            <li>Ad blockers preventing submission</li>
+                        </ul>
                     `;
                 }
-            }, 2000);
+                
+                // Reset form
+                this.reset();
+            }, 3000);
         });
+        
+        // Simulate email verification status
+        setTimeout(() => {
+            const verifyStatus = document.querySelectorAll('.status-danger');
+            verifyStatus.forEach(el => {
+                el.className = 'status status-warning';
+                el.textContent = 'Needs verification';
+            });
+        }, 2000);
     </script>
 </body>
 </html>
