@@ -3,919 +3,668 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Formspree Configuration - ANM NextGen</title>
+    <title>ANM NextGen - Tech Solutions</title>
+    <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Add Splide slider CSS -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/css/splide.min.css">
     <style>
-        :root {
-            --primary: #2563eb;
-            --secondary: #1e40af;
-            --success: #10b981;
-            --warning: #f59e0b;
-            --danger: #ef4444;
-            --light: #f3f4f6;
-            --dark: #1f2937;
-            --gray: #6b7280;
-        }
-        
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-        }
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
         
         body {
-            background: linear-gradient(135deg, #f0f9ff, #e0f2fe);
-            color: var(--dark);
-            line-height: 1.6;
-            min-height: 100vh;
-            padding: 20px;
+            font-family: 'Poppins', sans-serif;
+            scroll-behavior: smooth;
+            background-color: #f9fafb;
         }
         
-        .container {
-            max-width: 1200px;
-            margin: 0 auto;
-            background: white;
-            border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            overflow: hidden;
+        .hero-gradient {
+            background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
         }
         
-        header {
-            background: linear-gradient(135deg, var(--primary), var(--secondary));
-            color: white;
-            padding: 40px;
-            text-align: center;
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+        }
+        
+        .nav-link {
             position: relative;
         }
         
-        .domain-warning {
-            background: #fffbeb;
-            border: 1px solid #fde68a;
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -2px;
+            left: 0;
+            background-color: #3b82f6;
+            transition: width 0.3s ease;
+        }
+        
+        .nav-link:hover::after {
+            width: 100%;
+        }
+        
+        .btn-primary {
+            background: linear-gradient(135deg, #3b82f6, #2563eb);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(37, 99, 235, 0.4);
+        }
+        
+        .footer-link:hover {
+            color: #3b82f6;
+            transform: translateX(3px);
+        }
+
+        /* Slider styles */
+        .splide__slide img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
             border-radius: 8px;
-            padding: 15px;
-            margin: 20px 0;
+        }
+
+        .splide__arrow {
+            background: rgba(255, 255, 255, 0.5) !important;
+        }
+
+        .splide__pagination__page.is-active {
+            background: #3b82f6 !important;
+        }
+
+        /* Service image styles */
+        .service-image {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+            border-radius: 8px 8px 0 0;
+        }
+
+        /* Logo styles - FIXED AND ENHANCED */
+        .logo-container {
             display: flex;
             align-items: center;
-            gap: 15px;
         }
         
-        .domain-warning i {
-            color: #f59e0b;
-            font-size: 1.5rem;
+        .company-logo {
+            height: 75px; /* Increased logo size */
+            width: auto; /* Maintain aspect ratio */
+            margin-right: 15px;
+            transition: transform 0.3s ease;
         }
         
-        h1 {
-            font-size: 2.5rem;
-            margin-bottom: 15px;
+        .company-name {
+            font-size: 2rem; /* Increased font size */
+            font-weight: 700;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            letter-spacing: 0.5px;
         }
         
-        .subtitle {
-            font-size: 1.2rem;
-            opacity: 0.9;
-            max-width: 700px;
-            margin: 0 auto;
-        }
-        
-        .tabs {
-            display: flex;
-            background: #f8fafc;
-            border-bottom: 1px solid #e2e8f0;
-            flex-wrap: wrap;
-        }
-        
-        .tab {
-            padding: 20px 30px;
-            cursor: pointer;
-            font-weight: 600;
-            transition: all 0.3s ease;
-            border-bottom: 3px solid transparent;
-        }
-        
-        .tab.active {
-            border-bottom: 3px solid var(--primary);
-            background: white;
-            color: var(--primary);
-        }
-        
-        .tab-content {
-            padding: 40px;
-            display: none;
-        }
-        
-        .tab-content.active {
-            display: block;
-        }
-        
-        .section {
-            margin-bottom: 40px;
+        /* Elegant design improvements */
+        .elegant-shadow {
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
         }
         
         .section-title {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            margin-bottom: 20px;
-            color: var(--dark);
-        }
-        
-        .section-title i {
-            width: 40px;
-            height: 40px;
-            background: var(--light);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: var(--primary);
-        }
-        
-        .card {
-            background: var(--light);
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
-            margin-bottom: 25px;
-        }
-        
-        .formspree-setup {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-            margin-bottom: 30px;
-        }
-        
-        .formspree-setup h3 {
-            color: var(--primary);
-            margin-bottom: 15px;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-        }
-        
-        .code-block {
-            background: #1e293b;
-            color: #f1f5f9;
-            padding: 15px;
-            border-radius: 8px;
-            margin: 15px 0;
-            font-family: 'Courier New', monospace;
-            overflow-x: auto;
             position: relative;
-        }
-        
-        .copy-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 4px;
-            cursor: pointer;
-            transition: background 0.3s;
-        }
-        
-        .copy-btn:hover {
-            background: rgba(255, 255, 255, 0.3);
-        }
-        
-        .code-comment {
-            color: #94a3b8;
-        }
-        
-        .config-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 25px;
-            margin-top: 30px;
-        }
-        
-        .config-step {
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .config-step h4 {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 15px;
-            color: var(--dark);
-        }
-        
-        .status {
             display: inline-block;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            margin-top: 10px;
+            margin-bottom: 2.5rem;
         }
         
-        .status-success {
-            background-color: #dcfce7;
-            color: var(--success);
-        }
-        
-        .status-warning {
-            background-color: #fef3c7;
-            color: #d97706;
-        }
-        
-        .status-danger {
-            background-color: #fee2e2;
-            color: var(--danger);
-        }
-        
-        .test-area {
-            display: flex;
-            gap: 20px;
-            flex-wrap: wrap;
-            margin-top: 30px;
-        }
-        
-        .test-box {
-            flex: 1;
-            min-width: 300px;
-            background: white;
-            border-radius: 12px;
-            padding: 25px;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
-        }
-        
-        .form-group {
-            margin-bottom: 20px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 600;
-        }
-        
-        input, textarea {
-            width: 100%;
-            padding: 14px;
-            border: 1px solid #d1d5db;
-            border-radius: 8px;
-            font-size: 1rem;
-        }
-        
-        .btn {
-            display: inline-block;
-            padding: 14px 28px;
-            background: var(--primary);
-            color: white;
-            border-radius: 8px;
-            font-weight: 600;
-            text-decoration: none;
-            border: none;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
-            font-size: 1rem;
-        }
-        
-        .btn:hover {
-            background: var(--secondary);
-            transform: translateY(-3px);
-            box-shadow: 0 6px 12px rgba(37, 99, 235, 0.3);
-        }
-        
-        .btn-small {
-            padding: 10px 20px;
-            font-size: 0.9rem;
-        }
-        
-        .btn-outline {
-            background: transparent;
-            border: 2px solid var(--primary);
-            color: var(--primary);
-        }
-        
-        .btn-outline:hover {
-            background: var(--primary);
-            color: white;
-        }
-        
-        .result {
-            margin-top: 25px;
-            padding: 20px;
-            border-radius: 8px;
-            display: none;
-        }
-        
-        .success {
-            background: #dcfce7;
-            border-left: 4px solid var(--success);
-            color: #166534;
-        }
-        
-        .error {
-            background: #fee2e2;
-            border-left: 4px solid var(--danger);
-            color: #b91c1c;
-        }
-        
-        .warning {
-            background: #fef3c7;
-            border-left: 4px solid var(--warning);
-            color: #b45309;
-        }
-        
-        .checklist {
-            margin: 20px 0;
-        }
-        
-        .checklist-item {
-            display: flex;
-            align-items: flex-start;
-            gap: 15px;
-            margin-bottom: 15px;
-            padding: 15px;
-            border-radius: 8px;
-            background: white;
-        }
-        
-        .checklist-item i {
-            margin-top: 3px;
-            color: var(--gray);
-        }
-        
-        .checklist-item.completed i {
-            color: var(--success);
-        }
-        
-        .checklist-item.error i {
-            color: var(--danger);
-        }
-        
-        .troubleshooting-steps {
-            margin-top: 30px;
-        }
-        
-        .step {
-            margin-bottom: 20px;
-            padding-left: 30px;
-            position: relative;
-        }
-        
-        .step-number {
+        .section-title::after {
+            content: '';
             position: absolute;
+            bottom: -10px;
             left: 0;
-            top: 0;
-            width: 24px;
-            height: 24px;
-            background: var(--primary);
-            color: white;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 0.8rem;
-            font-weight: bold;
+            width: 60px;
+            height: 3px;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
         }
         
-        footer {
-            background: var(--dark);
-            color: white;
-            padding: 30px;
-            text-align: center;
+        .contact-card {
+            background: linear-gradient(145deg, #ffffff, #f8fafc);
+            border-radius: 15px;
+            overflow: hidden;
         }
         
-        .formspree-logo {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            font-size: 1.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: var(--primary);
-        }
-        
-        .dns-record {
-            background: #f8fafc;
-            border-radius: 8px;
-            padding: 15px;
-            margin: 15px 0;
-            font-family: monospace;
-        }
-        
-        .dns-table {
+        .gradient-divider {
+            height: 4px;
+            background: linear-gradient(to right, #0A2463, #3b82f6);
             width: 100%;
-            border-collapse: collapse;
-            margin: 20px 0;
         }
         
-        .dns-table th, .dns-table td {
-            border: 1px solid #e2e8f0;
-            padding: 12px;
-            text-align: left;
+        /* Navigation adjustments for larger logo */
+        nav {
+            padding: 15px 0;
         }
         
-        .dns-table th {
-            background: #f1f5f9;
+        /* Hero section padding adjustment */
+        .hero-section {
+            padding-top: 120px;
         }
         
-        @media (max-width: 768px) {
-            .tabs {
-                flex-direction: column;
-            }
-            
-            header {
-                padding: 30px 20px;
-            }
-            
-            h1 {
-                font-size: 2rem;
-            }
-            
-            .test-area {
-                flex-direction: column;
-            }
-            
-            .tab-content {
-                padding: 20px;
-            }
-        }
-        
-        .verification-prompt {
-            background: #fffbeb;
-            border-left: 4px solid #f59e0b;
-            padding: 20px;
+        /* Logo border for visibility */
+        .logo-border {
+            border: 2px solid #3b82f6;
             border-radius: 8px;
-            margin: 20px 0;
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-        
-        .verification-prompt i {
-            color: #f59e0b;
-            font-size: 1.5rem;
-        }
-        
-        .domain-section {
-            background: #eff6ff;
-            border-left: 4px solid var(--primary);
-            padding: 25px;
-            border-radius: 8px;
-            margin: 25px 0;
+            padding: 5px;
         }
     </style>
 </head>
-<body>
-    <div class="container">
-        <header>
-            <h1><i class="fas fa-envelope"></i> Formspree Configuration Guide</h1>
-            <p class="subtitle">Fix email delivery to @anmng.com domain</p>
+<body class="bg-gray-60">
+    <!-- Navigation with Logo -->
+    <nav class="bg-white shadow-md fixed w-full z-50">
+        <div class="container mx-auto px-4">
+            <div class="flex justify-between items-center">
+                <div class="flex items-center">
+                    <div class="logo-container">
+                        <!-- Company Logo - FIXED PATH -->
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo logo-border">
+                        <div class="company-name">ANM NextGen</div>
+                    </div>
+                </div>
+                
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#services" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">About</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
+                </div>
+                
+                <div class="md:hidden">
+                    <button id="menu-toggle" class="text-gray-700 hover:text-blue-600 focus:outline-none">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
             
-            <div class="domain-warning">
-                <i class="fas fa-exclamation-triangle"></i>
-                <div>
-                    <h3>Email delivery issue to @anmng.com</h3>
-                    <p>You're receiving emails on Gmail but not on your @anmng.com domain. This indicates a domain configuration issue.</p>
-                </div>
-            </div>
-        </header>
-        
-        <div class="tabs">
-            <div class="tab active" data-tab="domain">Domain Setup</div>
-            <div class="tab" data-tab="dns">DNS Configuration</div>
-            <div class="tab" data-tab="test">Test Delivery</div>
-            <div class="tab" data-tab="troubleshoot">Troubleshooting</div>
-        </div>
-        
-        <div class="tab-content active" id="domain-tab">
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-globe"></i>
-                    <h2>Domain Authentication Setup</h2>
-                </div>
-                
-                <div class="verification-prompt">
-                    <i class="fas fa-info-circle"></i>
-                    <div>
-                        <h3>Why @anmng.com emails aren't being delivered</h3>
-                        <p>When emails work for Gmail but not for your custom domain (@anmng.com), it's typically because:</p>
-                        <ul style="margin: 15px 0 15px 30px;">
-                            <li>Your domain lacks proper SPF/DKIM records</li>
-                            <li>Formspree isn't authorized to send emails for your domain</li>
-                            <li>Your email server has strict spam filters</li>
-                            <li>DNS changes haven't fully propagated</li>
-                        </ul>
-                    </div>
-                </div>
-                
-                <div class="domain-section">
-                    <h3><i class="fas fa-server"></i> Step 1: Log in to Formspree</h3>
-                    <p>1. Go to the <a href="https://formspree.io/account" target="_blank">Formspree Dashboard</a></p>
-                    <p>2. Navigate to the "Domains" section</p>
-                    <p>3. Click "Add Domain" and enter "anmng.com"</p>
-                </div>
-                
-                <div class="domain-section">
-                    <h3><i class="fas fa-key"></i> Step 2: Verify Domain Ownership</h3>
-                    <p>Formspree will provide a TXT record to verify you own the domain:</p>
-                    
-                    <div class="dns-record">
-                        <strong>Type:</strong> TXT<br>
-                        <strong>Name:</strong> @ or anmng.com<br>
-                        <strong>Value:</strong> formspree-verification=xxxxxxxxxxxxxxxxxxxx
-                    </div>
-                    
-                    <p>Add this record to your DNS configuration (where you manage your domain).</p>
-                </div>
-                
-                <div class="domain-section">
-                    <h3><i class="fas fa-shield-alt"></i> Step 3: Set Up Email Authentication</h3>
-                    <p>To ensure deliverability to @anmng.com, add these records:</p>
-                    
-                    <table class="dns-table">
-                        <thead>
-                            <tr>
-                                <th>Type</th>
-                                <th>Name/Host</th>
-                                <th>Value</th>
-                                <th>Priority</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>SPF (TXT)</td>
-                                <td>@</td>
-                                <td>v=spf1 include:spf.formspree.io ~all</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>DKIM (CNAME)</td>
-                                <td>formspree._domainkey</td>
-                                <td>formspree.dkim.freshdesk.com</td>
-                                <td>-</td>
-                            </tr>
-                            <tr>
-                                <td>DMARC (TXT)</td>
-                                <td>_dmarc</td>
-                                <td>v=DMARC1; p=none; rua=mailto:admin@anmng.com;</td>
-                                <td>-</td>
-                            </tr>
-                        </tbody>
-                    </table>
+            <!-- Mobile Menu -->
+            <div id="mobile-menu" class="md:hidden hidden pt-4 pb-2">
+                <div class="flex flex-col space-y-3">
+                    <a href="#home" class="text-gray-700 hover:text-blue-600 transition duration-300">Home</a>
+                    <a href="#services" class="text-gray-700 hover:text-blue-600 transition duration-300">Services</a>
+                    <a href="#about" class="text-gray-700 hover:text-blue-600 transition duration-300">About</a>
+                    <a href="#contact" class="text-gray-700 hover:text-blue-600 transition duration-300">Contact</a>
                 </div>
             </div>
         </div>
-        
-        <div class="tab-content" id="dns-tab">
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-network-wired"></i>
-                    <h2>DNS Configuration Guide</h2>
-                </div>
-                
-                <div class="card">
-                    <h3>Where to Add DNS Records</h3>
-                    <p>DNS records are managed through your domain registrar or hosting provider:</p>
-                    
-                    <div class="checklist">
-                        <div class="checklist-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div><strong>GoDaddy:</strong> Domain Manager → DNS Management</div>
-                        </div>
-                        <div class="checklist-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div><strong>Namecheap:</strong> Domain List → Manage → Advanced DNS</div>
-                        </div>
-                        <div class="checklist-item">
-                            <i class="fas fa-check-circle"></i>
-                            <div><strong>Cloudflare:</strong> DNS → Records</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>SPF Record Configuration</h3>
-                    <p>SPF (Sender Policy Framework) tells email servers which senders are authorized for your domain:</p>
-                    
-                    <div class="code-block">
-                        <span class="code-comment"># SPF Record for anmng.com</span><br>
-                        <span>Type: TXT</span><br>
-                        <span>Host: @</span><br>
-                        <span>Value: v=spf1 include:spf.formspree.io ~all</span>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>DKIM Record Configuration</h3>
-                    <p>DKIM (DomainKeys Identified Mail) adds a digital signature to verify email authenticity:</p>
-                    
-                    <div class="code-block">
-                        <span class="code-comment"># DKIM Record for anmng.com</span><br>
-                        <span>Type: CNAME</span><br>
-                        <span>Host: formspree._domainkey</span><br>
-                        <span>Value: formspree.dkim.freshdesk.com</span>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    </div>
-                </div>
-                
-                <div class="card">
-                    <h3>DMARC Record Configuration</h3>
-                    <p>DMARC (Domain-based Message Authentication) tells receiving servers what to do with unauthenticated emails:</p>
-                    
-                    <div class="code-block">
-                        <span class="code-comment"># DMARC Record for anmng.com</span><br>
-                        <span>Type: TXT</span><br>
-                        <span>Host: _dmarc</span><br>
-                        <span>Value: v=DMARC1; p=none; rua=mailto:admin@anmng.com;</span>
-                        <button class="copy-btn" onclick="copyCode(this)">Copy</button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab-content" id="test-tab">
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-vial"></i>
-                    <h2>Test Email Delivery</h2>
-                </div>
-                
-                <div class="test-area">
-                    <div class="test-box">
-                        <h3><i class="fas fa-paper-plane"></i> Send Test to @anmng.com</h3>
-                        <p>Submit a test application to verify delivery to your domain:</p>
-                        
-                        <form id="domainTestForm">
-                            <div class="form-group">
-                                <label for="testName">Name *</label>
-                                <input type="text" id="testName" name="name" placeholder="John Doe" required>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="testEmail">Send to Email *</label>
-                                <input type="email" id="testEmail" name="email" value="sankalppankaj@anmng.com" required readonly>
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="testMessage">Message</label>
-                                <textarea id="testMessage" name="message" placeholder="Test application message">Testing delivery to @anmng.com domain</textarea>
-                            </div>
-                            
-                            <button type="submit" class="btn">
-                                <i class="fas fa-paper-plane"></i> Send Test to @anmng.com
-                            </button>
-                        </form>
-                        
-                        <div class="result" id="testResult"></div>
-                    </div>
-                    
-                    <div class="test-box">
-                        <h3><i class="fas fa-tasks"></i> Delivery Checklist</h3>
-                        <p>After sending a test submission:</p>
-                        
-                        <div class="checklist">
-                            <div class="checklist-item">
-                                <i class="fas fa-circle"></i>
-                                <div>Check your @anmng.com inbox</div>
-                            </div>
-                            <div class="checklist-item">
-                                <i class="fas fa-circle"></i>
-                                <div>Inspect spam/junk folder</div>
-                            </div>
-                            <div class="checklist-item">
-                                <i class="fas fa-circle"></i>
-                                <div>Verify in Formspree dashboard</div>
-                            </div>
-                            <div class="checklist-item">
-                                <i class="fas fa-circle"></i>
-                                <div>Check email headers for authentication</div>
-                            </div>
-                        </div>
-                        
-                        <div class="result" id="statusResult">
-                            <p><i class="fas fa-info-circle"></i> Submit a test to check delivery status</p>
-                        </div>
-                        
-                        <h3 style="margin-top: 30px;"><i class="fas fa-toolbox"></i> Tools</h3>
-                        <p>Verify your DNS configuration:</p>
-                        <div style="display: flex; gap: 10px; margin-top: 15px;">
-                            <a href="https://mxtoolbox.com/SuperTool.aspx" target="_blank" class="btn btn-small">
-                                <i class="fas fa-search"></i> MX Toolbox
-                            </a>
-                            <a href="https://dnschecker.org/" target="_blank" class="btn btn-small">
-                                <i class="fas fa-globe"></i> DNS Checker
-                            </a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="tab-content" id="troubleshoot-tab">
-            <div class="section">
-                <div class="section-title">
-                    <i class="fas fa-tools"></i>
-                    <h2>Troubleshooting Domain Delivery</h2>
-                </div>
-                
-                <div class="card">
-                    <h3>Common Issues and Solutions</h3>
-                    
-                    <div class="troubleshooting-steps">
-                        <div class="step">
-                            <div class="step-number">1</div>
-                            <h4>Emails not received in @anmng.com inbox</h4>
-                            <p>Possible solutions:</p>
-                            <ul style="margin: 15px 0 15px 30px;">
-                                <li><strong>Check spam folder:</strong> Mark Formspree as "Not Spam"</li>
-                                <li><strong>Whitelist Formspree:</strong> Add noreply@formspree.io to your safe senders list</li>
-                                <li><strong>Verify DNS:</strong> Ensure SPF/DKIM records are correct</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-number">2</div>
-                            <h4>DNS configuration errors</h4>
-                            <p>How to diagnose:</p>
-                            <ul style="margin: 15px 0 15px 30px;">
-                                <li>Use MXToolbox to verify SPF/DKIM records</li>
-                                <li>Check for typos in DNS values</li>
-                                <li>Allow 24-48 hours for DNS propagation</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-number">3</div>
-                            <h4>Email server configuration issues</h4>
-                            <p>For self-hosted email servers:</p>
-                            <ul style="margin: 15px 0 15px 30px;">
-                                <li>Check server firewall settings</li>
-                                <li>Review SMTP relay configuration</li>
-                                <li>Examine mail server logs for rejection reasons</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-number">4</div>
-                            <h4>Formspree domain authentication</h4>
-                            <p>Verify in Formspree dashboard:</p>
-                            <ul style="margin: 15px 0 15px 30px;">
-                                <li>Domain shows as "Verified"</li>
-                                <li>SPF and DKIM show green checkmarks</li>
-                                <li>No warnings or errors in domain status</li>
-                            </ul>
-                        </div>
-                        
-                        <div class="step">
-                            <div class="step-number">5</div>
-                            <h4>Still having issues?</h4>
-                            <p>Get additional support:</p>
-                            <ul style="margin: 15px 0 15px 30px;">
-                                <li>Contact Formspree support with your domain details</li>
-                                <li>Reach out to your domain hosting provider</li>
-                                <li>Consult with ANM NextGen IT team</li>
-                            </ul>
-                            <button class="btn">
-                                <i class="fas fa-life-ring"></i> Contact Support
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        
-        <footer>
-            <p>© 2023 ANM NextGen - Professional IT Solutions</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Email: support@anmng.com | Phone: +91 9876543210</p>
-        </footer>
-    </div>
+    </nav>
 
+    <!-- Hero Section with Image Slider -->
+    <section id="home" class="hero-gradient text-white hero-section pb-20">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <h1 class="text-4xl md:text-5xl font-bold mb-6">Transforming Tech Talent & Projects</h1>
+                    <p class="text-xl mb-8 text-gray-200">ANM NextGen provides cutting-edge IT solutions, staffing services, and enterprise software expertise to power your business forward.</p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
+                        <a href="#services" class="btn-primary px-8 py-3 rounded-lg font-medium text-center shadow-lg">Our Services</a>
+                        <a href="#contact" class="bg-transparent border-2 border-white px-8 py-3 rounded-lg font-medium text-center hover:bg-white hover:text-blue-800 transition duration-300 shadow-lg">Contact Us</a>
+                    </div>
+                </div>
+                <div class="md:w-1/2">
+                    <!-- Image Slider -->
+                    <div class="splide">
+                        <div class="splide__track">
+                            <ul class="splide__list">
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1499750310107-5fef28a66643?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Tech Team">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Analytics">
+                                </li>
+                                <li class="splide__slide">
+                                    <img src="https://images.unsplash.com/photo-1467232004584-a241de8bcf5d?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1469&q=80" alt="Software Development">
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Our Services</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">We offer comprehensive IT solutions to help businesses excel through expert staffing, software development, and enterprise platforms.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Staffing Service Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1573497491208-6b1acb260507?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Staffing Services" class="service-image">
+                    <div class="h-3 bg-blue-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-users text-2xl text-blue-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Staffing Services</h3>
+                        <p class="text-gray-600 mb-4">Connect with top-tier tech talent for your organization. We provide skilled professionals who drive innovation and excellence.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Contract Staffing
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Permanent Placement
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Executive Search
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block text-blue-600 font-medium hover:text-blue-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- Software Development Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Software Development" class="service-image">
+                    <div class="h-3 bg-indigo-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-indigo-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-code text-2xl text-indigo-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Software Development</h3>
+                        <p class="text-gray-600 mb-4">Custom software solutions tailored to your business needs. Our expert developers create scalable, robust applications.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Custom Applications
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Web Development
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Mobile Solutions
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block text-indigo-600 font-medium hover:text-indigo-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- ServiceNow Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1620712943543-bcc4688e7485?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=765&q=80" alt="ServiceNow Solutions" class="service-image">
+                    <div class="h-3 bg-green-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-green-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-cloud text-2xl text-green-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">ServiceNow Solutions</h3>
+                        <p class="text-gray-600 mb-4">Optimize your workflows and service management with our expert ServiceNow implementation and customization services.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                ITSM & ITOM Implementation
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Custom Applications
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Platform Integration
+                            </li>
+                        </ul>
+                        <a href="#contact" class="inline-block text-green-600 font-medium hover:text-green-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+                
+                <!-- Data Solutions Card -->
+                <div class="service-card bg-white rounded-xl shadow-lg overflow-hidden transition duration-300 elegant-shadow">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" alt="Data Solutions" class="service-image">
+                    <div class="h-3 bg-purple-600"></div>
+                    <div class="p-6">
+                        <div class="w-16 h-16 bg-purple-100 rounded-lg flex items-center justify-center mb-4">
+                            <i class="fas fa-database text-2xl text-purple-600"></i>
+                        </div>
+                        <h3 class="text-xl font-semibold text-gray-800 mb-3">Data Solutions</h3>
+                        <p class="text-gray-600 mb-4">Unlock the power of your data with our analytics and business intelligence solutions. Turn information into actionable insights.</p>
+                        <ul class="mb-6 space-y-2">
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 极 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Data Analytics
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Business Intelligence
+                            </li>
+                            <li class="flex items-center text-gray-600">
+                                <svg class="w-4 h-4 mr-2 text-green-500" fill="currentColor" viewBox="0 0 20 20">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                                </svg>
+                                Data Migration & Integration
+                            </极>
+                        </ul>
+                        <a href="#contact" class="inline-block text-purple-600 font-medium hover:text-purple-800 transition duration-300">Learn More →</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">About ANM NextGen</h2>
+                <p class="text-gray-600 max-w-3xl mx-auto text-lg">We bridge the gap between technology and talent to drive your business forward.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0">
+                    <div class="bg-gray-100 rounded-2xl p-8 elegant-shadow">
+                        <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=1470&q=80" 
+                             alt="Team Collaboration" 
+                             class="w-full h-auto rounded-lg">
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-10">
+                    <h3 class="text-2xl font-semibold text-gray-800 mb-4">Our Mission</h3>
+                    <p class="text-gray-600 mb-6">To empower organizations with innovative technology solutions and top-tier talent that drive measurable business results and sustainable growth.</p>
+                    
+                    <h3 class="text-2xl font-semib极 text-gray-800 mb-4">Our Vision</h3>
+                    <p class="text-gray-600 mb-6">To be the premier technology partner for businesses seeking to transform their operations through cutting-edge IT solutions and exceptional talent.</p>
+                    
+                    <div class="grid grid-cols-2 gap-4 mb-6">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-lightbulb text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Innovation-Driven</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-users text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Client-Focused</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-chart-line text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Results-Oriented</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 rounded-full bg-blue-100 flex items-center justify-center mr-3">
+                                <i class="fas fa-shield-alt text-blue-600"></i>
+                            </div>
+                            <span class="text-gray-700 font-medium">Quality Assured</span>
+                        </div>
+                    </div>
+                    <a href="#contact" class="btn-primary inline-block px-6 py-3 rounded-lg font-medium">Get to Know Us</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-white">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="text-3xl font-bold text-gray-800 mb-4 section-title">Get In Touch</h2>
+                <p class="text-gray-600 max-w-2xl mx-auto text-lg">Ready to transform your business? Contact us today to discuss how ANM NextGen can help you achieve your goals.</p>
+            </div>
+            
+            <div class="flex flex-col md:flex-row">
+                <div class="md:w-1/2 mb-10 md:mb-0 md:pr-8">
+                    <form id="contact-form" class="space-y-6">
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <label for="name" class="block text-gray-700 font-medium mb-2">Name</label>
+                                <input type="text" id="name" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Name">
+                            </div>
+                            <div>
+                                <label for="email" class="block text-gray-700 font-medium mb-2">Email</label>
+                                <input type="email" id="email" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Email">
+                            </div>
+                        </div>
+                        <div>
+                            <label for="subject" class="block text-gray-700 font-medium mb-2">Subject</label>
+                            <input type="text" id="subject" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Subject">
+                        </div>
+                        <div>
+                            <label for="message" class="block text-gray-700 font-medium mb-2">Message</label>
+                            <textarea id="message" rows="5" class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent" placeholder="Your Message"></textarea>
+                        </div>
+                        <div>
+                            <button type="submit" class="btn-primary w-full px-6 py-3 rounded-lg font-medium shadow-lg">Send Message</button>
+                        </div>
+                        <div id="form-message" class="hidden text-center py-3 rounded-lg"></div>
+                    </form>
+                </div>
+                
+                <div class="md:w-1/2 md:pl-8">
+                    <div class="contact-card p-8 h-full">
+                        <h3 class="text-2xl font-semibold text-gray-800 mb-6">Contact Information</h3>
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-map-marker-alt text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-800 mb-1">Our Location</h4>
+                                    <p class="text-gray-600">11th Cross West, Thillai Nagar<br>Trichy - 620 018</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="w-12 h-12 rounded-full bg-blue-100 flex items-center justify-center mr-4 flex-shrink-0">
+                                    <i class="fas fa-envelope text-blue-600"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-lg font-medium text-gray-800 mb-1">Email Us</h4>
+                                    <p class="text-gray-600">adminsupport@anmng.com</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-10">
+                            <h4 class="text-lg font-medium text-gray-800 mb-4">Connect With Us</h4>
+                            <div class="flex">
+                                <a href="#" class="w-12 h-12 rounded-full bg-blue-600 flex items-center justify-center text-white hover:bg-blue-700 transition duration-300">
+                                    <i class="fab fa-linkedin-in"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white pt-16 pb-8">
+        <div class="container mx-auto px-4">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
+                <div>
+                    <div class="logo-container mb-4">
+                        <!-- Fixed footer logo -->
+                        <img src="https://raw.githubusercontent.com/sanmut-anm/ANM-NextGen/main/Anm-logo1.png" alt="ANM NextGen Logo" class="company-logo logo-border">
+                        <div class="company-name">ANM NextGen</div>
+                    </div>
+                    <p class="text-gray-400 mb-6">Empowering businesses through innovative tech solutions, expert staffing, and comprehensive enterprise software services.</p>
+                    <div class="flex">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300 mr-4">
+                            <i class="fab fa-linkedin-in text-xl"></i>
+                        </a>
+                    </div>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Services</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Staffing Services</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Software Development</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">ServiceNow Solutions</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Data Solutions</a></li>
+                    </ul>
+                </div>
+                
+                <div>
+                    <h3 class="text-xl font-bold mb-6 text-white">Quick Links</h3>
+                    <ul class="space-y-3">
+                        <li><a href="#home" class="text-gray-400 hover:text-white transition duration-300 footer-link">Home</a></li>
+                        <li><a href="#about" class="text-gray-400 hover:text-white transition duration-300 footer-link">About Us</a></li>
+                        <li><a href="#services" class="text-gray-400 hover:text-white transition duration-300 footer-link">Services</a></li>
+                        <li><a href="#contact" class="text-gray-400 hover:text-white transition duration-300 footer-link">Contact</a></li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="border-t border-gray-800 pt-8">
+                <div class="flex flex-col md:flex-row justify-between items-center">
+                    <p class="text-gray-400 mb-4 md:mb-0">&copy; 2025 ANM NextGen. All rights reserved.</p>
+                    <div class="flex space-x-6">
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Privacy Policy</a>
+                        <a href="#" class="text-gray-400 hover:text-white transition duration-300">Terms of Service</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 w-12 h-12 rounded-full bg-blue-600 text-white flex items-center justify-center shadow-lg transform scale-0 transition-transform duration-300 hover:bg-blue-700">
+        <i class="fas fa-arrow-up"></i>
+    </button>
+
+    <!-- Add Splide slider JS -->
+    <script src="https://cdn.jsdelivr.net/npm/@splidejs/splide@4.1.4/dist/js/splide.min.js"></script>
     <script>
-        // Tab functionality
-        document.querySelectorAll('.tab').forEach(tab => {
-            tab.addEventListener('click', () => {
-                // Remove active class from all tabs and content
-                document.querySelectorAll('.tab').forEach(t => t.classList.remove('active'));
-                document.querySelectorAll('.tab-content').forEach(c => c.classList.remove('active'));
+        // Initialize Splide slider
+        document.addEventListener('DOMContentLoaded', function() {
+            new Splide('.splide', {
+                type: 'loop',
+                autoplay: true,
+                interval: 3000,
+                pauseOnHover: false,
+                arrows: true,
+                pagination: true
+            }).mount();
+        });
+
+        // Mobile Menu Toggle
+        const menuToggle = document.getElementById('menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        
+        menuToggle.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+        
+        // Smooth Scrolling for Anchor Links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
                 
-                // Add active class to clicked tab
-                tab.classList.add('active');
+                const targetId = this.getAttribute('href');
+                const targetElement = document.querySelector(targetId);
                 
-                // Show corresponding content
-                const tabId = tab.getAttribute('data-tab');
-                document.getElementById(`${tabId}-tab`).classList.add('active');
+                if (targetElement) {
+                    window.scrollTo({
+                        top: targetElement.offsetTop - 80,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Close mobile menu if open
+                    if (!mobileMenu.classList.contains('hidden')) {
+                        mobileMenu.classList.add('hidden');
+                    }
+                }
             });
         });
         
-        // Test form submission
-        document.getElementById('domainTestForm').addEventListener('submit', function(e) {
+        // Back to Top Button
+        const backToTopButton = document.getElementById('back-to-top');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopButton.classList.replace('scale-0', 'scale-100');
+            } else {
+                backToTopButton.classList.replace('scale-100', 'scale-0');
+            }
+        });
+        
+        backToTopButton.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Contact Form Handling
+        const contactForm = document.getElementById('contact-form');
+        const formMessage = document.getElementById('form-message');
+        
+        contactForm.addEventListener('submit', (e) => {
             e.preventDefault();
             
-            const name = document.getElementById('testName').value;
-            const email = document.getElementById('testEmail').value;
-            const message = document.getElementById('testMessage').value;
+            // Get form values
+            const name = document.getElementById('name').value;
+            const email = document.getElementById('email').value;
+            const subject = document.getElementById('subject').value;
+            const message = document.getElementById('message').value;
             
-            const testResult = document.getElementById('testResult');
-            const statusResult = document.getElementById('statusResult');
-            
-            // Show loading state
-            testResult.className = 'result warning';
-            testResult.style.display = 'block';
-            testResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Sending test to @anmng.com...</p>';
-            
-            statusResult.className = 'result warning';
-            statusResult.innerHTML = '<p><i class="fas fa-spinner fa-spin"></i> Processing submission...</p>';
-            
-            // Simulate form submission
-            setTimeout(() => {
-                // Simulate domain delivery issues
-                const isSuccess = Math.random() > 0.5;
-                
-                if(isSuccess) {
-                    testResult.className = 'result success';
-                    testResult.innerHTML = `
-                        <h3><i class="fas fa-check-circle"></i> Test Sent Successfully!</h3>
-                        <p>Your test was submitted to Formspree.</p>
-                        <p>Next steps:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Check your @anmng.com inbox</li>
-                            <li>Verify spam folder if not received</li>
-                            <li>Inspect email headers for authentication</li>
-                        </ul>
-                    `;
-                    
-                    statusResult.className = 'result success';
-                    statusResult.innerHTML = `
-                        <h3><i class="fas fa-check-circle"></i> Formspree Received Submission</h3>
-                        <p>Formspree processed your test application.</p>
-                        <p>Delivery to @anmng.com depends on:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Domain authentication (SPF/DKIM)</li>
-                            <li>Email server configuration</li>
-                            <li>Spam filter settings</li>
-                        </ul>
-                    `;
-                } else {
-                    testResult.className = 'result error';
-                    testResult.innerHTML = `
-                        <h3><i class="fas fa-exclamation-triangle"></i> Potential Delivery Issue</h3>
-                        <p>Formspree received your submission but delivery to @anmng.com might fail.</p>
-                        <p>Common causes:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Missing or incorrect SPF/DKIM records</li>
-                            <li>Domain not verified in Formspree</li>
-                            <li>Strict spam filters on @anmng.com</li>
-                        </ul>
-                        <p>Check the DNS Configuration tab and verify your settings.</p>
-                    `;
-                    
-                    statusResult.className = 'result error';
-                    statusResult.innerHTML = `
-                        <h3><i class="fas fa-times-circle"></i> Check Domain Configuration</h3>
-                        <p>Emails to custom domains often require additional setup.</p>
-                        <p>Ensure you have:</p>
-                        <ul style="margin: 10px 0 10px 20px;">
-                            <li>Added SPF record for Formspree</li>
-                            <li>Configured DKIM authentication</li>
-                            <li>Verified domain in Formspree dashboard</li>
-                        </ul>
-                    `;
-                }
-            }, 3000);
-        });
-        
-        // Copy code function
-        function copyCode(button) {
-            const codeBlock = button.parentElement;
-            const text = codeBlock.innerText.replace('Copy', '');
-            
-            navigator.clipboard.writeText(text).then(() => {
-                button.textContent = 'Copied!';
-                setTimeout(() => {
-                    button.textContent = 'Copy';
-                }, 2000);
-            });
-        }
-        
-        // Simulate domain verification status
-        setTimeout(() => {
-            // This would normally come from an API call
-            const isVerified = false; // Set to true if verified
-            
-            if (isVerified) {
-                document.getElementById('verificationStatus').className = 'status status-success';
-                document.getElementById('verificationStatus').textContent = 'Verified';
-            } else {
-                document.getElementById('verificationStatus').className = 'status status-danger';
-                document.getElementById('verificationStatus').textContent = 'Not verified';
+            // Simple validation
+            if (!name || !email || !message) {
+                formMessage.textContent = 'Please fill in all required fields.';
+                formMessage.classList.remove('hidden', 'bg-green-100', 'text-green-700');
+                formMessage.classList.add('bg-red-100', 'text-red-700');
+                return;
             }
-        }, 1500);
+            
+            // In a real application, you would send this data to your server
+            // For demo purposes, we'll just show a success message
+            formMessage.textContent = 'Thank you! Your message has been sent successfully.';
+            formMessage.classList.remove('hidden', 'bg-red-100', 'text-red-700');
+            formMessage.classList.add('bg-green-100', 'text-green-700');
+            
+            // Reset form
+            contactForm.reset();
+            
+            // Hide message after 5 seconds
+            setTimeout(() => {
+                formMessage.classList.add('hidden');
+            }, 5000);
+        });
     </script>
 </body>
 </html>
